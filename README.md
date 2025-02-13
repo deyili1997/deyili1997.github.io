@@ -6,8 +6,8 @@
 **GitHub:** [Profile](https://github.com/deyili1997)  
 
 ## Education
-- **Ph.D. in Biomedical Informatics**, University of Florida *(08/2023 - Expected 08/2027)*  
-- **M.S. in Automated Science**, Carnegie Mellon University *(09/2021 - 05/2023)*  
+- **Ph.D. in Biomedical Informatics, College of Medicine**, University of Florida *(08/2023 - Expected 08/2027)*  
+- **M.S. in Automated Science, School of Computer Science**, Carnegie Mellon University *(09/2021 - 05/2023)*  
 - **B.S. in Clinical Pharmaceutical Sciences**, Shenyang Pharmaceutical University, China *(09/2015 - 07/2020)*  
 
 ## Research Interests
