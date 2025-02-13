@@ -33,4 +33,4 @@
 - Guo, H., Sun, J., **Li, D.**, et al. (2019). Shikonin Attenuates Acetaminophen-Induced Acute Liver Injury. *Biomedicine & Pharmacotherapy, 112, 108704.*
 - Ma, T., Huang, M., Li, A., et al. (2019). Design and Biological Evaluation of Pin1 Inhibitors. *Bioorganic & Medicinal Chemistry Letters, 29(14), 1859-1863.*
 - Li, G. Z., Hu, Y. H., **Li, D.**, et al. (2020). Vincristine-Induced Peripheral Neuropathy: A Mini-Review. *Neurotoxicology, 81, 161-171.*
-- **Li, L., Zhu, M., **Li, D.**, et al. (2021). Dose Tailoring of Tacrolimus Based on a Non-Linear Pharmacokinetic Model. *International Immunopharmacology, 98, 107827.*
+- Li, L., Zhu, M., **Li, D.**, et al. (2021). Dose Tailoring of Tacrolimus Based on a Non-Linear Pharmacokinetic Model. *International Immunopharmacology, 98, 107827.*
