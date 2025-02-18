@@ -20,7 +20,7 @@
 ## Publications and Submitted Manuscripts
 
 - Chan, H. Y., **Li, D.**, Yu, A. S. L., et al. A Multi-Center Machine Learning Study of Electronic Health Records Identifies Key Risk Factors for Acute Kidney Injury. *Under review with Nature Medicine.*
-- **Li, D.**, Yao, Z., Liang, M., & Liu, M. DeePJ: Uncovering Hidden Graph Structures in Patient Trajectories Using Graph Convolutional Transformers and Differentiable Graph Pooling. *Under review with AMIA 2025 Annual Symposium.*
+- **Li, D.**, Yao, Z., Liang, M., & Liu, M. DeepJ: Graph Convolutional Transformers with Differentiable Pooling for Patient Trajectory Modeling. *Under review with AMIA 2025 Annual Symposium.*
 - Yang, R., Chan, H. Y., **Li, D.**, Xu, Q., & Liu, M. Impact of Baseline Serum Creatinine Definitions on Acute Kidney Injury Stratification and Detection. *Under review with MedInfo 2025 Conference.*
 - **Li, D.**, Shukla, A., Chandaka, S., et al. Autoencoder-Based Representation Learning for Similar Patients Retrieval from Electronic Health Records: A Comparative Study. *Under review with JMIR Medical Informatics.*
 - **Li, D.**, Yu, A. S. L., Fuhrman, D., & Liu, M. SMART: A New Patient Similarity Estimation Framework for Enhanced Predictive Modeling in Acute Kidney Injury. *Under review with JAMIA.*
