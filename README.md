@@ -1,1 +1,1 @@
-# Deyi Li’s Technical Blog on AI for Medicine.
+# Deyi Li's Technical Blog on AI for Medicine.
