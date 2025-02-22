@@ -2,7 +2,7 @@
 # Site Settings
 title: AI4Med
 logo: # You can add own logo. For example '/images/logo.png'.
-description: Reading papers on AI for Medicine.
+description: A technical blog on AI for Medicine.
 
 
 #-------------------------------
@@ -28,7 +28,7 @@ author:
 # Hero Settings
 hero:
   title: Deyi Li
-  description: A technical blog on AI for Medicine.
+  description: Reading papers on novel AI models and AI applications in biomedicine and healthcare.
   image: '/images/background_4.jpg'
 
 
