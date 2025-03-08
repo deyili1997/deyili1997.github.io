@@ -13,7 +13,6 @@ image: '/images/background_3.jpg'
 
 ## Education
 - **Ph.D. in Biomedical Informatics**, College of Medicine, University of Florida *(08/2023 - Expected 08/2027)*
-- **M.S. in Computer Science**, Computing Systems Specialization, Georgia Institute of Technology *(08/2025 - Expected 08/2028)*  
 - **M.S. in Automated Science**, School of Computer Science, Carnegie Mellon University *(09/2021 - 05/2023)*  
 - **B.S. in Clinical Pharmaceutical Sciences**, Shenyang Pharmaceutical University, China *(09/2015 - 07/2020)*  
 
