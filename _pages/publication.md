@@ -5,7 +5,7 @@ permalink: /publication/
 image: '/images/background_10.jpg'
 ---
 
-- Chan, H. Y., **Li, D.**, Yu, A. S. L., et al. A Multi-Center Machine Learning Study of Electronic Health Records Identifies Key Risk Factors for Acute Kidney Injury. *Under review with Lancet Digital Health.*
+- Chan, H. Y., **Li, D.**, Yu, A. S. L., et al. Elucidating complex clinical predictors of acute kidney injury: a multicenter, retrospective study using machine learning. *Under review with Lancet Digital Health.*
 - Xu, Z., **Li, D.**, & Liu, M. Analyzing and Mitigating Model Drift in AKI Prediction. *Under review with AMIA 2025 Annual Symposium.*
 - **Li, D.**, Yao, Z., Liang, M., & Liu, M. DeepJ: Graph Convolutional Transformers with Differentiable Pooling for Patient Trajectory Modeling. *Under review with AMIA 2025 Annual Symposium.*
 - Yang, R., Chan, H. Y., **Li, D.**, Xu, Q., & Liu, M. Impact of Baseline Serum Creatinine Definitions on Acute Kidney Injury Stratification and Detection. *Accepted at MedInfo 2025 Conference.*
