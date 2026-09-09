@@ -35,9 +35,19 @@
     "study_status": "TBD"
   },
   {
+    "id": "omics",
+    "title": "Omics",
+    "number": "04",
+    "description": "Research and learning in omics.",
+    "url": "/omics/",
+    "study_label": "Study notes",
+    "study_status": "TBD",
+    "show_publications": false
+  },
+  {
     "id": "investment-notes",
     "title": "Investment Notes",
-    "number": "04",
+    "number": "05",
     "description": "A personal learning journal on U.S. equities, company analysis, valuation, and investment decisions.",
     "url": "/investment-notes/",
     "study_label": "Investment journal",

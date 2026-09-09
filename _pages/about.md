@@ -16,4 +16,5 @@ image: '/images/background_3.jpg'
 - [RWE Generation](/rwe-generation/): observational study design, causal inference, and real-world evidence.
 - [Predictive Modeling](/predictive-modeling/): patient representation learning, clinical prediction, and healthcare AI.
 - [Clinical Pharmacology](/clinical-pharmacology/): pharmacometrics and individualized therapy. Learning content: TBD.
+- [Omics](/omics/): research and learning content: TBD.
 - [Investment Notes](/investment-notes/): a personal learning journal on U.S. equity investing.

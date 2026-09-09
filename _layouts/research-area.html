@@ -39,9 +39,9 @@ layout: default
       {% endif %}
       {% else %}
       <p class="research-kicker">Study collection</p>
-      <h2 id="area-learning-title">Clinical Pharmacology notes</h2>
+      <h2 id="area-learning-title">{{ area.title }} notes</h2>
       <p class="research-tbd"><span class="research-status">TBD</span> Learning content to be added.</p>
-      <p>Existing publications on pharmacokinetic modeling and individualized therapy are available in the publications section.</p>
+      {% if area.id == 'clinical-pharmacology' %}<p>Existing publications on pharmacokinetic modeling and individualized therapy are available in the publications section.</p>{% endif %}
       {% endif %}
     </section>
     {% unless area.show_publications == false %}

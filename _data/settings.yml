@@ -15,6 +15,8 @@ menu-settings:
       url: '/predictive-modeling/'
     - title: 'Clinical Pharmacology'
       url: '/clinical-pharmacology/'
+    - title: 'Omics'
+      url: '/omics/'
     - title: 'Investment Notes'
       url: '/investment-notes/'
     - title: 'Publications'
