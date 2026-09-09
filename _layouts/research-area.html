@@ -6,11 +6,11 @@ layout: default
 <div class="research-shell research-area-page" data-area="{{ area.id }}">
   <header class="research-area-intro">
     <nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">{{ area.title }}</span></nav>
-    <p class="research-kicker">Research direction {{ area.number }}</p>
+    <p class="research-kicker">{% if area.id == 'investment-notes' %}Personal learning journal{% else %}Research direction {{ area.number }}{% endif %}</p>
     <h1>{{ area.title }}</h1>
     <p class="research-area-lead">{{ area.description }}</p>
   </header>
-  <div class="research-area-grid">
+  <div class="research-area-grid{% if area.show_publications == false %} research-area-grid--notes{% endif %}">
     <section class="research-module" aria-labelledby="area-learning-title">
       {% if area.id == 'rwe-generation' %}
       <p class="research-kicker">Study collection</p>
@@ -23,16 +23,20 @@ layout: default
         <li><a href="{{ '/causal-inference/inverse-probability-weighting/' | relative_url }}">Inverse probability weighting</a><span>Connect identification and estimation</span></li>
       </ul>
       <p class="research-module-note">{{ site.causal_inference.size }} English study notes</p>
-      {% elsif area.id == 'predictive-modeling' %}
+      {% elsif area.id == 'predictive-modeling' or area.id == 'investment-notes' %}
       <p class="research-kicker">Reading &amp; concepts</p>
-      <h2 id="area-learning-title">Learning notes</h2>
-      <p>{{ area.study_description }}</p>
+      <h2 id="area-learning-title">{% if area.id == 'investment-notes' %}U.S. equity investing{% else %}Learning notes{% endif %}</h2>
+      {% if area.study_description %}<p>{{ area.study_description }}</p>{% endif %}
       {% assign readings = site.posts | where: 'research_area', area.id %}
+      {% if readings.size == 0 %}
+      <p class="research-tbd"><span class="research-status">TBD</span> The first entry will be added here.</p>
+      {% else %}
       <div class="research-reading-list">
       {% for post in readings %}
         <article><p class="research-reading-date">{{ post.date | date: '%b %-d, %Y' }}</p><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }} <span aria-hidden="true">↗</span></a></h3>{% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}</article>
       {% endfor %}
       </div>
+      {% endif %}
       {% else %}
       <p class="research-kicker">Study collection</p>
       <h2 id="area-learning-title">Clinical Pharmacology notes</h2>
@@ -40,11 +44,13 @@ layout: default
       <p>Existing publications on pharmacokinetic modeling and individualized therapy are available in the publications section.</p>
       {% endif %}
     </section>
+    {% unless area.show_publications == false %}
     <aside class="research-papers-panel" aria-labelledby="area-papers-title">
       <p class="research-kicker">{{ papers.size }} {% if papers.size == 1 %}publication{% else %}publications{% endif %}</p>
       <h2 id="area-papers-title">Related publications</h2>
       <ul>{% for paper in papers %}<li><span>{{ paper.venue }} · {{ paper.year }}</span><a href="{{ '/publication/' | relative_url }}#{{ paper.id }}">{{ paper.title | escape }}</a></li>{% endfor %}</ul>
       <a class="research-primary-link" href="{{ '/publication/' | relative_url }}#{{ area.id }}">View this collection <span aria-hidden="true">→</span></a>
     </aside>
+    {% endunless %}
   </div>
 </div>

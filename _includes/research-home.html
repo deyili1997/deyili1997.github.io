@@ -3,11 +3,11 @@
     <div>
       <p class="research-kicker">Research &amp; learning</p>
       <h1>Deyi Li</h1>
-      <p class="research-home-lead">Real-world evidence, predictive modeling,<br class="research-desktop-break"> and clinical pharmacology.</p>
+      <p class="research-home-lead">Real-world evidence, predictive modeling,<br class="research-desktop-break"> clinical pharmacology, and U.S. equity investing.</p>
     </div>
     <a class="research-portrait" href="{{ '/about/' | relative_url }}" aria-label="About Deyi Li"><img src="{{ site.data.settings.author.avatar | relative_url }}" alt="Deyi Li" width="144" height="144"></a>
   </header>
-  <div class="research-directions" aria-label="Research directions">
+  <div class="research-directions" aria-label="Research and learning topics">
     {% for area in site.data.research_areas %}
     {% assign papers = site.data.publications.papers | where: 'research_area', area.id %}
     <section class="research-card" data-area="{{ area.id }}">
@@ -15,9 +15,10 @@
       <h2><a href="{{ area.url | relative_url }}">{{ area.title }}</a></h2>
       <p class="research-card-description">{{ area.description }}</p>
       <div class="research-card-foot">
-        {% if area.study_status %}<p class="research-card-meta">Study notes <span class="research-status">{{ area.study_status }}</span></p>{% elsif area.id == 'rwe-generation' %}<p class="research-card-meta">{{ site.causal_inference.size }} causal inference notes</p>{% else %}<p class="research-card-meta">{% assign readings = site.posts | where: 'research_area', area.id %}{{ readings.size }} learning notes</p>{% endif %}
+        {% assign readings = site.posts | where: 'research_area', area.id %}
+        {% if area.id == 'investment-notes' and readings.size == 0 %}<p class="research-card-meta">First entry <span class="research-status">TBD</span></p>{% elsif area.study_status %}<p class="research-card-meta">Study notes <span class="research-status">{{ area.study_status }}</span></p>{% elsif area.id == 'rwe-generation' %}<p class="research-card-meta">{{ site.causal_inference.size }} causal inference notes</p>{% else %}<p class="research-card-meta">{{ readings.size }} learning notes</p>{% endif %}
         <a class="research-card-link" href="{{ area.url | relative_url }}">Explore <span aria-hidden="true">↗</span><span class="research-sr-only"> {{ area.title }}</span></a>
-        <a class="research-card-papers" href="{{ '/publication/' | relative_url }}#{{ area.id }}">{{ papers.size }} {% if papers.size == 1 %}publication{% else %}publications{% endif %}</a>
+        {% unless area.show_publications == false %}<a class="research-card-papers" href="{{ '/publication/' | relative_url }}#{{ area.id }}">{{ papers.size }} {% if papers.size == 1 %}publication{% else %}publications{% endif %}</a>{% endunless %}
       </div>
     </section>
     {% endfor %}

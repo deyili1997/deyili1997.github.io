@@ -33,5 +33,14 @@
     "study_label": "Study notes",
     "study_description": "Clinical pharmacology learning content will be added here.",
     "study_status": "TBD"
+  },
+  {
+    "id": "investment-notes",
+    "title": "Investment Notes",
+    "number": "04",
+    "description": "A personal learning journal on U.S. equities, company analysis, valuation, and investment decisions.",
+    "url": "/investment-notes/",
+    "study_label": "Investment journal",
+    "show_publications": false
   }
 ]

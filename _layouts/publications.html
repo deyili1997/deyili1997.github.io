@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% assign publication_areas = site.data.research_areas | where_exp: "item", "item.show_publications != false" %}
 <div class="publications-page">
   <header class="pub-intro">
     <p class="pub-kicker">Deyi Li · Research</p>
@@ -11,9 +12,9 @@ layout: default
         <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <nav class="pub-jump" aria-label="Publication research areas">{% for area in site.data.research_areas %}<a href="#{{ area.id }}">{{ area.title }}</a>{% endfor %}</nav>
+    <nav class="pub-jump" aria-label="Publication research areas">{% for area in publication_areas %}<a href="#{{ area.id }}">{{ area.title }}</a>{% endfor %}</nav>
   </header>
-  {% for area in site.data.research_areas %}
+  {% for area in publication_areas %}
   {% assign area_papers = site.data.publications.papers | where: 'research_area', area.id %}
   {% assign area_highlights = area_papers | where: 'featured', true %}
   {% assign area_remaining = area_papers | where: 'featured', false %}
