@@ -1,0 +1,79 @@
+---
+layout: default
+---
+<div class="publications-page">
+  <header class="pub-intro">
+    <p class="pub-kicker">Deyi Li · Research</p>
+    <div class="pub-intro-grid">
+      <h1>Publications<br><span>&amp; preprints.</span></h1>
+      <div class="pub-intro-copy">
+        <p>Learning from patient histories. Building useful, interpretable AI for healthcare.</p>
+        <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <nav class="pub-jump" aria-label="Publication sections"><a href="#highlights">Research highlights</a><a href="#more-research">More research</a><a href="#earlier-work">Earlier work</a></nav>
+  </header>
+  <section id="highlights" class="pub-section" aria-labelledby="highlights-title">
+    <div class="pub-section-heading"><p class="pub-kicker">Selected work</p><h2 id="highlights-title">Research highlights</h2></div>
+    <div class="pub-highlights">
+    {% assign highlights = site.data.publications.papers | where: 'featured', true %}
+    {% for paper in highlights %}
+      <article class="pub-feature{% if forloop.first %} pub-feature--lead{% endif %}" id="{{ paper.id }}">
+        <div class="pub-figure-panel">
+          <a class="pub-figure-link" href="{{ paper.pdf | relative_url }}#page={{ paper.figure_page }}" aria-label="View {{ paper.figure_label | escape }} in {{ paper.short_title | escape }}">
+            <img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | escape }}" width="{{ paper.image_width }}" height="{{ paper.image_height }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
+          </a>
+          <p class="pub-figure-caption">{{ paper.figure_label | escape }} · {{ paper.figure_credit | escape }}{% if paper.license %} · <a href="{{ paper.license_url }}">{{ paper.license }}</a>{% endif %}</p>
+        </div>
+        <div class="pub-feature-copy">
+          {% include publication-meta.html paper=paper %}
+          <p class="pub-topic">{{ paper.theme | escape }}</p>
+          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.display_title | escape }}</a></h3>
+          {% if paper.subtitle %}<p class="pub-subtitle">{{ paper.subtitle | escape }}</p>{% endif %}
+          <p class="pub-summary">{{ paper.summary | escape }}</p>
+          {% include publication-authors.html paper=paper %}
+          {% include publication-links.html paper=paper %}
+        </div>
+      </article>
+    {% endfor %}
+    </div>
+  </section>
+  <section id="more-research" class="pub-section" aria-labelledby="more-research-title">
+    <div class="pub-section-heading"><p class="pub-kicker">Across the research program</p><h2 id="more-research-title">More research</h2></div>
+    <div class="pub-paper-list">
+    {% assign remaining = site.data.publications.papers | where: 'featured', false %}
+    {% for paper in remaining %}
+      <article class="pub-paper" id="{{ paper.id }}">
+        <div class="pub-year" aria-label="Publication year">{{ paper.year }}</div>
+        <div class="pub-paper-copy">
+          {% include publication-meta.html paper=paper omit_year=true %}
+          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a></h3>
+          <p class="pub-summary">{{ paper.summary | escape }}</p>
+          {% include publication-authors.html paper=paper %}
+        </div>
+        {% include publication-links.html paper=paper %}
+      </article>
+    {% endfor %}
+    </div>
+  </section>
+  <section id="earlier-work" class="pub-section pub-earlier" aria-labelledby="earlier-work-title">
+    <div class="pub-section-heading"><p class="pub-kicker">Foundations in pharmacology</p><h2 id="earlier-work-title">Earlier work</h2></div>
+    <div class="pub-earlier-grid">
+    {% for paper in site.data.publications.earlier %}
+      <article class="pub-earlier-paper">
+        <p class="pub-earlier-meta">{{ paper.year }} <span aria-hidden="true">/</span> {{ paper.venue | escape }}</p>
+        <h3>{% if paper.url %}<a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }} <span aria-hidden="true">↗</span></a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
+        <p>{% for author in paper.authors %}{% if author == 'Deyi Li' or author == 'De-Yi Li' %}<strong>{{ author | escape }}</strong>{% else %}{{ author | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+      </article>
+    {% endfor %}
+    </div>
+    <details class="pub-additional">
+      <summary>Additional projects</summary>
+      <div class="pub-additional-content">
+        {% for paper in site.data.publications.additional %}
+        <article><p class="pub-earlier-meta">{{ paper.label | escape }}</p><h3>{{ paper.title | escape }}</h3><p>{{ paper.authors | escape }}</p></article>
+        {% endfor %}
+      </div>
+    </details>
+  </section>
+</div>

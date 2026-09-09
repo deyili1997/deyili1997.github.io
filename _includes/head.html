@@ -40,4 +40,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
   <script type="module" src="{{ '/js/causal-notes.js' | relative_url }}"></script>
   {% endif %}
+  {% if page.publications %}
+  <link rel="stylesheet" href="{{ "/assets/css/publications.css" | relative_url }}">
+  {% endif %}
 </head>

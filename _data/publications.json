@@ -1,0 +1,567 @@
+{
+  "updated": "2026-09-09",
+  "papers": [
+    {
+      "id": "athena",
+      "source_file": "2608.21712v2.pdf",
+      "title": "ATHENA: Knowledge-guided agentic neural architecture search for AutoFormer-based electronic health record modeling",
+      "display_title": "ATHENA",
+      "authors": [
+        "Deyi Li",
+        "Qi Xu",
+        "Lingyao Li",
+        "Tiansheng Wang",
+        "Muxuan Liang",
+        "Mei Liu"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2608.21712",
+      "doi": "10.48550/arXiv.2608.21712",
+      "code_url": "https://github.com/GatorAIM/ATHENA",
+      "summary": "ATHENA uses collaborating AI agents and knowledge from previous hospital studies to design Transformer models for electronic health records. Reusing pretrained model components makes the search more efficient, while adapting each architecture to the clinical task and target hospital.",
+      "topics": [
+        "Clinical AI",
+        "Agentic systems",
+        "Neural architecture search"
+      ],
+      "kind": "Preprint",
+      "featured": true,
+      "pdf": "/assets/publications/papers/athena.pdf",
+      "author_preview": "Deyi Li*, Qi Xu* et al.",
+      "equal_note": "* Deyi Li and Qi Xu contributed equally.",
+      "subtitle": "Knowledge-guided agentic neural architecture search for AutoFormer-based electronic health record modeling",
+      "theme": "Agentic AI · Architecture search",
+      "short_title": "ATHENA",
+      "figure_credit": "Li et al., 2026",
+      "image_alt": "ATHENA framework showing how source-hospital architecture knowledge guides three collaborating search agents at a target hospital.",
+      "figure_page": 4,
+      "figure_label": "Figure 1",
+      "image": "/assets/publications/figures/athena.png",
+      "image_width": 1369,
+      "image_height": 971
+    },
+    {
+      "id": "smart",
+      "title": "SMART: a new patient similarity estimation framework for enhanced predictive modeling in acute kidney injury",
+      "display_title": "SMART",
+      "authors": [
+        "Deyi Li",
+        "Alan S. L. Yu",
+        "Dana Y. Fuhrman",
+        "Mei Liu"
+      ],
+      "year": 2026,
+      "publication_date": "2025-08-08",
+      "issue_date": "2026-01",
+      "date_note": "Published online 8 August 2025; assigned to the January 2026 issue. Use 2026 as the formal citation year.",
+      "venue": "JAMIA",
+      "volume": "33",
+      "issue": "1",
+      "pages": "37–48",
+      "doi": "10.1093/jamia/ocaf125",
+      "url": "https://doi.org/10.1093/jamia/ocaf125",
+      "summary": "SMART identifies clinically similar patients by accounting for missing measurements and optimizing how different clinical features contribute to similarity. Evaluated at two hospitals, the framework improved personalized acute kidney injury prediction compared with three baseline methods in internal and external validation.",
+      "topics": [
+        "Patient similarity",
+        "Personalized prediction",
+        "Acute kidney injury"
+      ],
+      "source_file": "ocaf125.pdf",
+      "kind": "Journal article",
+      "featured": true,
+      "pdf": "/assets/publications/papers/smart.pdf",
+      "author_preview": "Deyi Li, Alan S. L. Yu et al.",
+      "subtitle": "A new patient similarity estimation framework for enhanced predictive modeling in acute kidney injury",
+      "theme": "Patient similarity · Personalized prediction",
+      "short_title": "SMART",
+      "figure_credit": "Li et al., JAMIA",
+      "image_alt": "SMART framework combining overlap weighting, distance optimization, and feature-type weighting to retrieve similar patients for acute kidney injury prediction.",
+      "figure_page": 3,
+      "figure_label": "Figure 1",
+      "image": "/assets/publications/figures/smart.png",
+      "image_width": 1364,
+      "image_height": 1200
+    },
+    {
+      "id": "aki-subphenotypes",
+      "title": "Clustering analysis of multi-site electronic health records reveals distinct subphenotypes in stage-1 acute kidney injury",
+      "display_title": "Distinct paths through stage-1 AKI",
+      "authors": [
+        "Deyi Li",
+        "Ho Yin Chan",
+        "Alan S. L. Yu",
+        "John A. Kellum",
+        "Dana Y. Fuhrman",
+        "Elizabeth A. Chrischilles",
+        "Lindsay G. Cowell",
+        "Sravani Chandaka",
+        "Jacob Kean",
+        "Kathleen M. McTigue",
+        "Abu Saleh Mohammad Mosa",
+        "Bradley Taylor",
+        "Lemuel R. Waitman",
+        "Mahanaz Syed",
+        "Yong Hu",
+        "Mei Liu"
+      ],
+      "year": 2025,
+      "publication_date": "2025-07-03",
+      "venue": "Communications Medicine",
+      "volume": "5",
+      "article_number": "274",
+      "doi": "10.1038/s43856-025-00993-6",
+      "url": "https://doi.org/10.1038/s43856-025-00993-6",
+      "summary": "Seven-day kidney function trajectories from 53,565 patients across eight hospitals revealed three distinct forms of stage-1 acute kidney injury. These groups had different mortality and kidney disease outcomes, showing that even clinically mild injury can conceal meaningful differences in patient risk.",
+      "topics": [
+        "Disease subphenotyping",
+        "Multisite EHR",
+        "Acute kidney injury"
+      ],
+      "license_url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "source_file": "s43856-025-00993-6.pdf",
+      "kind": "Journal article",
+      "featured": true,
+      "pdf": "/assets/publications/papers/aki-subphenotypes.pdf",
+      "author_preview": "Deyi Li, Ho Yin Chan et al.",
+      "subtitle": "Clustering analysis of multi-site electronic health records reveals distinct subphenotypes in stage-1 acute kidney injury",
+      "theme": "Disease subphenotyping · Multisite evidence",
+      "short_title": "AKI subphenotypes",
+      "figure_credit": "Li et al., 2025",
+      "license": "CC BY-NC-ND 4.0",
+      "image_alt": "Original trajectory plot showing median serum creatinine before and after AKI onset for three subphenotypes, with shaded first-to-99th percentile ranges.",
+      "figure_page": 4,
+      "figure_label": "Figure 2",
+      "image": "/assets/publications/figures/aki-subphenotypes.png",
+      "image_width": 1189,
+      "image_height": 584
+    },
+    {
+      "id": "llm-as-a-judge",
+      "source_file": "2605.25273v1.pdf",
+      "title": "LLM-as-a-Judge in Healthcare: A Scoping Analysis of Applications, Methods, and Human Alignment",
+      "display_title": "Can AI judges evaluate healthcare AI?",
+      "authors": [
+        "Lingyao Li",
+        "Deyi Li",
+        "Chen Chen",
+        "Renkai Ma",
+        "Runlong Yu",
+        "Mingquan Lin",
+        "Rui Yin",
+        "Lizhou Fan",
+        "Cathy Shyr",
+        "Siyuan Ma",
+        "Mei Liu",
+        "Steven Bethard"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2605.25273",
+      "doi": "10.48550/arXiv.2605.25273",
+      "summary": "A review of 134 studies maps how large language models evaluate healthcare AI, from clinical documentation to medical reasoning. It examines evaluation methods and agreement with human experts, identifying where automated judging shows promise and where validation remains essential.",
+      "topics": [
+        "Clinical AI",
+        "LLM evaluation",
+        "Evidence synthesis"
+      ],
+      "kind": "Preprint",
+      "featured": false,
+      "pdf": "/assets/publications/papers/llm-as-a-judge.pdf",
+      "author_preview": "Lingyao Li*, Deyi Li* et al.",
+      "equal_note": "* Lingyao Li and Deyi Li contributed equally."
+    },
+    {
+      "id": "dt-behrt",
+      "source_file": "2603.10180v1.pdf",
+      "title": "DT-BEHRT: Disease Trajectory-aware Transformer for Interpretable Patient Representation Learning",
+      "display_title": "DT-BEHRT: Following disease trajectories",
+      "authors": [
+        "Deyi Li",
+        "Zijun Yao",
+        "Qi Xu",
+        "Muxuan Liang",
+        "Lingyao Li",
+        "Zijian Xu",
+        "Mei Liu"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2603.10180",
+      "doi": "10.48550/arXiv.2603.10180",
+      "code_url": "https://github.com/GatorAIM/DT-BEHRT",
+      "summary": "DT-BEHRT organizes electronic health records around disease trajectories, capturing interactions within organ systems and changes across visits. Its graph-enhanced Transformer learns patient representations for clinical prediction, with attention patterns designed to support interpretation through disease-centered reasoning.",
+      "topics": [
+        "Clinical AI",
+        "EHR representation learning",
+        "Interpretability"
+      ],
+      "kind": "Preprint",
+      "featured": false,
+      "pdf": "/assets/publications/papers/dt-behrt.pdf",
+      "author_preview": "Deyi Li, Zijun Yao et al."
+    },
+    {
+      "source_file": "AMIASYMPROC-2025-7854.pdf",
+      "id": "deepj",
+      "title": "DeepJ: Graph Convolutional Transformers with Differentiable Pooling for Patient Trajectory Modeling",
+      "short_title": "DeepJ: learning the patient journey",
+      "authors": [
+        "Deyi Li",
+        "Zijun Yao",
+        "Muxuan Liang",
+        "Mei Liu"
+      ],
+      "year": 2025,
+      "publication_date": null,
+      "venue": "AMIA Annual Symposium",
+      "volume": "2025",
+      "pages": "734–743",
+      "doi": null,
+      "code_url": "https://github.com/GatorAIM/DeePJ",
+      "summary": "DeepJ connects medical events across visits to model a patient's evolving health history. Its graph learning and pooling modules identify related clinical event clusters and improved mortality and acute kidney injury prediction in two retrospective datasets.",
+      "topics": [
+        "Graph learning",
+        "Patient trajectories",
+        "Clinical prediction"
+      ],
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12919465/",
+      "kind": "Conference paper",
+      "featured": false,
+      "pdf": "/assets/publications/papers/deepj.pdf",
+      "author_preview": "Deyi Li, Zijun Yao et al."
+    },
+    {
+      "id": "autoencoder-patient-retrieval",
+      "title": "Autoencoder-Based Representation Learning for Similar Patients Retrieval From Electronic Health Records: Comparative Study",
+      "display_title": "What makes a useful patient representation?",
+      "authors": [
+        "Deyi Li",
+        "Aditi Shukla",
+        "Sravani Chandaka",
+        "Bradley Taylor",
+        "Jie Xu",
+        "Mei Liu"
+      ],
+      "year": 2025,
+      "publication_date": "2025-07-24",
+      "venue": "JMIR Medical Informatics",
+      "volume": "13",
+      "article_number": "e68830",
+      "doi": "10.2196/68830",
+      "url": "https://doi.org/10.2196/68830",
+      "code_url": "https://github.com/GatorAIM/AKI_AE_Compare",
+      "summary": "A comparison of five autoencoder designs across two hospital datasets examines how learned patient representations support similar-patient retrieval. Results highlight the importance of distance measures and learning rates, while showing that representation learning does not consistently outperform using the original clinical features.",
+      "topics": [
+        "Representation learning",
+        "Patient similarity",
+        "Electronic health records"
+      ],
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_file": "medinform-2025-1-e68830.pdf",
+      "kind": "Journal article",
+      "featured": false,
+      "pdf": "/assets/publications/papers/autoencoder-patient-retrieval.pdf",
+      "author_preview": "Deyi Li, Aditi Shukla et al."
+    },
+    {
+      "title": "Analyzing and Mitigating Model Drift in Acute Kidney Injury Prediction for Hospitalized Patients",
+      "authors": [
+        "Zijian Xu",
+        "Deyi Li",
+        "Qi Xu",
+        "Ho Yin Chan",
+        "Alan S. L. Yu",
+        "Mei Liu"
+      ],
+      "venue": "AMIA Annual Symposium",
+      "pages": "1414–1423",
+      "year": 2025,
+      "volume": "2025",
+      "code_url": "https://github.com/GatorAIM/AKI-model-drift",
+      "summary": "Clinical prediction models can lose accuracy as patient populations and practice patterns change. This study tracks acute kidney injury prediction across a decade and compares population-wide and subgroup-specific updates to help maintain reliable performance over time.",
+      "topics": [
+        "Model drift",
+        "Clinical prediction",
+        "Acute kidney injury"
+      ],
+      "id": "model-drift",
+      "kind": "Conference paper",
+      "featured": false,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12919564/",
+      "author_preview": "Zijian Xu, Deyi Li et al."
+    },
+    {
+      "source_file": "6409.pdf",
+      "id": "patient-similarity-comparison",
+      "title": "A Comparative Analysis of Patient Similarity Measures for Outcome Prediction",
+      "short_title": "What makes patients similar?",
+      "authors": [
+        "Deyi Li",
+        "Alan S. L. Yu",
+        "Mei Liu"
+      ],
+      "year": 2025,
+      "publication_date": "2025-06-10",
+      "venue": "AMIA Informatics Summit",
+      "volume": "2025",
+      "pages": "270–279",
+      "doi": null,
+      "summary": "What makes two patients clinically similar? Using records from 46,968 hospitalized patients, this study compares four weighting strategies for outcome prediction. Optimizing weights across feature types produced the strongest similarity measure overall, informing how to build cohorts for personalized models.",
+      "topics": [
+        "Patient similarity",
+        "Personalized prediction",
+        "Electronic health records"
+      ],
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12150746/",
+      "kind": "Conference paper",
+      "featured": false,
+      "pdf": "/assets/publications/papers/patient-similarity-comparison.pdf",
+      "author_preview": "Deyi Li, Alan S. L. Yu et al."
+    },
+    {
+      "source_file": "fped-09-713588.pdf",
+      "id": "vancomycin-infants",
+      "title": "Population Pharmacokinetics Modeling of Vancomycin Among Chinese Infants With Normal and Augmented Renal Function",
+      "short_title": "Modeling vancomycin in infants",
+      "authors": [
+        "De-Yi Li",
+        "Ling Li",
+        "Gui-Zhou Li",
+        "Ya-Hui Hu",
+        "Hong-Li Guo",
+        "Xia Jing",
+        "Feng Chen",
+        "Xing Ji",
+        "Jing Xu",
+        "Hao-Ran Dai"
+      ],
+      "year": 2021,
+      "publication_date": "2021-09-20",
+      "venue": "Frontiers in Pediatrics",
+      "volume": "9",
+      "article_number": "713588",
+      "doi": "10.3389/fped.2021.713588",
+      "summary": "Infants with different kidney function may clear the same antibiotic differently. This study develops and validates population pharmacokinetic models of vancomycin, examining how body weight and kidney function markers contribute to individualized concentration predictions.",
+      "topics": [
+        "Pharmacometrics",
+        "Pediatric dosing",
+        "Renal function"
+      ],
+      "url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2021.713588/full",
+      "kind": "Journal article",
+      "featured": false,
+      "pdf": "/assets/publications/papers/vancomycin-infants.pdf",
+      "author_preview": "De-Yi Li, Ling Li et al."
+    }
+  ],
+  "earlier": [
+    {
+      "id": "tacrolimus-dose-tailoring",
+      "title": "Dose tailoring of tacrolimus based on a non-linear pharmacokinetic model in children with refractory nephrotic syndrome",
+      "authors": [
+        "Ling Li",
+        "Min Zhu",
+        "De-Yi Li",
+        "Hong-Li Guo",
+        "Ya-Hui Hu",
+        "Ze-Yue Xu",
+        "Xia Jing",
+        "Feng Chen",
+        "Fei Zhao",
+        "Yun-Man Li",
+        "Jing Xu",
+        "Zheng Jiao"
+      ],
+      "year": 2021,
+      "venue": "International Immunopharmacology",
+      "volume": "98",
+      "article_number": "107827",
+      "doi": "10.1016/j.intimp.2021.107827",
+      "topics": [
+        "Pharmacometrics",
+        "Pediatric dosing"
+      ],
+      "url": "https://doi.org/10.1016/j.intimp.2021.107827",
+      "author_preview": "Ling Li, Min Zhu, De-Yi Li, Hong-Li Guo, Ya-Hui Hu, Ze-Yue Xu, Xia Jing, Feng Chen, Fei Zhao, Yun-Man Li, Jing Xu, Zheng Jiao"
+    },
+    {
+      "id": "vincristine-neuropathy",
+      "title": "Vincristine-induced peripheral neuropathy: A mini-review",
+      "authors": [
+        "Gui-Zhou Li",
+        "Ya-Hui Hu",
+        "De-Yi Li",
+        "Yong Zhang",
+        "Hong-Li Guo",
+        "Yun-Man Li",
+        "Feng Chen",
+        "Jing Xu"
+      ],
+      "year": 2020,
+      "venue": "Neurotoxicology",
+      "volume": "81",
+      "pages": "161–171",
+      "doi": "10.1016/j.neuro.2020.10.004",
+      "topics": [
+        "Drug safety",
+        "Neurotoxicity"
+      ],
+      "url": "https://doi.org/10.1016/j.neuro.2020.10.004",
+      "author_preview": "Gui-Zhou Li, Ya-Hui Hu, De-Yi Li, Yong Zhang, Hong-Li Guo, Yun-Man Li, Feng Chen, Jing Xu"
+    },
+    {
+      "id": "bmp1-renal-fibrosis",
+      "title": "BMP1 inhibitor UK383,367 attenuates renal fibrosis and inflammation in CKD",
+      "authors": [
+        "Mi Bai",
+        "Juan Lei",
+        "Shuqin Wang",
+        "Dan Ding",
+        "Xiaowen Yu",
+        "Yan Guo",
+        "Shuang Chen",
+        "Yang Du",
+        "Deyi Li",
+        "Yue Zhang",
+        "Songming Huang",
+        "Zhanjun Jia",
+        "Aihua Zhang"
+      ],
+      "year": 2019,
+      "publication_date": "2019-12-01",
+      "venue": "American Journal of Physiology-Renal Physiology",
+      "volume": "317",
+      "issue": "6",
+      "pages": "F1430–F1438",
+      "doi": "10.1152/ajprenal.00230.2019",
+      "topics": [
+        "Renal fibrosis",
+        "Pharmacology"
+      ],
+      "url": "https://doi.org/10.1152/ajprenal.00230.2019",
+      "author_preview": "Mi Bai, Juan Lei, Shuqin Wang, Dan Ding, Xiaowen Yu, Yan Guo, Shuang Chen, Yang Du, Deyi Li, Yue Zhang, Songming Huang, Zhanjun Jia, Aihua Zhang"
+    },
+    {
+      "id": "shikonin-liver-injury",
+      "title": "Shikonin attenuates acetaminophen-induced acute liver injury via inhibition of oxidative stress and inflammation",
+      "authors": [
+        "Hongli Guo",
+        "Jieyu Sun",
+        "Deyi Li",
+        "Yahui Hu",
+        "Xiaowen Yu",
+        "Hu Hua",
+        "Xia Jing",
+        "Feng Chen",
+        "Zhanjun Jia",
+        "Jing Xu"
+      ],
+      "year": 2019,
+      "venue": "Biomedicine & Pharmacotherapy",
+      "volume": "112",
+      "article_number": "108704",
+      "doi": "10.1016/j.biopha.2019.108704",
+      "topics": [
+        "Liver injury",
+        "Pharmacology"
+      ],
+      "url": "https://doi.org/10.1016/j.biopha.2019.108704",
+      "author_preview": "Hongli Guo, Jieyu Sun, Deyi Li, Yahui Hu, Xiaowen Yu, Hu Hua, Xia Jing, Feng Chen, Zhanjun Jia, Jing Xu"
+    },
+    {
+      "id": "pin1-inhibitors",
+      "title": "Design, synthesis and biological evaluation of benzimidazole derivatives as novel human Pin1 inhibitors",
+      "authors": [
+        "Tianyi Ma",
+        "Min Huang",
+        "Aihua Li",
+        "Feng Zhao",
+        "Deyi Li",
+        "Dan Liu",
+        "Linxiang Zhao"
+      ],
+      "year": 2019,
+      "publication_date": "2019-07-15",
+      "venue": "Bioorganic & Medicinal Chemistry Letters",
+      "volume": "29",
+      "issue": "14",
+      "pages": "1859–1863",
+      "doi": "10.1016/j.bmcl.2018.11.045",
+      "topics": [
+        "Drug discovery",
+        "Medicinal chemistry"
+      ],
+      "url": "https://doi.org/10.1016/j.bmcl.2018.11.045",
+      "author_preview": "Tianyi Ma, Min Huang, Aihua Li, Feng Zhao, Deyi Li, Dan Liu, Linxiang Zhao"
+    },
+    {
+      "id": "mnk-inhibitors",
+      "title": "Design and synthesis of novel 6-hydroxy-4-methoxy-3-methylbenzofuran-7-carboxamide derivatives as potent Mnks inhibitors by fragment-based drug design",
+      "authors": [
+        "Shuxiang Wang",
+        "Bo Li",
+        "Bo Liu",
+        "Min Huang",
+        "Deyi Li",
+        "Lihong Guan",
+        "Jie Zang",
+        "Dan Liu",
+        "Linxiang Zhao"
+      ],
+      "year": 2018,
+      "publication_date": "2018-09-01",
+      "venue": "Bioorganic & Medicinal Chemistry",
+      "volume": "26",
+      "issue": "16",
+      "pages": "4602–4614",
+      "doi": "10.1016/j.bmc.2018.05.004",
+      "topics": [
+        "Drug discovery",
+        "Medicinal chemistry"
+      ],
+      "url": "https://doi.org/10.1016/j.bmc.2018.05.004",
+      "author_preview": "Shuxiang Wang, Bo Li, Bo Liu, Min Huang, Deyi Li, Lihong Guan, Jie Zang, Dan Liu, Linxiang Zhao"
+    },
+    {
+      "id": "diabetes-drug-metabolism",
+      "title": "Alterations of drug-metabolizing enzymes and transporters under diabetic conditions: what is the potential clinical significance?",
+      "authors": [
+        "Feng Chen",
+        "De-Yi Li",
+        "Bo Zhang",
+        "Jie-Yu Sun",
+        "Fang Sun",
+        "Xing Ji",
+        "Jin-Chun Qiu",
+        "Robert B. Parker",
+        "S. Casey Laizure",
+        "Jing Xu"
+      ],
+      "year": 2018,
+      "venue": "Drug Metabolism Reviews",
+      "volume": "50",
+      "issue": "3",
+      "pages": "369–397",
+      "doi": "10.1080/03602532.2018.1497645",
+      "topics": [
+        "Drug metabolism",
+        "Diabetes"
+      ],
+      "url": "https://doi.org/10.1080/03602532.2018.1497645",
+      "author_preview": "Feng Chen, De-Yi Li, Bo Zhang, Jie-Yu Sun, Fang Sun, Xing Ji, Jin-Chun Qiu, Robert B. Parker, S. Casey Laizure, Jing Xu"
+    }
+  ],
+  "additional": [
+    {
+      "title": "Elucidating complex clinical predictors of acute kidney injury: a multicenter, retrospective study using machine learning",
+      "authors": "H. Y. Chan, Deyi Li, A. S. L. Yu et al.",
+      "label": "Manuscript"
+    },
+    {
+      "title": "Impact of Baseline Serum Creatinine Definitions on Acute Kidney Injury Stratification and Detection",
+      "authors": "R. Yang, H. Y. Chan, Deyi Li, Q. Xu, Mei Liu",
+      "label": "MedInfo 2025 · Accepted conference work"
+    }
+  ]
+}

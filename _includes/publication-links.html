@@ -1,0 +1,4 @@
+<div class="pub-links">
+  <a class="pub-read" href="{{ include.paper.url }}" target="_blank" rel="noopener noreferrer" aria-label="Read {{ include.paper.title | escape }}">{% if include.paper.kind == 'Preprint' %}Read preprint{% else %}Read paper{% endif %} <span aria-hidden="true">↗</span></a>
+  {% if include.paper.pdf %}<a class="pub-pdf" href="{{ include.paper.pdf | relative_url }}" aria-label="PDF of {{ include.paper.title | escape }}">PDF <span aria-hidden="true">↓</span></a>{% endif %}
+</div>
