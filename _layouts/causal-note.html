@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<div class="container study-container">
+  <article class="page study-page">
+    <header class="study-header">
+      {% unless page.order == 0 %}<a class="study-back" href="{{ '/causal-inference/' | relative_url }}">← Causal Inference Study Guide</a>{% endunless %}
+      <p class="study-eyebrow">{{ page.group }}{% if page.order > 0 %} · Reading step {{ page.order }}{% endif %}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="study-meta">Deyi Li · Updated {{ page.last_modified_at | date: '%B %-d, %Y' }}</p>
+    </header>
+    <div class="page__content study-content">
+      {% if page.toc.size > 0 %}
+      <details class="study-toc">
+        <summary>On this page</summary>
+        <nav aria-label="Page sections"><ol>{% for section in page.toc %}<li><a href="#{{ section.anchor }}">{{ section.title | escape }}</a></li>{% endfor %}</ol></nav>
+      </details>
+      {% endif %}
+      {{ content }}
+    </div>
+    {% if page.order > 0 %}
+    <nav class="study-pagination" aria-label="Reading sequence">
+      <a href="{{ page.previous_note | relative_url }}"><span>← Previous</span>{% assign previous = site.causal_inference | where: 'url', page.previous_note | first %}{{ previous.title | default: 'Study guide' }}</a>
+      <a href="{{ page.next_note | relative_url }}"><span>Next →</span>{% assign next = site.causal_inference | where: 'url', page.next_note | first %}{{ next.title | default: 'Study guide' }}</a>
+    </nav>
+    {% endif %}
+  </article>
+</div>

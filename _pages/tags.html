@@ -3,11 +3,12 @@ layout: default
 title: Tags
 permalink: /tags/
 ---
-{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% assign tag_words = site_tags | split:',' | sort %}
+{% assign tagged_items = site.posts | concat: site.causal_inference %}
+{% capture site_tags %}{% for item in tagged_items %}{% for tag in item.tags %}{{ tag }},{% endfor %}{% endfor %}{% endcapture %}
+{% assign tag_words = site_tags | split:',' | uniq | sort %}
 
-{% for item in (0..site.tags.size) %}{% unless forloop.last %}
-{% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+{% for this_word in tag_words %}
+{% assign tagged_notes = tagged_items | where_exp: 'item', 'item.tags contains this_word' %}
 
 <div class="tags is-hidden" id="{{ this_word | downcase | url_decode }}">
 
@@ -15,7 +16,7 @@ permalink: /tags/
     <div class="row">
       <div class="col col-12">
         <div class="archive-box">
-          <span class="archive-meta">{{ site.tags[this_word].size }} {% if site.tags[this_word].size < 2 %}post {% else %}posts{% endif %} tagged</span>
+          <span class="archive-meta">{{ tagged_notes.size }} {% if tagged_notes.size < 2 %}post {% else %}posts{% endif %} tagged</span>
           <h1 class="archive-title">{{ this_word }}</h1>
         </div>
       </div>
@@ -24,7 +25,7 @@ permalink: /tags/
 
   <div class="container animate">
     <div class="row">
-      {% for post in site.tags[this_word] %}
+      {% for post in tagged_notes %}
         {% if post.title != null %}
          {% include article-content.html %}
         {% endif %}
@@ -34,7 +35,6 @@ permalink: /tags/
 
 </div>
 
-{% endunless %}
 {% endfor %}
 
 <script>

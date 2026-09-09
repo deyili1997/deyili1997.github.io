@@ -21,7 +21,7 @@
         </span>
       </div>
 
-      <h2 class="article__title">{{ post.title }}</h2>
+      <h2 class="article__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
 
       <p class="article__excerpt">{{ post.description }}</p>
 

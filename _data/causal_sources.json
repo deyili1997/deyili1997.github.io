@@ -1,0 +1,173 @@
+{
+  "translated_at": "2026-09-09",
+  "notes": [
+    {
+      "slug": "potential-outcomes",
+      "source": "Potential Outcomes 与识别假设 (Brady Neal Ch2).md",
+      "source_sha256": "4f1526185275681022995b0b6cf36bb37c0ece454e40925acf850d74d5c8e6ce",
+      "headings": 40,
+      "words": 7637
+    },
+    {
+      "slug": "causal-contrasts-estimands",
+      "source": "Causal contrast 与 estimand：先明确要估计什么.md",
+      "source_sha256": "0b65b803d22a05d388fe79da4d6c9b400f73bfbff51772b2cd130118778b1fb4",
+      "headings": 18,
+      "words": 4645
+    },
+    {
+      "slug": "reading-causal-formulas",
+      "source": "公式阅读入门：从符号到因果问题.md",
+      "source_sha256": "89bfd73e061e0025ead994a66c1b5b48ba3f5172dccbe19d6fad9e1910eb6a15",
+      "headings": 20,
+      "words": 4519
+    },
+    {
+      "slug": "biomarkers-well-defined-interventions",
+      "source": "Biomarker 的因果效应与明确干预.md",
+      "source_sha256": "38db946c1308c0a7dd10e5fa424afffe679ab78ef375dea7af5043b73b8e3714",
+      "headings": 10,
+      "words": 3077
+    },
+    {
+      "slug": "confounding-treatment-components",
+      "source": "混杂因素与治疗组成：肾移植的例子.md",
+      "source_sha256": "094cdbbe78450e9294e144331b9dc7782e0d6e80da82b16d8c5d845094ad27ec",
+      "headings": 12,
+      "words": 2436
+    },
+    {
+      "slug": "target-trial-emulation",
+      "source": "Target Trial Emulation.md",
+      "source_sha256": "ac6cb5a2fc1f39c28a60f12498a79fe1d1d4ad12905e02538c08870bc65b4ba5",
+      "headings": 21,
+      "words": 5893
+    },
+    {
+      "slug": "pragmatic-trials",
+      "source": "Pragmatic trial：在日常医疗条件下评价干预.md",
+      "source_sha256": "2e09d508d0d1988979d238408b84e4f753036524b3834bc61508de5d3de1d6d5",
+      "headings": 9,
+      "words": 1675
+    },
+    {
+      "slug": "hormone-therapy-target-trial",
+      "source": "绝经后激素治疗与乳腺癌：目标试验方案逐项解读.md",
+      "source_sha256": "caa4db3a4c992055d523b7213cace28be2cafd305c0cd1a23dac4351421e1f1a",
+      "headings": 27,
+      "words": 5517
+    },
+    {
+      "slug": "intention-to-treat-per-protocol",
+      "source": "Intention-to-treat 与 Per-protocol effect.md",
+      "source_sha256": "06b6df706032371c3742eb1665ac35f2102d872e936e4b08be65b94b75b1640d",
+      "headings": 32,
+      "words": 7482
+    },
+    {
+      "slug": "point-sustained-strategies",
+      "source": "Point intervention 与 Sustained strategy：两种 PP 效应.md",
+      "source_sha256": "36d478f6dc049b52922f0064e0681f4f95c51b80a7f87058b06eefdcb294a72c",
+      "headings": 21,
+      "words": 5034
+    },
+    {
+      "slug": "target-trial-designs",
+      "source": "Target Trial Emulation 三种设计比较.md",
+      "source_sha256": "820da9aa91935666f31e1cc1740cdf517b712102280e6835376bca12e96793d8",
+      "headings": 6,
+      "words": 1254
+    },
+    {
+      "slug": "active-comparator-new-user",
+      "source": "Active-comparator new-user design.md",
+      "source_sha256": "0e064602d47e461d34ec8fc6e8cdf85234498f638ead858a32c0eca11818c078",
+      "headings": 24,
+      "words": 4036
+    },
+    {
+      "slug": "sequential-trials",
+      "source": "Sequential trial design.md",
+      "source_sha256": "0afedde537c29f483f6b6a8868efd5d8e03d26f8d9da9750d1ede3eaf3d9c53e",
+      "headings": 17,
+      "words": 3229
+    },
+    {
+      "slug": "clone-censor-weight",
+      "source": "Clone-censor-weight.md",
+      "source_sha256": "f612b76fd6032fe51fce889dde1259ad65e8ff5a6ba0edd4f32f4e5e2cc64b69",
+      "headings": 34,
+      "words": 7275
+    },
+    {
+      "slug": "g-formula",
+      "source": "G-formula：从标准化到纵向策略.md",
+      "source_sha256": "5853149137270da22980798ce1300da3580dce4c9bce93f5d1efeaa0efaad7c1",
+      "headings": 24,
+      "words": 7787
+    },
+    {
+      "slug": "inverse-probability-weighting",
+      "source": "IPW：从倾向评分到纵向加权.md",
+      "source_sha256": "296f7b66314fce9b29eb5a2fa4f09abb49223aed128d2b6132754938bbfb21b6",
+      "headings": 38,
+      "words": 9310
+    },
+    {
+      "slug": "g-estimation",
+      "source": "G-estimation：共同治疗历史与结构嵌套模型.md",
+      "source_sha256": "4bff3c594c1921327e594648da603a29493b37df0acdf012f72a2ed234b47aee",
+      "headings": 23,
+      "words": 5730
+    },
+    {
+      "slug": "cox-proportional-hazards",
+      "source": "Cox 比例风险模型：风险集、估计与偏倚.md",
+      "source_sha256": "2670103c0f9839d6225587cb36320a40faea29e4ffe99cc16e3a7cf17357fd99",
+      "headings": 16,
+      "words": 5519
+    },
+    {
+      "slug": "time-related-biases",
+      "source": "Immortal time、Lead time 与 Depletion of susceptibles.md",
+      "source_sha256": "6af9ba91c6577b11187551a297bd7538917ae435247046ce958ca93dd9ed9706",
+      "headings": 38,
+      "words": 7169
+    },
+    {
+      "slug": "surveillance-measurement-bias",
+      "source": "Surveillance bias 与 Differential measurement error.md",
+      "source_sha256": "fac25823a3e0259d9510298ea8b810feb7cbc6a15a19014805e0ae01b1c484e1",
+      "headings": 22,
+      "words": 4367
+    },
+    {
+      "slug": "negative-control-outcomes",
+      "source": "Negative control outcomes 与残余偏倚.md",
+      "source_sha256": "47ceca7a53ff2ffc2b864db8aa1172f8cc3bcc0618313799ac19787832fad2db",
+      "headings": 25,
+      "words": 4800
+    },
+    {
+      "slug": "clinical-data-adjustment",
+      "source": "从病历到调整变量：NLP、影像与机器学习.md",
+      "source_sha256": "5e42c3cc4737ad090bebc7cd1a3f78f5c56667541dd1be051bc9ffeaf099a9e0",
+      "headings": 13,
+      "words": 2340
+    },
+    {
+      "slug": "high-throughput-federated-tte",
+      "source": "TTE Extension：高通量筛药与联邦目标试验模拟.md",
+      "source_sha256": "c79bb4ec883e27480ffd69d888874d5827c240cde2d702e68dabb5cb07c8cea7",
+      "headings": 39,
+      "words": 7731
+    },
+    {
+      "slug": "index",
+      "source": "00 - Causal Inference 学习目录.md",
+      "source_sha256": "58666073d7ff4d8579ad45841969f98b30c8f0bea51f7e9612bfc576fbb2c3e6",
+      "headings": 53,
+      "words": 6315
+    }
+  ]
+}

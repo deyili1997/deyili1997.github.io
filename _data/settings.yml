@@ -11,6 +11,8 @@ menu-settings:
   menu-items:
     - title: 'Home'
       url: '/'
+    - title: 'Causal Inference'
+      url: '/causal-inference/'
     - title: 'About'
       url: '/about/'
     - title: 'Publication'

@@ -1,0 +1,14 @@
+---
+layout: causal-note
+---
+<p class="study-lead">English study notes on causal inference and target trial emulation, from potential outcomes to longitudinal methods and real-world evidence.</p>
+<p><a class="study-start" href="{{ '/causal-inference/potential-outcomes/' | relative_url }}">Start with potential outcomes →</a></p>
+<details class="study-directory">
+  <summary>Browse all 23 notes by topic</summary>
+  {% assign groups = 'Foundations|Trial design|Estimation|Bias and measurement|Extensions' | split: '|' %}
+  {% for group in groups %}
+  <h2>{{ group }}</h2>
+  <ul>{% assign notes = site.causal_inference | where: 'group', group | sort: 'order' %}{% for note in notes %}<li><a href="{{ note.url | relative_url }}">{{ note.title }}</a></li>{% endfor %}</ul>
+  {% endfor %}
+</details>
+{{ content }}
