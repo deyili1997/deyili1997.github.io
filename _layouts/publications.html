@@ -11,7 +11,7 @@ layout: default
         <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <nav class="pub-jump" aria-label="Publication sections"><a href="#highlights">Research highlights</a><a href="#more-research">More research</a><a href="#earlier-work">Earlier work</a></nav>
+    <nav class="pub-jump" aria-label="Publication sections"><a href="#highlights">Research highlights</a><a href="#more-research">More research</a></nav>
   </header>
   <section id="highlights" class="pub-section" aria-labelledby="highlights-title">
     <div class="pub-section-heading"><p class="pub-kicker">Selected work</p><h2 id="highlights-title">Research highlights</h2></div>
@@ -55,25 +55,5 @@ layout: default
       </article>
     {% endfor %}
     </div>
-  </section>
-  <section id="earlier-work" class="pub-section pub-earlier" aria-labelledby="earlier-work-title">
-    <div class="pub-section-heading"><p class="pub-kicker">Foundations in pharmacology</p><h2 id="earlier-work-title">Earlier work</h2></div>
-    <div class="pub-earlier-grid">
-    {% for paper in site.data.publications.earlier %}
-      <article class="pub-earlier-paper">
-        <p class="pub-earlier-meta">{{ paper.year }} <span aria-hidden="true">/</span> {{ paper.venue | escape }}</p>
-        <h3>{% if paper.url %}<a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }} <span aria-hidden="true">↗</span></a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
-        <p>{% for author in paper.authors %}{% if author == 'Deyi Li' or author == 'De-Yi Li' %}<strong>{{ author | escape }}</strong>{% else %}{{ author | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
-      </article>
-    {% endfor %}
-    </div>
-    <details class="pub-additional">
-      <summary>Additional projects</summary>
-      <div class="pub-additional-content">
-        {% for paper in site.data.publications.additional %}
-        <article><p class="pub-earlier-meta">{{ paper.label | escape }}</p><h3>{{ paper.title | escape }}</h3><p>{{ paper.authors | escape }}</p></article>
-        {% endfor %}
-      </div>
-    </details>
   </section>
 </div>

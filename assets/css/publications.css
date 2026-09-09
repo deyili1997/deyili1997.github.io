@@ -57,24 +57,12 @@
 .pub-paper .pub-read{background:transparent;color:#f2eaf4!important;border-color:#685970;font-weight:500}
 .pub-paper .pub-read:hover{border-color:var(--pub-accent);color:var(--pub-accent)!important}
 .pub-paper .pub-pdf{border-color:transparent;justify-content:flex-start}
-.pub-earlier{padding-top:40px;border-top:1px solid var(--pub-line)}
-.pub-earlier-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
-.pub-earlier-paper{border-top:1px solid var(--pub-line);padding:25px 0;min-width:0}
-.pub-earlier-meta{font-size:.875rem;color:var(--pub-muted);line-height:1.6;margin:0 0 10px}
-.pub-earlier-meta span{margin:0 8px;color:var(--pub-accent)}
-.pub-earlier-paper h3{font-size:1rem;font-weight:500;letter-spacing:-.02em;line-height:1.5;margin:0 0 9px}
-.pub-earlier-paper>p:last-child{font-size:.875rem;color:var(--pub-muted);margin:0;line-height:1.65}
+
 @media(min-width:1500px){.publications-page{max-width:1320px}}
 @media(max-width:1000px){.publications-page{padding-left:28px;padding-right:28px}.pub-intro-grid{gap:32px;grid-template-columns:1.2fr 1fr}.pub-feature--lead{grid-template-columns:1fr 1fr}.pub-feature-copy{padding:24px}.pub-figure-panel{padding:20px 20px 12px}.pub-paper{gap:20px;grid-template-columns:48px minmax(0,1fr)}.pub-paper>.pub-links{grid-column:2;flex-direction:row}.pub-paper .pub-pdf{border-color:#5b5063}}
-@media(max-width:760px){.publications-page{padding-top:136px;padding-bottom:64px}.pub-intro-grid{grid-template-columns:1fr;gap:26px}.pub-intro h1{font-size:clamp(2.8rem,10vw,4rem)}.pub-intro-copy{max-width:460px}.pub-intro-copy p{font-size:1rem;margin-bottom:16px}.pub-jump{gap:18px;margin-top:29px;font-size:.875rem}.pub-section{margin-top:46px}.pub-section-heading{display:block}.pub-section-heading .pub-kicker{margin-bottom:10px}.pub-section-heading h2{font-size:1.35rem}.pub-highlights{grid-template-columns:1fr}.pub-feature--lead{display:flex;grid-column:auto}.pub-feature--lead .pub-figure-link{min-height:0}.pub-figure-link{min-height:0}.pub-figure-link img,.pub-feature--lead .pub-figure-link img{max-height:290px}.pub-feature h3{font-size:1.45rem}.pub-feature--lead h3{font-size:2.3rem}.pub-earlier-grid{grid-template-columns:1fr;gap:0}.pub-paper{grid-template-columns:1fr;gap:12px}.pub-paper>.pub-links{grid-column:auto}.pub-year{padding:0;font-size:.875rem}.pub-paper h3{font-size:1.13rem}.pub-meta{font-size:.875rem}.pub-kind{font-size:.875rem}.pub-summary{font-size:1rem}.pub-authors{font-size:.875rem}.pub-read,.pub-pdf{font-size:.875rem}}
+@media(max-width:760px){.publications-page{padding-top:136px;padding-bottom:64px}.pub-intro-grid{grid-template-columns:1fr;gap:26px}.pub-intro h1{font-size:clamp(2.8rem,10vw,4rem)}.pub-intro-copy{max-width:460px}.pub-intro-copy p{font-size:1rem;margin-bottom:16px}.pub-jump{gap:18px;margin-top:29px;font-size:.875rem}.pub-section{margin-top:46px}.pub-section-heading{display:block}.pub-section-heading .pub-kicker{margin-bottom:10px}.pub-section-heading h2{font-size:1.35rem}.pub-highlights{grid-template-columns:1fr}.pub-feature--lead{display:flex;grid-column:auto}.pub-feature--lead .pub-figure-link{min-height:0}.pub-figure-link{min-height:0}.pub-figure-link img,.pub-feature--lead .pub-figure-link img{max-height:290px}.pub-feature h3{font-size:1.45rem}.pub-feature--lead h3{font-size:2.3rem}.pub-paper{grid-template-columns:1fr;gap:12px}.pub-paper>.pub-links{grid-column:auto}.pub-year{padding:0;font-size:.875rem}.pub-paper h3{font-size:1.13rem}.pub-meta{font-size:.875rem}.pub-kind{font-size:.875rem}.pub-summary{font-size:1rem}.pub-authors{font-size:.875rem}.pub-read,.pub-pdf{font-size:.875rem}}
 @media(max-width:400px){.publications-page{padding-left:20px;padding-right:20px}.pub-feature-copy{padding:22px}.pub-jump{column-gap:16px;row-gap:10px}.pub-feature--lead h3{font-size:2rem}}
 @media(prefers-reduced-motion:reduce){.publications-page *{transition:none!important;scroll-behavior:auto!important}}
 
 .pub-figure-caption a{text-decoration:underline;text-underline-offset:3px;color:#514655}
 .pub-figure-caption a:hover,.pub-figure-caption a:focus-visible{color:#5b2055}
-.pub-earlier-paper strong{font-weight:700;color:#f4edf8}
-.pub-additional{border-top:1px solid var(--pub-line);padding-top:24px;margin-top:16px;font-size:.88rem}
-.pub-additional summary{cursor:pointer;color:var(--pub-muted);min-height:44px}
-.pub-additional-content{padding:22px 0 0}
-.pub-additional-content h3{font-size:1rem;font-weight:500;line-height:1.5;margin:0 0 9px}
-.pub-additional-content article>p:last-child{font-size:.875rem;color:var(--pub-muted);margin-bottom:26px}
