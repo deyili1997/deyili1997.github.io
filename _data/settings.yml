@@ -2,21 +2,24 @@
 # Site Settings
 title: AI4Health
 logo: # You can add own logo. For example '/images/logo.png'.
-description: A technical blog on AI for Health.
+description: Research and learning notes in RWE generation, predictive modeling, and clinical pharmacology.
 
 
 #-------------------------------
 # Navigation Settings
 menu-settings:
   menu-items:
-    - title: 'Home'
-      url: '/'
-    - title: 'Causal Inference'
-      url: '/causal-inference/'
-    - title: 'About'
-      url: '/about/'
+    - title: 'RWE Generation'
+      url: '/rwe-generation/'
+    - title: 'Predictive Modeling'
+      url: '/predictive-modeling/'
+    - title: 'Clinical Pharmacology'
+      url: '/clinical-pharmacology/'
     - title: 'Publications'
       url: '/publication/'
+    - title: 'About'
+      url: '/about/'
+
 
 
 #-------------------------------
@@ -30,7 +33,7 @@ author:
 # Hero Settings
 hero:
   title: Deyi Li
-  description: Reading papers on AI for healthcare and biomedicine.
+  description: Real-world evidence, predictive modeling, and clinical pharmacology.
   image: '/images/background_4.jpg'
 
 

@@ -1,0 +1,18 @@
+{% assign paper = include.paper %}
+<article class="pub-feature{% if include.lead %} pub-feature--lead{% endif %}" id="{{ paper.id }}">
+        <div class="pub-figure-panel">
+          <a class="pub-figure-link" href="{{ paper.pdf | relative_url }}#page={{ paper.figure_page }}" aria-label="View {{ paper.figure_label | escape }} in {{ paper.short_title | escape }}">
+            <img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | escape }}" width="{{ paper.image_width }}" height="{{ paper.image_height }}" {% unless include.lead %}loading="lazy"{% endunless %}>
+          </a>
+          <p class="pub-figure-caption">{{ paper.figure_label | escape }} · {{ paper.figure_credit | escape }}{% if paper.license %} · <a href="{{ paper.license_url }}">{{ paper.license }}</a>{% endif %}</p>
+        </div>
+        <div class="pub-feature-copy">
+          {% include publication-meta.html paper=paper %}
+          <p class="pub-topic">{{ paper.theme | escape }}</p>
+          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.display_title | escape }}</a></h3>
+          {% if paper.subtitle %}<p class="pub-subtitle">{{ paper.subtitle | escape }}</p>{% endif %}
+          <p class="pub-summary">{{ paper.summary | escape }}</p>
+          {% include publication-authors.html paper=paper %}
+          {% include publication-links.html paper=paper %}
+        </div>
+      </article>

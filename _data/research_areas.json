@@ -1,0 +1,37 @@
+[
+  {
+    "id": "rwe-generation",
+    "title": "RWE Generation",
+    "folder": "RWE",
+    "number": "01",
+    "description": "Observational study design, causal inference, and evidence from routine clinical data.",
+    "publication_description": "Real-world clinical data, patient heterogeneity, and outcomes.",
+    "url": "/rwe-generation/",
+    "study_label": "Causal Inference",
+    "study_description": "A structured guide to causal inference and target trial emulation.",
+    "study_url": "/causal-inference/"
+  },
+  {
+    "id": "predictive-modeling",
+    "title": "Predictive Modeling",
+    "folder": "PM",
+    "number": "02",
+    "description": "Patient representation learning, clinical risk prediction, and the evaluation of healthcare AI.",
+    "publication_description": "Learning from electronic health records to model patient trajectories and predict clinical outcomes.",
+    "url": "/predictive-modeling/",
+    "study_label": "Learning notes",
+    "study_description": "Paper readings and concepts in graph learning, patient representation, and clinical AI."
+  },
+  {
+    "id": "clinical-pharmacology",
+    "title": "Clinical Pharmacology",
+    "folder": "CPP",
+    "number": "03",
+    "description": "Pharmacometrics, drug exposure, and individualized therapy.",
+    "publication_description": "Pharmacokinetic modeling and individualized drug therapy.",
+    "url": "/clinical-pharmacology/",
+    "study_label": "Study notes",
+    "study_description": "Clinical pharmacology learning content will be added here.",
+    "study_status": "TBD"
+  }
+]

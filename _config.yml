@@ -21,6 +21,16 @@ defaults:
       path: '_pages'
     values:
       permalink: /:basename:output_ext
+  - scope:
+      path: ''
+      type: posts
+    values:
+      research_area: predictive-modeling
+  - scope:
+      path: ''
+      type: causal_inference
+    values:
+      research_area: rwe-generation
 
 include:
   - _pages
@@ -38,3 +48,4 @@ collections:
 exclude:
   - CAUSAL_NOTES.md
   - PUBLICATIONS.md
+  - RESEARCH_AREAS.md

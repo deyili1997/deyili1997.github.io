@@ -4,7 +4,10 @@ layout: default
 <div class="container study-container">
   <article class="page study-page">
     <header class="study-header">
-      {% unless page.order == 0 %}<a class="study-back" href="{{ '/causal-inference/' | relative_url }}">← Causal Inference Study Guide</a>{% endunless %}
+      <nav class="research-breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ '/rwe-generation/' | relative_url }}">RWE Generation</a><span aria-hidden="true">/</span>
+        {% if page.order == 0 %}<span aria-current="page">Causal Inference</span>{% else %}<a href="{{ '/causal-inference/' | relative_url }}">Causal Inference</a><span aria-hidden="true">/</span><span>Study note</span>{% endif %}
+      </nav>
       <p class="study-eyebrow">{{ page.group }}{% if page.order > 0 %} · Reading step {{ page.order }}{% endif %}</p>
       <h1>{{ page.title }}</h1>
       <p class="study-meta">Deyi Li · Updated {{ page.last_modified_at | date: '%B %-d, %Y' }}</p>

@@ -33,10 +33,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function menuOpen() {
     menuList.classList.add("is-open");
+    menuOpenIcon.setAttribute("aria-expanded", "true");
+    menuCloseIcon.focus();
   }
 
   function menuClose() {
     menuList.classList.remove("is-open");
+    menuOpenIcon.setAttribute("aria-expanded", "false");
+    menuOpenIcon.focus();
   }
 
   function searchOpen() {
@@ -52,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.addEventListener("keydown", function(e){
     if (e.key == "Escape") {
+      if (menuList.classList.contains("is-open")) { menuClose(); }
       searchClose();
     }
   });

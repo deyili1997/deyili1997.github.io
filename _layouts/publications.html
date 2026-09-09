@@ -7,53 +7,35 @@ layout: default
     <div class="pub-intro-grid">
       <h1>Publications<br><span>&amp; preprints.</span></h1>
       <div class="pub-intro-copy">
-        <p>Learning from patient histories. Building useful, interpretable AI for healthcare.</p>
+        <p>Research across real-world evidence, predictive modeling, and clinical pharmacology.</p>
         <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <nav class="pub-jump" aria-label="Publication sections"><a href="#highlights">Research highlights</a><a href="#more-research">More research</a></nav>
+    <nav class="pub-jump" aria-label="Publication research areas">{% for area in site.data.research_areas %}<a href="#{{ area.id }}">{{ area.title }}</a>{% endfor %}</nav>
   </header>
-  <section id="highlights" class="pub-section" aria-labelledby="highlights-title">
-    <div class="pub-section-heading"><p class="pub-kicker">Selected work</p><h2 id="highlights-title">Research highlights</h2></div>
+  {% for area in site.data.research_areas %}
+  {% assign area_papers = site.data.publications.papers | where: 'research_area', area.id %}
+  {% assign area_highlights = area_papers | where: 'featured', true %}
+  {% assign area_remaining = area_papers | where: 'featured', false %}
+  <section id="{{ area.id }}" class="pub-section" data-area="{{ area.id }}" aria-labelledby="{{ area.id }}-title">
+    <header class="pub-area-heading">
+      <p class="pub-kicker">Research direction {{ area.number }}</p>
+      <h2 id="{{ area.id }}-title">{{ area.title }}<span class="pub-area-count">{{ area_papers.size }} {% if area_papers.size == 1 %}publication{% else %}publications{% endif %}</span></h2>
+      <p>{{ area.publication_description }}</p>
+    </header>
+    {% if area_highlights.size > 0 %}
     <div class="pub-highlights">
-    {% assign highlights = site.data.publications.papers | where: 'featured', true %}
-    {% for paper in highlights %}
-      <article class="pub-feature{% if forloop.first %} pub-feature--lead{% endif %}" id="{{ paper.id }}">
-        <div class="pub-figure-panel">
-          <a class="pub-figure-link" href="{{ paper.pdf | relative_url }}#page={{ paper.figure_page }}" aria-label="View {{ paper.figure_label | escape }} in {{ paper.short_title | escape }}">
-            <img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | escape }}" width="{{ paper.image_width }}" height="{{ paper.image_height }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
-          </a>
-          <p class="pub-figure-caption">{{ paper.figure_label | escape }} · {{ paper.figure_credit | escape }}{% if paper.license %} · <a href="{{ paper.license_url }}">{{ paper.license }}</a>{% endif %}</p>
-        </div>
-        <div class="pub-feature-copy">
-          {% include publication-meta.html paper=paper %}
-          <p class="pub-topic">{{ paper.theme | escape }}</p>
-          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.display_title | escape }}</a></h3>
-          {% if paper.subtitle %}<p class="pub-subtitle">{{ paper.subtitle | escape }}</p>{% endif %}
-          <p class="pub-summary">{{ paper.summary | escape }}</p>
-          {% include publication-authors.html paper=paper %}
-          {% include publication-links.html paper=paper %}
-        </div>
-      </article>
-    {% endfor %}
+      {% for paper in area_highlights %}
+        {% assign use_lead = false %}{% if area_highlights.size == 1 %}{% assign use_lead = true %}{% endif %}
+        {% include publication-feature.html paper=paper lead=use_lead %}
+      {% endfor %}
     </div>
-  </section>
-  <section id="more-research" class="pub-section" aria-labelledby="more-research-title">
-    <div class="pub-section-heading"><p class="pub-kicker">Across the research program</p><h2 id="more-research-title">More research</h2></div>
-    <div class="pub-paper-list">
-    {% assign remaining = site.data.publications.papers | where: 'featured', false %}
-    {% for paper in remaining %}
-      <article class="pub-paper" id="{{ paper.id }}">
-        <div class="pub-year" aria-label="Publication year">{{ paper.year }}</div>
-        <div class="pub-paper-copy">
-          {% include publication-meta.html paper=paper omit_year=true %}
-          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a></h3>
-          <p class="pub-summary">{{ paper.summary | escape }}</p>
-          {% include publication-authors.html paper=paper %}
-        </div>
-        {% include publication-links.html paper=paper %}
-      </article>
-    {% endfor %}
+    {% endif %}
+    {% if area_remaining.size > 0 %}
+    <div class="pub-paper-list pub-area-papers">
+      {% for paper in area_remaining %}{% include publication-row.html paper=paper %}{% endfor %}
     </div>
+    {% endif %}
   </section>
+  {% endfor %}
 </div>

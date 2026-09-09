@@ -3,7 +3,7 @@
   "papers": [
     {
       "id": "athena",
-      "source_file": "2608.21712v2.pdf",
+      "source_file": "PM/2608.21712v2.pdf",
       "title": "ATHENA: Knowledge-guided agentic neural architecture search for AutoFormer-based electronic health record modeling",
       "display_title": "ATHENA",
       "authors": [
@@ -39,7 +39,9 @@
       "figure_label": "Figure 1",
       "image": "/assets/publications/figures/athena.png",
       "image_width": 1369,
-      "image_height": 971
+      "image_height": 971,
+      "research_area": "predictive-modeling",
+      "source_sha256": "806db276f48a6cfcb2e024452975bd8777cd4fe7c2394515e6cd6d7ff8e7ccfa"
     },
     {
       "id": "smart",
@@ -67,7 +69,7 @@
         "Personalized prediction",
         "Acute kidney injury"
       ],
-      "source_file": "ocaf125.pdf",
+      "source_file": "PM/ocaf125.pdf",
       "kind": "Journal article",
       "featured": true,
       "pdf": "/assets/publications/papers/smart.pdf",
@@ -81,7 +83,9 @@
       "figure_label": "Figure 1",
       "image": "/assets/publications/figures/smart.png",
       "image_width": 1364,
-      "image_height": 1200
+      "image_height": 1200,
+      "research_area": "predictive-modeling",
+      "source_sha256": "9093d6481c7260a7daa1442c12d04d2d9c409d3ac0dd765a243289642909b49a"
     },
     {
       "id": "aki-subphenotypes",
@@ -119,7 +123,7 @@
         "Acute kidney injury"
       ],
       "license_url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-      "source_file": "s43856-025-00993-6.pdf",
+      "source_file": "RWE/s43856-025-00993-6.pdf",
       "kind": "Journal article",
       "featured": true,
       "pdf": "/assets/publications/papers/aki-subphenotypes.pdf",
@@ -134,11 +138,13 @@
       "figure_label": "Figure 2",
       "image": "/assets/publications/figures/aki-subphenotypes.png",
       "image_width": 1189,
-      "image_height": 584
+      "image_height": 584,
+      "research_area": "rwe-generation",
+      "source_sha256": "2363e2d01e0f8f710ab994034507ee33835593cdff51aacd821626b6291dc21e"
     },
     {
       "id": "llm-as-a-judge",
-      "source_file": "2605.25273v1.pdf",
+      "source_file": "PM/2605.25273v1.pdf",
       "title": "LLM-as-a-Judge in Healthcare: A Scoping Analysis of Applications, Methods, and Human Alignment",
       "display_title": "Can AI judges evaluate healthcare AI?",
       "authors": [
@@ -169,11 +175,13 @@
       "featured": false,
       "pdf": "/assets/publications/papers/llm-as-a-judge.pdf",
       "author_preview": "Lingyao Li*, Deyi Li* et al.",
-      "equal_note": "* Lingyao Li and Deyi Li contributed equally."
+      "equal_note": "* Lingyao Li and Deyi Li contributed equally.",
+      "research_area": "predictive-modeling",
+      "source_sha256": "d7e5d7966edc2eb503f138349c93aa6b898be69781b7b9055a5b045d16284d39"
     },
     {
       "id": "dt-behrt",
-      "source_file": "2603.10180v1.pdf",
+      "source_file": "PM/2603.10180v1.pdf",
       "title": "DT-BEHRT: Disease Trajectory-aware Transformer for Interpretable Patient Representation Learning",
       "display_title": "DT-BEHRT: Following disease trajectories",
       "authors": [
@@ -199,10 +207,12 @@
       "kind": "Preprint",
       "featured": false,
       "pdf": "/assets/publications/papers/dt-behrt.pdf",
-      "author_preview": "Deyi Li, Zijun Yao et al."
+      "author_preview": "Deyi Li, Zijun Yao et al.",
+      "research_area": "predictive-modeling",
+      "source_sha256": "84b4a12e4b1f30131ac2119d6344d6fbfeb8b2e397510d87e38ad97465511d15"
     },
     {
-      "source_file": "AMIASYMPROC-2025-7854.pdf",
+      "source_file": "PM/AMIASYMPROC-2025-7854.pdf",
       "id": "deepj",
       "title": "DeepJ: Graph Convolutional Transformers with Differentiable Pooling for Patient Trajectory Modeling",
       "short_title": "DeepJ: learning the patient journey",
@@ -229,7 +239,9 @@
       "kind": "Conference paper",
       "featured": false,
       "pdf": "/assets/publications/papers/deepj.pdf",
-      "author_preview": "Deyi Li, Zijun Yao et al."
+      "author_preview": "Deyi Li, Zijun Yao et al.",
+      "research_area": "predictive-modeling",
+      "source_sha256": "d59eec7f3316cb7468db7638acef6081bf96d9bb7832238319804ba7c9786637"
     },
     {
       "id": "autoencoder-patient-retrieval",
@@ -258,14 +270,16 @@
         "Electronic health records"
       ],
       "license_url": "https://creativecommons.org/licenses/by/4.0/",
-      "source_file": "medinform-2025-1-e68830.pdf",
+      "source_file": "PM/medinform-2025-1-e68830.pdf",
       "kind": "Journal article",
       "featured": false,
       "pdf": "/assets/publications/papers/autoencoder-patient-retrieval.pdf",
-      "author_preview": "Deyi Li, Aditi Shukla et al."
+      "author_preview": "Deyi Li, Aditi Shukla et al.",
+      "research_area": "predictive-modeling",
+      "source_sha256": "e0895f1a470e963f2b980fdb15dce9e2b5951a489f03003ffef282ae4ebcf4f6"
     },
     {
-      "source_file": "6409.pdf",
+      "source_file": "PM/6409.pdf",
       "id": "patient-similarity-comparison",
       "title": "A Comparative Analysis of Patient Similarity Measures for Outcome Prediction",
       "short_title": "What makes patients similar?",
@@ -290,10 +304,12 @@
       "kind": "Conference paper",
       "featured": false,
       "pdf": "/assets/publications/papers/patient-similarity-comparison.pdf",
-      "author_preview": "Deyi Li, Alan S. L. Yu et al."
+      "author_preview": "Deyi Li, Alan S. L. Yu et al.",
+      "research_area": "predictive-modeling",
+      "source_sha256": "f0919bf35dee282f17c4707f200d7296a497b7b05ef14421e6f16985887c2dd8"
     },
     {
-      "source_file": "fped-09-713588.pdf",
+      "source_file": "CPP/fped-09-713588.pdf",
       "id": "vancomycin-infants",
       "title": "Population Pharmacokinetics Modeling of Vancomycin Among Chinese Infants With Normal and Augmented Renal Function",
       "short_title": "Modeling vancomycin in infants",
@@ -325,7 +341,42 @@
       "kind": "Journal article",
       "featured": false,
       "pdf": "/assets/publications/papers/vancomycin-infants.pdf",
-      "author_preview": "De-Yi Li, Ling Li et al."
+      "author_preview": "De-Yi Li, Ling Li et al.",
+      "research_area": "clinical-pharmacology",
+      "source_sha256": "f6bd72cd4d9472608600681d6e5285377141a0b1418f2aa2c1b8e474fa43ed67"
+    },
+    {
+      "id": "tacrolimus-dose-tailoring",
+      "title": "Dose tailoring of tacrolimus based on a non-linear pharmacokinetic model in children with refractory nephrotic syndrome",
+      "authors": [
+        "Ling Li",
+        "Min Zhu",
+        "De-Yi Li",
+        "Hong-Li Guo",
+        "Ya-Hui Hu",
+        "Ze-Yue Xu",
+        "Xia Jing",
+        "Feng Chen",
+        "Fei Zhao",
+        "Yun-Man Li",
+        "Jing Xu",
+        "Zheng Jiao"
+      ],
+      "year": 2021,
+      "venue": "International Immunopharmacology",
+      "volume": "98",
+      "article_number": "107827",
+      "doi": "10.1016/j.intimp.2021.107827",
+      "url": "https://doi.org/10.1016/j.intimp.2021.107827",
+      "kind": "Journal article",
+      "summary": "Using drug-monitoring data from 108 children with refractory nephrotic syndrome, this study compares linear and nonlinear models of tacrolimus exposure. The nonlinear model better described observed concentrations and informed proposed dosing strategies incorporating body weight, CYP3A5 genotype, and concurrent diltiazem treatment.",
+      "author_preview": "Ling Li*, Min Zhu*, De-Yi Li et al.",
+      "equal_note": "Ling Li and Min Zhu contributed equally.",
+      "source_sha256": "d2d2fa99239da1afa3dc627a97fab6a221c8bfcbc8bd9377a463a815e222923b",
+      "source_file": "CPP/1-s2.0-S156757692100463X-main.pdf",
+      "research_area": "clinical-pharmacology",
+      "featured": false,
+      "pdf": "/assets/publications/papers/tacrolimus-dose-tailoring.pdf"
     }
   ]
 }

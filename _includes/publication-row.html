@@ -1,0 +1,11 @@
+{% assign paper = include.paper %}
+<article class="pub-paper" id="{{ paper.id }}">
+        <div class="pub-year" aria-label="Publication year">{{ paper.year }}</div>
+        <div class="pub-paper-copy">
+          {% include publication-meta.html paper=paper omit_year=true %}
+          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a></h3>
+          <p class="pub-summary">{{ paper.summary | escape }}</p>
+          {% include publication-authors.html paper=paper %}
+        </div>
+        {% include publication-links.html paper=paper %}
+      </article>
