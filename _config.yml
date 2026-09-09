@@ -25,7 +25,7 @@ defaults:
       path: ''
       type: posts
     values:
-      research_area: predictive-modeling
+      research_area: healthcare-ai
   - scope:
       path: ''
       type: causal_inference

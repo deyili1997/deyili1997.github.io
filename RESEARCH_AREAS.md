@@ -3,16 +3,18 @@
 The website has five peer topics, defined in `_data/research_areas.json`:
 
 - RWE Generation: `/rwe-generation/`
-- Predictive Modeling: `/predictive-modeling/`
+- Healthcare AI: `/healthcare-ai/`
 - Clinical Pharmacology: `/clinical-pharmacology/`
 - Omics: `/omics/` (TBD)
 - Investment Notes: `/investment-notes/`
 
 The homepage, navigation and About page expose all five topics. Investment Notes is a personal learning journal on U.S. equities, rather than an academic publication category. Its `show_publications: false` flag hides publication links/panels and excludes it from the Publications page. The three academic publication groups still follow the user's `Publications/RWE`, `Publications/PM` and `Publications/CPP` folders. See `PUBLICATIONS.md` for metadata and PDF rules.
 
+Healthcare AI uses `healthcare-ai` as its internal topic ID and `/healthcare-ai/` as its canonical hub. The former `/predictive-modeling/` hub redirects to it, and `/publication/#predictive-modeling` remains an anchor alias for `/publication/#healthcare-ai`. Original paper titles and post URLs are retained. The source publication folder remains `Publications/PM/` and maps to Healthcare AI.
+
 Causal Inference is a study collection within RWE Generation. The guide remains at `/causal-inference/` and all existing note URLs are retained. The causal-note layout shows the RWE breadcrumb; collection defaults also set `research_area: rwe-generation`.
 
-Existing blog posts are Predictive Modeling learning notes. They retain their URLs, search entries and homepage pagination. The post default is `research_area: predictive-modeling`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
+Existing blog posts are Healthcare AI learning notes. They retain their URLs, search entries and homepage pagination. The post default is `research_area: healthcare-ai`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
 
 For an investment learning entry, add a normal `_posts/YYYY-MM-DD-slug.md` with `layout: post`, a title and description, and `research_area: investment-notes`. It will appear in the Investment Notes hub, homepage pagination and site search, and its breadcrumb will link back to the investment hub. Do not invent investment entries or import notes until the user supplies the source. Until the first entry exists, the homepage and hub show TBD automatically.
 

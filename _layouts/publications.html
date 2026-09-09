@@ -8,7 +8,7 @@ layout: default
     <div class="pub-intro-grid">
       <h1>Publications<br><span>&amp; preprints.</span></h1>
       <div class="pub-intro-copy">
-        <p>Research across real-world evidence, predictive modeling, and clinical pharmacology.</p>
+        <p>Research across real-world evidence, Healthcare AI, and clinical pharmacology.</p>
         <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -19,7 +19,7 @@ layout: default
   {% assign area_highlights = area_papers | where: 'featured', true %}
   {% assign area_remaining = area_papers | where: 'featured', false %}
   <section id="{{ area.id }}" class="pub-section" data-area="{{ area.id }}" aria-labelledby="{{ area.id }}-title">
-    <header class="pub-area-heading">
+    <header class="pub-area-heading"{% if area.legacy_id %} id="{{ area.legacy_id }}"{% endif %}>
       <p class="pub-kicker">Research direction {{ area.number }}</p>
       <h2 id="{{ area.id }}-title">{{ area.title }}<span class="pub-area-count">{{ area_papers.size }} {% if area_papers.size == 1 %}publication{% else %}publications{% endif %}</span></h2>
       <p>{{ area.publication_description }}</p>

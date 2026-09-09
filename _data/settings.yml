@@ -2,7 +2,7 @@
 # Site Settings
 title: AI4Health
 logo: # You can add own logo. For example '/images/logo.png'.
-description: Research and learning notes in RWE generation, predictive modeling, and clinical pharmacology.
+description: Research and learning notes in RWE generation, Healthcare AI, and clinical pharmacology.
 
 
 #-------------------------------
@@ -11,8 +11,8 @@ menu-settings:
   menu-items:
     - title: 'RWE Generation'
       url: '/rwe-generation/'
-    - title: 'Predictive Modeling'
-      url: '/predictive-modeling/'
+    - title: 'Healthcare AI'
+      url: '/healthcare-ai/'
     - title: 'Clinical Pharmacology'
       url: '/clinical-pharmacology/'
     - title: 'Omics'
@@ -37,7 +37,7 @@ author:
 # Hero Settings
 hero:
   title: Deyi Li
-  description: Real-world evidence, predictive modeling, and clinical pharmacology.
+  description: Real-world evidence, Healthcare AI, and clinical pharmacology.
   image: '/images/background_4.jpg'
 
 

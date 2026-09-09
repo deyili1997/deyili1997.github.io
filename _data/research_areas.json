@@ -12,15 +12,16 @@
     "study_url": "/causal-inference/"
   },
   {
-    "id": "predictive-modeling",
-    "title": "Predictive Modeling",
+    "id": "healthcare-ai",
+    "title": "Healthcare AI",
     "folder": "PM",
     "number": "02",
     "description": "Patient representation learning, clinical risk prediction, and the evaluation of healthcare AI.",
     "publication_description": "Learning from electronic health records to model patient trajectories and predict clinical outcomes.",
-    "url": "/predictive-modeling/",
+    "url": "/healthcare-ai/",
     "study_label": "Learning notes",
-    "study_description": "Paper readings and concepts in graph learning, patient representation, and clinical AI."
+    "study_description": "Paper readings and concepts in graph learning, patient representation, and clinical AI.",
+    "legacy_id": "predictive-modeling"
   },
   {
     "id": "clinical-pharmacology",

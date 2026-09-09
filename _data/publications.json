@@ -40,7 +40,7 @@
       "image": "/assets/publications/figures/athena.png",
       "image_width": 1369,
       "image_height": 971,
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "806db276f48a6cfcb2e024452975bd8777cd4fe7c2394515e6cd6d7ff8e7ccfa"
     },
     {
@@ -84,7 +84,7 @@
       "image": "/assets/publications/figures/smart.png",
       "image_width": 1364,
       "image_height": 1200,
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "9093d6481c7260a7daa1442c12d04d2d9c409d3ac0dd765a243289642909b49a"
     },
     {
@@ -176,7 +176,7 @@
       "pdf": "/assets/publications/papers/llm-as-a-judge.pdf",
       "author_preview": "Lingyao Li*, Deyi Li* et al.",
       "equal_note": "* Lingyao Li and Deyi Li contributed equally.",
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "d7e5d7966edc2eb503f138349c93aa6b898be69781b7b9055a5b045d16284d39"
     },
     {
@@ -208,7 +208,7 @@
       "featured": false,
       "pdf": "/assets/publications/papers/dt-behrt.pdf",
       "author_preview": "Deyi Li, Zijun Yao et al.",
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "84b4a12e4b1f30131ac2119d6344d6fbfeb8b2e397510d87e38ad97465511d15"
     },
     {
@@ -240,7 +240,7 @@
       "featured": false,
       "pdf": "/assets/publications/papers/deepj.pdf",
       "author_preview": "Deyi Li, Zijun Yao et al.",
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "d59eec7f3316cb7468db7638acef6081bf96d9bb7832238319804ba7c9786637"
     },
     {
@@ -275,7 +275,7 @@
       "featured": false,
       "pdf": "/assets/publications/papers/autoencoder-patient-retrieval.pdf",
       "author_preview": "Deyi Li, Aditi Shukla et al.",
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "e0895f1a470e963f2b980fdb15dce9e2b5951a489f03003ffef282ae4ebcf4f6"
     },
     {
@@ -305,7 +305,7 @@
       "featured": false,
       "pdf": "/assets/publications/papers/patient-similarity-comparison.pdf",
       "author_preview": "Deyi Li, Alan S. L. Yu et al.",
-      "research_area": "predictive-modeling",
+      "research_area": "healthcare-ai",
       "source_sha256": "f0919bf35dee282f17c4707f200d7296a497b7b05ef14421e6f16985887c2dd8"
     },
     {
