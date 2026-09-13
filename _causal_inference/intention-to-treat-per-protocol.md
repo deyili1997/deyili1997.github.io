@@ -287,10 +287,10 @@ Similar “no subsequent regrouping” analyses do not mean that the first two i
 </aside>
 
 
-### 7.1 Translation of the original passage and context
+### 7.1 Source summary and context
 {: #section-13 }
 
-The original passage supplied by the user comes from [Fu (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/):
+The following summary is based on [Fu (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/):
 
 Two causal contrasts often estimated in randomized trials are the effect of random assignment to a treatment strategy (the intention-to-treat effect) and the effect of receiving that strategy according to the protocol (the per-protocol effect). Because observational studies lack randomization, the author states that only per-protocol effects can be estimated in them. However, investigators often call the effect of treatment initiation the intention-to-treat effect in observational studies; this quantity differs from the effect bearing the same name in randomized trials.
 
@@ -301,7 +301,7 @@ The wording “only PP can be estimated” needs the author's setting: observati
 
 ![Itt randomized vs observational point intervention dag]({{ "/assets/causal-inference/itt-randomized-vs-observational-point-intervention-dag.png" | relative_url }})
 
-#### Translation of the original text and figure caption
+#### Summary of the source text and figure caption
 {: #section-15 }
 
 In randomized clinical trials, the intention-to-treat (ITT) effect is defined as the effect of **being assigned to a treatment**. Supplementary Figure 4 represents it as the total effect of $$Z$$ on $$Y$$. The author emphasizes that correctly implemented randomization protects the assignment effect from baseline confounding. The effect of treatment assignment need not equal the effect of actually initiating treatment; in this simplified figure, the latter is represented by the effect of $$A$$ on $$Y$$. The text then uses “everyone initiates their assigned treatment” to explain when the effects can correspond.

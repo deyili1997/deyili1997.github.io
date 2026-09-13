@@ -10,21 +10,21 @@ Deep learning-based predictive models that leverage Electronic Health Records (E
 
 
 
-Prediction task: visit-level diagnosis prediciton, code-level diagnosis prediciton.
+Prediction task: visit-level diagnosis prediction, code-level diagnosis prediction.
 
 Datasets: MIMIC-III, MIMIC-IV and CCAE.
 
 Graph Construction: There are three types of medical codes: diagnosis, medication, and procedure. Each patient visit is represented by a separate node. Every medical event code is connected to its corresponding patient visit node via an undirected edge. Additionally, each patient visit node points to the subsequent visit node, forming a directed edge. Interestingly, if two adjacent visits share the same medical code, they appear to share the same code node.
 
-![Precedures]({{site.baseurl}}/images/post_8_2.png)
+![Graph construction]({{site.baseurl}}/images/post_8_2.png)
 *Graph construction.*
 
 Temporal encoding: Embeddings derived from Time2Vec, which capture real-world temporal information, were concatenated with patient visit node features. The index information of each patient visit was encoded using a functional time encoding scheme and stored as edge features, primarily to modulate attention scores.
 
-![Precedures]({{site.baseurl}}/images/post_8_1.png)
+![Model architecture]({{site.baseurl}}/images/post_8_1.png)
 *Model architecture.*
 
-Spatial encoding: Local structure encoding + global position encoding. Need to read the code to see the details.
+Spatial encoding combines local structure encoding and global position encoding.
 
 Message passing: Used the index encoding and medical event node type to adjust attention scores.  
 

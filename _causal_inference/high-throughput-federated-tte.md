@@ -9,7 +9,7 @@ causal_notes: true
 date: "2026-09-09"
 last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. What does each paper extend?", "anchor": "section-1"}, {"title": "2. Where subsequent discussions belong", "anchor": "section-2"}, {"title": "3. Discussion: what is the IPTW framework?", "anchor": "section-3"}, {"title": "4. Reading the original text: High-throughput cohorts, ML-PS, and every data level in Boxes 1–2", "anchor": "section-13"}, {"title": "5. Discussion: Does classical IPTW require train/test splitting? How does LR obtain each propensity score?", "anchor": "section-28"}, {"title": "5.1 “Participating in fitting” differs from “fitting using only oneself”", "anchor": "section-29"}, {"title": "5.2 Fitting an actual LR to the existing 1,000-person example", "anchor": "section-30"}, {"title": "5.3 Treated people and controls within the same disease stratum have the same e(L)", "anchor": "section-31"}, {"title": "5.4 Is fitting and weighting the same people data leakage?", "anchor": "section-32"}, {"title": "5.5 Differences from this paper and cross-fitting", "anchor": "section-33"}, {"title": "5.6 Connecting to a research example: Multiple baseline variables, comparing drug A with B", "anchor": "section-34"}, {"title": "5.7 Does TTE require equal group sizes?", "anchor": "section-35"}, {"title": "5.8 How do the g-formula and IPTW differ?", "anchor": "section-36"}, {"title": "5.9 Why does ATT weight treated people by 1 and controls by odds?", "anchor": "section-37"}, {"title": "5.10 Stabilized IPTW and SW_i: Define first, then read the formula", "anchor": "section-38"}, {"title": "5.11 How does baseline IPTW extend to sustained A/B strategies?", "anchor": "section-44"}, {"title": "5.12 How is survival analysis weighted in TTE?", "anchor": "section-45"}, {"title": "5.13 Why does high-throughput TTE need a Bonferroni correction?", "anchor": "section-46"}, {"title": "5.14 Reading the federated TTE paper: Why is treatment the dependent variable and baseline covariates the independent variables?", "anchor": "section-56"}, {"title": "5.15 How are IPTW and propensity-score matching related, and how do they differ?", "anchor": "section-62"}, {"title": "5.16 Unpacking federated LR: From one patient's probability to training across hospitals", "anchor": "section-63"}, {"title": "5.17 Unpacking federated weighted Cox: Equations (5)–(9)", "anchor": "section-77"}, {"title": "5.18 How do competing events affect AD risk, Cox models, and IPTW?", "anchor": "section-100"}, {"title": "6. References and source articles", "anchor": "section-39"}]
+toc: [{"title": "1. What does each paper extend?", "anchor": "section-1"}, {"title": "2. Topics and methodological questions", "anchor": "section-2"}, {"title": "3. Discussion: what is the IPTW framework?", "anchor": "section-3"}, {"title": "4. Reading the original text: High-throughput cohorts, ML-PS, and every data level in Boxes 1–2", "anchor": "section-13"}, {"title": "5. Discussion: Does classical IPTW require train/test splitting? How does LR obtain each propensity score?", "anchor": "section-28"}, {"title": "5.1 “Participating in fitting” differs from “fitting using only oneself”", "anchor": "section-29"}, {"title": "5.2 Fitting an actual LR to the existing 1,000-person example", "anchor": "section-30"}, {"title": "5.3 Treated people and controls within the same disease stratum have the same e(L)", "anchor": "section-31"}, {"title": "5.4 Is fitting and weighting the same people data leakage?", "anchor": "section-32"}, {"title": "5.5 Differences from this paper and cross-fitting", "anchor": "section-33"}, {"title": "5.6 Connecting to a research example: Multiple baseline variables, comparing drug A with B", "anchor": "section-34"}, {"title": "5.7 Does TTE require equal group sizes?", "anchor": "section-35"}, {"title": "5.8 How do the g-formula and IPTW differ?", "anchor": "section-36"}, {"title": "5.9 Why does ATT weight treated people by 1 and controls by odds?", "anchor": "section-37"}, {"title": "5.10 Stabilized IPTW and SW_i: Define first, then read the formula", "anchor": "section-38"}, {"title": "5.11 How does baseline IPTW extend to sustained A/B strategies?", "anchor": "section-44"}, {"title": "5.12 How is survival analysis weighted in TTE?", "anchor": "section-45"}, {"title": "5.13 Why does high-throughput TTE need a Bonferroni correction?", "anchor": "section-46"}, {"title": "5.14 Reading the federated TTE paper: Why is treatment the dependent variable and baseline covariates the independent variables?", "anchor": "section-56"}, {"title": "5.15 How are IPTW and propensity-score matching related, and how do they differ?", "anchor": "section-62"}, {"title": "5.16 Unpacking federated LR: From one patient's probability to training across hospitals", "anchor": "section-63"}, {"title": "5.17 Unpacking federated weighted Cox: Equations (5)–(9)", "anchor": "section-77"}, {"title": "5.18 How do competing events affect AD risk, Cox models, and IPTW?", "anchor": "section-100"}, {"title": "6. References and source articles", "anchor": "section-39"}]
 previous_note: "/causal-inference/g-estimation/"
 next_note: "/causal-inference/"
 ---
@@ -20,7 +20,7 @@ Study guide: [Causal Inference Study Guide]({{ "/causal-inference/" | relative_u
 
 **Purpose of this note**
 
-This extension to the main TTE route collects discussions of the two papers below. It currently includes a beginner’s explanation of the IPTW framework and a detailed companion to the 2023 paper’s high-throughput cohorts, Fig. 1, Boxes 1–2, and model selection. Other topics remain open for discussion; this is not a completed critical review of both papers in full.
+This note examines the methods used in the two papers below, including IPTW, high-throughput cohort construction, propensity-score model selection, multiple testing, federated regression, and competing events. Coverage is selective and focuses on methodological explanation.
 
 </aside>
 
@@ -35,14 +35,14 @@ This extension to the main TTE route collects discussions of the two papers belo
 
 The first primarily asks how to conduct many drug comparisons at scale; the second asks how to collaborate on estimation when data remain distributed across institutions. In both, examine the target population, strategies, time zero, outcome, target effect, and identification assumptions individually.
 
-## 2. Where subsequent discussions belong
+## 2. Topics and methodological questions
 {: #section-2 }
 
 - **High-throughput TTE:** defining protocols and comparator drugs; distinguishing propensity-score prediction performance from covariate balance; interpreting screening and cross-database validation.
 - **Federated TTE:** which computations remain local and which information is exchanged; differences from aggregate-data analysis and meta-analysis; handling site heterogeneity and the target population.
 - **Connections and limits:** which implementation steps are extended, which causal identification assumptions remain, and whether high-throughput screening can be connected to federated analysis.
 
-These are questions for further discussion, not established conclusions. Later additions will organize questions, explanations, and examples by topic, identify source pages or figures, and distinguish authors’ claims, interpretation, and issues still requiring verification.
+These questions guide the methodological discussion below. The analysis distinguishes the authors’ claims, interpretation, and issues that require further verification.
 
 ## 3. Discussion: what is the IPTW framework?
 {: #section-3 }
@@ -190,7 +190,7 @@ For the full foundational derivation see [IPW]({{ "/causal-inference/inverse-pro
 
 Basis: Results, Fig. 1, and Boxes 1–2 on pages 2–4 of the 2023 paper's PDF, plus Methods, Table 1, and Equations (1)–(5) on pages 10–12. This section explains the reported algorithm step by step; it does not claim an audit of the open-source code. Illustrative sample sizes, scores, and SMD examples are not study results.
 
-### Original English passage
+### Source excerpt
 {: #section-40 }
 
 > Taking the OneFlorida database (see Data Section) as our discovery set, we included 73,927 patients with MCI diagnosis from 2012 to 2020 (Fig. 1a). We found 1,825 unique drug ingredients and, for each drug ingredients we emulated 100 trials by building different comparison groups (exposed to random alternative drugs, or exposed to similar drugs under the same ATC-L2 category), leading to 182,500 trials in total. We focused on 66 drugs with 6,600 emulated trials of which each treatment group has ≥ 500 patients.
@@ -199,7 +199,7 @@ Basis: Results, Fig. 1, and Boxes 1–2 on pages 2–4 of the 2023 paper's PDF, 
 >
 > We evaluated the performance of selected models in terms of balancing baseline covariates before and after IPTW on the training, testing, and combined datasets. We considered 267-dimensional baseline covariates including age, gender, comorbidities, and medication use history (Method section). We considered one covariate as balanced if its standardized mean difference (SMD) of its prevalence ≤ 0.1<sup>24</sup>, and one emulated trial before/after IPTW is balanced if the ratio of unbalanced features among all covariates before/after IPTW ≤ 2%<sup>7</sup>. We summarized our cross-validation algorithm for the ML-PS model selection and training in Box 1 (Method section), the evaluation algorithm in Box 2 (Method section), and an illustration in Fig. 1b.
 
-### Full rendering of the passage in the study notes
+### Summary of the source passage
 {: #section-41 }
 
 The study used OneFlorida as its discovery dataset and included 73,927 patients diagnosed with mild cognitive impairment (MCI) during 2012–2020 (Fig. 1a). It identified 1,825 distinct drug ingredients. For every ingredient, 100 trials were emulated by constructing different comparison groups: people receiving randomly selected alternative drugs, or people receiving similar drugs in the same ATC-L2 category. This produced 182,500 emulations overall. The focused analysis included 66 drugs and their 6,600 emulations, with at least 500 patients in each target-treatment group.
@@ -208,17 +208,17 @@ Within every emulation, the data were randomly divided into nonoverlapping train
 
 The selected models were evaluated for baseline-covariate balance before and after IPTW in training, test, and combined datasets. The 267-dimensional baseline covariates included age, gender, comorbidities, and medication history. An individual covariate was considered balanced when its standardized mean difference (SMD) was no greater than 0.1<sup>24</sup>. An emulation was considered balanced before or after IPTW when, in the corresponding state, no more than 2% of all covariates remained unbalanced<sup>7</sup>. Box 1 summarizes cross-validation for model selection and training, Box 2 evaluation, and Fig. 1b illustrates the procedure. The superscripts 24 and 7 are references in the original passage; the subsequent sections clarify the continuous-variable and treatment-group terminology.
 
-### Fig. 1: Screenshot of the overall workflow
+### Fig. 1: Overall workflow
 {: #section-42 }
 
 ![Fig. 1: High-throughput target trial emulation, ML-PS selection, and drug-repurposing screening](/assets/causal-inference/tte-extension/zang-2023-fig-1.png)
 
-### Boxes 1–2: Screenshots of model training, selection, and evaluation algorithms
+### Boxes 1–2: Model training, selection, and evaluation algorithms
 {: #section-43 }
 
 ![Boxes 1 and 2: Cross-validation for ML-PS selection and evaluation on training and test datasets](/assets/causal-inference/tte-extension/zang-2023-box-1-2.png)
 
-*The reader supplied these two screenshots from Zang et al. (2023). They accompany the step-by-step analysis below.*
+*Fig. 1 and Boxes 1–2 from Zang et al. (2023) accompany the analysis below.*
 
 ### 4.1 First identify the role of this passage within TTE
 {: #section-14 }
@@ -722,11 +722,11 @@ Holm also controls FWER, using stepwise thresholds and generally offering more p
 ### 5.14 Reading the federated TTE paper: Why is treatment the dependent variable and baseline covariates the independent variables?
 {: #section-56 }
 
-**Original passage supplied by the reader:**
+**Source excerpt:**
 
 > Specifically, treatment assignment served as the dependent variable, while baseline covariates acted as independent variables.
 
-**Translation of the explanation:** The model treats observed treatment group as the dependent variable and baseline covariates as its independent variables.
+**Interpretation:** The model treats observed treatment group as the dependent variable and baseline covariates as its independent variables.
 
 **In plain language, this LR is a propensity-score model. It inputs pretreatment characteristics, learns their relationship with actual treatment choice, and outputs the probability of receiving the target treatment. This step does not predict death or disease.**
 
@@ -797,7 +797,7 @@ Stabilized IPTW additionally multiplies the numerator by the corresponding margi
 #### What changes when training is “federated”?
 {: #section-61 }
 
-In the supplied passage, the authors use federated learning to train global LR. Institutions jointly train a model whose relationship remains “baseline characteristics → probability of treatment group.” Federation describes cross-institution training arrangements, without changing this LR's dependent variable to death or disease. The methods specify what is exchanged and how iteration proceeds.
+In the source passage, the authors use federated learning to train global LR. Institutions jointly train a model whose relationship remains “baseline characteristics → probability of treatment group.” Federation describes cross-institution training arrangements, without changing this LR's dependent variable to death or disease. The methods specify what is exchanged and how iteration proceeds.
 
 The whole sequence is **baseline characteristics → federated LR propensity scores → individual IPTW → federated Cox survival analysis → adjusted HR and confidence interval**. PS LR and Cox have different jobs within the same study.
 
@@ -809,14 +809,14 @@ See [IPTW versus PSM]({{ "/causal-inference/inverse-probability-weighting/" | re
 ### 5.16 Unpacking federated LR: From one patient's probability to training across hospitals
 {: #section-63 }
 
-#### Screenshots of the original text
+#### Source excerpts
 {: #section-64 }
 
 ![Local and global objectives for federated LR](/assets/causal-inference/tte-extension/li-2025-federated-lr-objective.png)
 
 ![Hospital weights, regularization, and federated algorithms](/assets/causal-inference/tte-extension/li-2025-federated-lr-regularizers.png)
 
-These screenshots were supplied by the reader. All patients, coefficients, and numbers below are teaching examples. Equations (3)–(4) have been checked against the journal webpage. This discussion explains the formulas and identifies notation issues; it does not establish what the authors' code actually implements.
+The excerpts above are from Li et al. (2025). All patients, coefficients, and numbers below are teaching examples. Equations (3)–(4) have been checked against the journal webpage. This discussion explains the formulas and identifies notation issues; it does not establish what the authors' code actually implements.
 
 #### 1. Locate the task: These formulas are still training a propensity-score model
 {: #section-65 }

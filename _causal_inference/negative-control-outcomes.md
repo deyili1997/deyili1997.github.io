@@ -9,7 +9,7 @@ causal_notes: true
 date: "2026-09-09"
 last_modified_at: "2026-09-09"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. Translation of the source passage", "anchor": "section-1"}, {"title": "2. A negative-control outcome is not “another group of patients”", "anchor": "section-2"}, {"title": "3. Why can an outcome unaffected by treatment reveal bias?", "anchor": "section-3"}, {"title": "4. What makes a useful negative control?", "anchor": "section-6"}, {"title": "5. How should the SGLT2-inhibitor and stroke example be interpreted?", "anchor": "section-11"}, {"title": "6. What do an association and its absence each tell us?", "anchor": "section-14"}, {"title": "7. Detecting and adjusting are different tasks", "anchor": "section-15"}, {"title": "8. How does benchmarking differ from negative controls?", "anchor": "section-18"}, {"title": "9. Self-check", "anchor": "section-24"}, {"title": "Main sources", "anchor": "section-25"}]
+toc: [{"title": "1. Source summary: Negative-control outcomes", "anchor": "section-1"}, {"title": "2. A negative-control outcome is not “another group of patients”", "anchor": "section-2"}, {"title": "3. Why can an outcome unaffected by treatment reveal bias?", "anchor": "section-3"}, {"title": "4. What makes a useful negative control?", "anchor": "section-6"}, {"title": "5. How should the SGLT2-inhibitor and stroke example be interpreted?", "anchor": "section-11"}, {"title": "6. What do an association and its absence each tell us?", "anchor": "section-14"}, {"title": "7. Detecting and adjusting are different tasks", "anchor": "section-15"}, {"title": "8. How does benchmarking differ from negative controls?", "anchor": "section-18"}, {"title": "9. Self-check", "anchor": "section-24"}, {"title": "Main sources", "anchor": "section-25"}]
 previous_note: "/causal-inference/surveillance-measurement-bias/"
 next_note: "/causal-inference/clinical-data-adjustment/"
 ---
@@ -40,10 +40,10 @@ If the estimate clearly departs from the expected null value, investigate residu
 
 Prerequisite: confounding and exchangeability in [Potential Outcomes and Identification Assumptions]({{ "/causal-inference/potential-outcomes/" | relative_url }}).
 
-## 1. Translation of the source passage
+## 1. Source summary: Negative-control outcomes
 {: #section-1 }
 
-The passage comes from the concluding section of [Fu (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/). The translation follows its meaning; “detect” and “adjust” require different conditions, as discussed in §7.
+The following paraphrases the concluding section of [Fu (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/). Detecting and adjusting for bias require different conditions, as discussed in §7.
 
 > Negative-control outcomes can be used to detect and adjust for residual bias. Existing knowledge suggests that treatment should not affect these outcomes, so an association between treatment and a negative-control outcome suggests possible residual bias.
 >

@@ -7,9 +7,9 @@ image: '/images/post_6_1.png'
 tags: [Method, Graph, Graph Transformer]
 ---
 
-This study still focuses on new design of graph transformer for caputuring local and global information of a graph. The performance is measured by node prediciton tasks.
+This study develops a graph transformer that captures local and global graph information and evaluates its performance on node prediction tasks.
 
-![Precedures]({{site.baseurl}}/images/post_6_1.png)
+![Model architecture]({{site.baseurl}}/images/post_6_1.png)
 *Model architecture.*
 
 In addition to the original node features, the authors employed multiple layers of a traditional Graph Neural Network (GNN) to incorporate topological information into node representations—that is, each node’s representation was updated to reflect its local neighborhood structure. The subsequent procedures were applied in parallel to both the original feature space and the topology-enriched feature space.

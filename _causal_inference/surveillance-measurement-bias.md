@@ -348,7 +348,7 @@ The key in the second and third rows is **caused by the strategy**. If greater t
 
 Likewise, a common surveillance protocol does not automatically identify a purely biological direct effect. Diagnosis remains a clinically defined event, and testing and subsequent care may affect health. Specify strategies and outcomes instead of treating “diagnosis time” as an observed “time when the tumor began forming.”
 
-The authors’ phrase **no difficulty would arise** means that unblinded usual care is compatible with that target question; it does not make confounding, loss to follow-up, selection, or surgery-recording error disappear. The translated passage and terminology are discussed in the “Reading companion” below.
+The authors’ phrase **no difficulty would arise** means that unblinded usual care is compatible with that target question; it does not make confounding, loss to follow-up, selection, or surgery-recording error disappear. The source passage and terminology are discussed in the “Reading companion” below.
 
 For the full case, see [Hormone Therapy and Breast Cancer: A Target Trial Protocol]({{ "/causal-inference/hormone-therapy-target-trial/" | relative_url }}). It illustrates why the population, treatment context, outcome, and target effect in [Causal Contrasts and Estimands]({{ "/causal-inference/causal-contrasts-estimands/" | relative_url }}) must be defined together.
 
@@ -382,10 +382,10 @@ For the full case, see [Hormone Therapy and Breast Cancer: A Target Trial Protoc
 
 The following discussion accompanies the Outcome paragraph in Hernán and Robins (2016), adding the original context for §7’s point that “the meaning of surveillance pathways changes with the target outcome.”
 
-### Translation of the source passage: Systematic, blinded ascertainment and breast surgery
+### Source summary: Systematic, blinded ascertainment and breast surgery
 {: #section-17 }
 
-The following translates the Outcome paragraph in Hernán and Robins (2016):
+The following paraphrases the Outcome paragraph in Hernán and Robins (2016):
 
 > We generally prefer to emulate a target trial in which outcomes are sought and confirmed according to a prespecified process under blinded conditions, ensuring that physicians’ knowledge of treatment does not alter their decision to look for the outcome. In our example, even without a biological effect of hormone therapy, differential outcome ascertainment could increase the incidence of diagnosed breast cancer among hormone users.
 >

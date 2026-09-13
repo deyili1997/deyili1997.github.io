@@ -39,7 +39,7 @@ Align the clinical decision point for the two strategies, such as “deciding wh
 
 **First reading**
 
-Read §1–5 first: begin with the three timing elements in the figure, then examine observational grouping and incorrect grouping. If you wonder “Do we look at future treatment before enrolling people?”, focus on the three supplementary subsections in §3. Then read §6.2–§6.5 to distinguish events, loss to follow-up, and discontinuation. The passage translation in §6.1 and formula in §6.6 can wait until a second reading; the entire note need not be read consecutively before continuing.
+Read §1–5 first: begin with the three timing elements in the figure, then examine observational grouping and incorrect grouping. If you wonder “Do we look at future treatment before enrolling people?”, focus on the three supplementary subsections in §3. Then read §6.2–§6.5 to distinguish events, loss to follow-up, and discontinuation. The source summary in §6.1 and formula in §6.6 can wait until a second reading; the entire note need not be read consecutively before continuing.
 
 </aside>
 
@@ -274,10 +274,10 @@ The **observation endpoint** follows the protocol. The study outcome, a competin
 </aside>
 
 
-### 6.1 Paragraph-by-paragraph translation
+### 6.1 Source summary: Start and end of follow-up
 {: #section-11 }
 
-This passage comes from [Fu (2023): Start and End of Follow-Up](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/).
+The following summary is based on [Fu (2023): Start and End of Follow-Up](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/).
 
 Terminology:
 

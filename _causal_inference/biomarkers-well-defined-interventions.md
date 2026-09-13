@@ -9,7 +9,7 @@ causal_notes: true
 date: "2026-09-09"
 last_modified_at: "2026-09-09"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. Paragraph-by-paragraph translation", "anchor": "section-1"}, {"title": "2. First distinguish three questions", "anchor": "section-2"}, {"title": "3. The amalgamation problem: What exactly is being mixed?", "anchor": "section-3"}, {"title": "4. Why can “targeting a particular Hb level” be randomized?", "anchor": "section-5"}, {"title": "5. Why is “set the biomarker to X” still insufficient?", "anchor": "section-8"}, {"title": "6. Unmeasured time-varying confounding: Why is baseline adjustment insufficient?", "anchor": "section-9"}, {"title": "7. Three questions to check your understanding", "anchor": "section-10"}]
+toc: [{"title": "1. Source summary: Biomarkers and interventions", "anchor": "section-1"}, {"title": "2. First distinguish three questions", "anchor": "section-2"}, {"title": "3. The amalgamation problem: What exactly is being mixed?", "anchor": "section-3"}, {"title": "4. Why can “targeting a particular Hb level” be randomized?", "anchor": "section-5"}, {"title": "5. Why is “set the biomarker to X” still insufficient?", "anchor": "section-8"}, {"title": "6. Unmeasured time-varying confounding: Why is baseline adjustment insufficient?", "anchor": "section-9"}, {"title": "7. Three questions to check your understanding", "anchor": "section-10"}]
 previous_note: "/causal-inference/point-sustained-strategies/"
 next_note: "/causal-inference/pragmatic-trials/"
 ---
@@ -37,15 +37,15 @@ Related notes: [Consistency and treatment versions]({{ "/causal-inference/potent
 
 **A route for the first reading**
 
-Start with **the three questions in §2**, then read **§3–§4**: identical biomarker levels need not correspond to identical treatments, and treatment strategies—not bodily responses—are randomized. §1 retains the passage translation; §5 explains the context of “cannot” and “only option,” which should not be memorized as “no biomarkers can be studied causally.”
+Start with **the three questions in §2**, then read **§3–§4**: identical biomarker levels need not correspond to identical treatments, and treatment strategies—not bodily responses—are randomized. §1 summarizes the source passage; §5 explains the context of “cannot” and “only option,” which should not be memorized as “no biomarkers can be studied causally.”
 
 </aside>
 
 
-## 1. Paragraph-by-paragraph translation
+## 1. Source summary: Biomarkers and interventions
 {: #section-1 }
 
-The original passage is from [Fu, 2023: Target Trial Emulation to Improve Causal Inference from Observational Data](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/). Reference numbers below follow the original text supplied by the user.
+The following summary is based on [Fu, 2023: Target Trial Emulation to Improve Causal Inference from Observational Data](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/). Reference numbers below follow the source article.
 
 **First paragraph: Reformulate a biomarker question as an intervention question.**
 
@@ -64,7 +64,7 @@ X and Y in the original passage are **placeholders for two target concentrations
 Investigators should interpret such results causally with caution because the design retains the previously described amalgamation problem: mixing different ways of intervening. Unmeasured time-varying confounding may also be an insurmountable obstacle, since the biological processes that influence a biomarker are often incompletely understood.
 
 <details class="study-callout" markdown="1">
-<summary>Original English passage supplied by the user</summary>
+<summary>Source excerpt</summary>
 
 The fact that the causal effect of biomarkers cannot be directly studied does not necessarily mean that the target trial emulation is restrictive—the investigator just needs to reformulate the question in terms of an intervention, just as has been performed to research biomarker targets in real randomized trials.34–37 For instance, randomized trials have examined the effects of targeting a certain hemoglobin level through erythropoietin use in patients with anemia and CKD.34 This can be emulated in an observational target trial emulation analysis.15,38 Phrasing causal questions on biomarkers in terms of interventions also has the large benefit of giving interpretable results that are useful for decision-making, since we now precisely specify how the increase in hemoglobin level is achieved. However, this approach works less well when interventions that modify a biomarker are lacking. In that case, the only option in the target trial emulation framework is to “set” biomarker values to a certain level, for example, comparing treatment strategies “change biomarker level to X mg/dl and keep at this level during follow-up” versus “change biomarker level to Y mg/dl and keep at this level during follow-up.” The investigator should be careful to interpret the results causally because the design suffers from the same amalgamation problem highlighted above. Furthermore, unmeasured time-varying confounding may be an unsurmountable problem because we often do not have a full understanding of all biological processes that influence the biomarker level.
 

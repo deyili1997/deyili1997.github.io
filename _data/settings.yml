@@ -53,8 +53,8 @@ contact:
 # Footer section
 social:
 - {icon: "fa-brands fa-google", name: "Google Scholar", link: "https://scholar.google.com/citations?user=RUSjHSoAAAAJ&hl=en"}
-- {icon: "fa-brands fa-github", name: "Github", link: "https://github.com/deyili1997"}
-- {icon: "fa-brands fa-linkedin-in", name: "Linkedin", link: "https://www.linkedin.com/in/deyi-li-9209612b7/"}
+- {icon: "fa-brands fa-github", name: "GitHub", link: "https://github.com/deyili1997"}
+- {icon: "fa-brands fa-linkedin-in", name: "LinkedIn", link: "https://www.linkedin.com/in/deyi-li-9209612b7/"}
 
 # Example of adding a new link to the footer - {icon: "fa-brands fa-mastodon", name: "Mastodon", link: "https://mastodon.social/"}
 # Other icons can be found at https://fontawesome.com/icons
@@ -62,7 +62,7 @@ social:
 
 #-------------------------------
 # Comment Section (Disqus)
-disqus-identifier: anvodstudio-demo # Add your shortname for Disqus Comment. For example anvodstudio-demo
+disqus-identifier: # Set a site-specific Disqus shortname to enable comments.
 
 
 #-------------------------------

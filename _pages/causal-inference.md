@@ -9,7 +9,7 @@ causal_notes: true
 date: "2026-09-09"
 last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "Before you begin: understanding and remembering", "anchor": "section-1"}, {"title": "1. Recommended route: from causal questions to design and estimation", "anchor": "section-2"}, {"title": "2. Learning map", "anchor": "section-34"}, {"title": "3. Review by question", "anchor": "section-37"}, {"title": "4. Review by case", "anchor": "section-44"}, {"title": "5. A three-pass review method", "anchor": "section-49"}, {"title": "6. Maintaining the study guide", "anchor": "section-53"}]
+toc: [{"title": "Before you begin: understanding and remembering", "anchor": "section-1"}, {"title": "1. Recommended route: from causal questions to design and estimation", "anchor": "section-2"}, {"title": "2. Learning map", "anchor": "section-34"}, {"title": "3. Review by question", "anchor": "section-37"}, {"title": "4. Review by case", "anchor": "section-44"}, {"title": "5. A three-pass review method", "anchor": "section-49"}]
 permalink: "/causal-inference/"
 ---
 
@@ -19,7 +19,7 @@ permalink: "/causal-inference/"
 
 **Read steps 1 through 21 below in order.** At each step, read only the indicated sections, then return here for the next step. You do not need to finish every formula, source passage, or advanced discussion first.
 
-There are currently **25 topic notes**: 21 form the first-pass route; g-estimation is step 22 for a second pass. A separate TTE extension note discusses the literature, and the detailed longitudinal IPTW and weighted survival notes extend step 14. New material is placed within this route with links to the preceding and following topics.
+There are currently **25 topic notes**: 21 form the first-pass route; g-estimation is step 22 for a second pass. A separate TTE extension note discusses the literature, and the detailed longitudinal IPTW and weighted survival notes extend step 14.
 
 </aside>
 
@@ -573,20 +573,4 @@ Add step 22, g-estimation, and revisit formulas, source passages, and long examp
 
 Write a target trial protocol for your own question and describe how observational data map to each component. State exchangeability, positivity, consistency, measurement, and censoring conditions. When using potential outcomes or a DAG, explain the basis of every symbol and arrow.
 
-## 6. Maintaining the study guide
-{: #section-53 }
-
-<aside class="study-callout study-callout--important" markdown="1">
-
-**Keep one continuous reading route when adding material**
-
-1. Identify the question answered and prerequisite concepts, then place the material appropriately in §1 rather than merely appending a link.
-2. Revise the preceding step’s transition, the new step’s reading range and self-check objective, and the following step’s connection to maintain continuity.
-3. Keep one numbering sequence for the first pass. When order changes, update the map, step references, and topic count together.
-4. Place detailed derivations, narrow topics, and close source interpretations on the second pass or as supplements to relevant steps. Do not create a competing main route. G-estimation currently belongs on the second pass.
-5. Add common questions to §3 and case-spanning additions to §4. These support reference and consolidation; §1 remains the first-pass entry point.
-6. Explain every variable, parameter, subscript, superscript, operator, value, and unit alongside a new formula. Identify whether it is a definition, assumption, model, or estimation formula. Pair important formulas with a plain-language reading and checkable example, including inside expandable sections.
-7. Develop technical sections as: concrete question → why the preceding step is insufficient → why the next step helps → calculation with the same example → corresponding formula → interpretation and conditions. Explain the purpose of every operation and symbol, link missing prerequisites, and reserve advanced derivations for the second pass. A glossary alone does not repair missing logical steps in the main text.
-8. Update dates and check scientific accuracy, numbers, sources, links, and anchors. Mark unfinished topics explicitly; do not use empty links as though the notes already exist.
-
-</aside>
+<span id="section-53" aria-hidden="true"></span>

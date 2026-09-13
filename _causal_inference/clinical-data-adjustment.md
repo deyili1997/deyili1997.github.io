@@ -9,7 +9,7 @@ causal_notes: true
 date: "2026-09-09"
 last_modified_at: "2026-09-09"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. Translation of the passage: From detecting problems to improving information", "anchor": "section-1"}, {"title": "2. What can “unmeasured” mean?", "anchor": "section-2"}, {"title": "3. NLP: Turning clinical text into analyzable information", "anchor": "section-3"}, {"title": "4. Image processing: Extracting needed baseline features from images", "anchor": "section-6"}, {"title": "5. How can machine learning help identify “combinations of variables”?", "anchor": "section-7"}, {"title": "6. Why do “more variables and better prediction” still not establish no confounding?", "anchor": "section-10"}, {"title": "7. Connecting the original passage's second and third paragraphs", "anchor": "section-11"}, {"title": "8. Self-check", "anchor": "section-12"}, {"title": "Sources", "anchor": "section-13"}]
+toc: [{"title": "1. Source summary: From detecting problems to improving information", "anchor": "section-1"}, {"title": "2. What can “unmeasured” mean?", "anchor": "section-2"}, {"title": "3. NLP: Turning clinical text into analyzable information", "anchor": "section-3"}, {"title": "4. Image processing: Extracting needed baseline features from images", "anchor": "section-6"}, {"title": "5. How can machine learning help identify “combinations of variables”?", "anchor": "section-7"}, {"title": "6. Why do “more variables and better prediction” still not establish no confounding?", "anchor": "section-10"}, {"title": "7. Connecting the original passage's second and third paragraphs", "anchor": "section-11"}, {"title": "8. Self-check", "anchor": "section-12"}, {"title": "Sources", "anchor": "section-13"}]
 previous_note: "/causal-inference/negative-control-outcomes/"
 next_note: "/causal-inference/g-estimation/"
 ---
@@ -34,10 +34,10 @@ Read §1–§4 first to understand where the information comes from, then §5–
 
 Multivariable calculation example: [A complete multivariable LR-IPTW example comparing drugs A and B]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-15) shows how baseline characteristics of 3,000 people enter one common logistic regression to produce propensity scores, both groups' weights, balance diagnostics, and one-year risks. Z=0 denotes drug B, not no treatment.
 
-## 1. Translation of the passage: From detecting problems to improving information
+## 1. Source summary: From detecting problems to improving information
 {: #section-1 }
 
-The following translates a passage on unmeasured confounding in Hernán and Robins (2016):
+The following paraphrases a passage on unmeasured confounding in Hernán and Robins (2016):
 
 > Other approaches to ameliorating unmeasured confounding depend on extracting information from sources previously considered unsuitable for large-scale research. For example, new natural-language-processing and advanced-image-processing techniques may eliminate the need for labor-intensive, record-by-record chart review. Machine-learning tools and other computer-science methods may also help identify combinations of variables that improve confounding adjustment compared with traditional approaches.
 

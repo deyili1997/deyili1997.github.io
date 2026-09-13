@@ -299,7 +299,7 @@ More complex estimation approaches may model quality and outcomes, then average 
 ## Sources
 {: #section-12 }
 
-- [Fu EL. Target Trial Emulation to Improve Causal Inference from Observational Data: What, Why, and How? (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/): the source of the user-supplied passage, introducing target-trial reasoning for kidney-source strategies.
+- [Fu EL. Target Trial Emulation to Improve Causal Inference from Observational Data: What, Why, and How? (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10400102/): introduces target-trial reasoning for kidney-source strategies.
 - [Schisterman EF, Cole SR, Platt RW. Overadjustment Bias and Unnecessary Adjustment in Epidemiologic Studies (2009)](https://pubmed.ncbi.nlm.nih.gov/19525685/): distinguishes overadjustment bias from unnecessary adjustment and discusses controlling intermediate variables on causal pathways.
 
 The numerical example, teaching diagrams, and reading tips were constructed for this note to explain these concepts; they are not actual estimates of kidney-transplant strategy effects.

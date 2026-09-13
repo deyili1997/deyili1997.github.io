@@ -39,7 +39,7 @@ sass:
   sass_dir: _sass
   style: compressed
 
-# English causal inference study notes
+# Causal inference study notes
 collections:
   causal_inference:
     output: true

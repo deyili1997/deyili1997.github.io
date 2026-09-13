@@ -1,6 +1,6 @@
 # Publications page
 
-The English research portfolio lives at `/publication/` and uses the existing Jekyll / GitHub Pages setup. Only articles represented by PDFs in the author-provided `Tech_Blog/Publications/` folder belong on this page.
+The research portfolio lives at `/publication/` and uses the existing Jekyll / GitHub Pages setup. Only articles represented by PDFs in the author-provided `Tech_Blog/Publications/` folder belong on this page.
 
 ## Categories follow the source folders
 
