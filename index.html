@@ -24,17 +24,6 @@ description: Deyi Li — research in real-world evidence, healthcare AI, and cli
   </ul>
 </section>
 
-<section aria-labelledby="selected-publications">
-  <h2 id="selected-publications">Selected publications</h2>
-  <ul class="publication-list">
-    {% assign selected_papers = site.data.publications.papers | where: 'featured', true %}
-    {% for paper in selected_papers %}
-    <li><a href="{{ '/publication/' | relative_url }}#{{ paper.id }}">{{ paper.title }}</a><br><em>{{ paper.venue }}</em>, {{ paper.year }}.{% if paper.kind == 'Preprint' %} Preprint.{% endif %}</li>
-    {% endfor %}
-  </ul>
-  <p><a href="{{ '/publication/' | relative_url }}">All publications</a></p>
-</section>
-
 <section aria-labelledby="study-notes">
   <h2 id="study-notes">Study notes</h2>
   {% assign healthcare_notes = site.posts | where: 'research_area', 'healthcare-ai' %}
