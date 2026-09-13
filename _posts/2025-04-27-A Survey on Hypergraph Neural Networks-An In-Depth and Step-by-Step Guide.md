@@ -27,6 +27,8 @@ Higher-order interactions (HOIs) are ubiquitous in real-world complex systems an
 (1) Reductive transformation: Clique expansion.
 (2) Non-reductive transformation: Star expansion (resulting in a bipartite graph, without information loss)
 
+![Hypergraph, clique-expanded graph with edge weights, and star-expanded graph]({{site.baseurl}}/images/post_7_1.png)
+
 1.3. Pass messages to reflect HOIs
 Three questions arise: (i) whose messages should be aggregated? (ii) what messages should be aggregated? (iii) how should they be aggregated?
 (i) On star-expansion graph: sequentially (ED-HNN) or simultaneously (HDS_ODE).

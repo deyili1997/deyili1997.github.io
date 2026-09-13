@@ -8,7 +8,7 @@ layout: default
       {% if page.order == 0 %}<span aria-current="page">Causal Inference</span>{% else %}<a href="{{ '/causal-inference/' | relative_url }}">Causal Inference</a>{% endif %}
     </nav>
     <h1>{{ page.title }}</h1>
-    <p class="article-meta">{{ site.data.settings.author.name }} · Updated <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: '%B %-d, %Y' }}</time>{% if page.order > 0 %} · {{ page.group }}{% endif %}</p>
+    <p class="article-meta">{{ site.data.settings.author.name }} · Updated <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: '%B %-d, %Y' }}</time>{% if page.group %} · {{ page.group }}{% endif %}{% if page.reading_label %} · {{ page.reading_label }}{% elsif page.order > 0 %} · Reading step {{ page.order }}{% endif %}</p>
   </header>
   <div class="article-content study-content">
     {% if page.toc.size > 0 %}
