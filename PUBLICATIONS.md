@@ -6,9 +6,11 @@ The English research portfolio lives at `/publication/` and uses the existing Je
 
 | Source folder | Website section | Current PDFs |
 | --- | --- | --- |
-| `RWE/` | RWE Generation | 1 |
+| `RWE/` | Real-World Evidence | 1 |
 | `PM/` | Healthcare AI | 7 |
 | `CPP/` | Clinical Pharmacology | 2 |
+
+The `RWE/` source folder maps to Real-World Evidence (`research_area: real-world-evidence`).
 
 The `PM/` source folder maps to Healthcare AI (`research_area: healthcare-ai`). Preserve formal paper titles, even when they contain the phrase “predictive modeling.”
 

@@ -1,15 +1,16 @@
 [
   {
-    "id": "rwe-generation",
-    "title": "RWE Generation",
+    "id": "real-world-evidence",
+    "title": "Real-World Evidence",
     "folder": "RWE",
     "number": "01",
     "description": "Observational study design, causal inference, and evidence from routine clinical data.",
     "publication_description": "Real-world clinical data, patient heterogeneity, and outcomes.",
-    "url": "/rwe-generation/",
+    "url": "/real-world-evidence/",
     "study_label": "Causal Inference",
     "study_description": "A structured guide to causal inference and target trial emulation.",
-    "study_url": "/causal-inference/"
+    "study_url": "/causal-inference/",
+    "legacy_id": "rwe-generation"
   },
   {
     "id": "healthcare-ai",

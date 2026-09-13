@@ -1,7 +1,7 @@
 ---
-layout: "research-area"
-title: "RWE Generation"
-description: "Observational study design, causal inference, and evidence from routine clinical data."
-permalink: "/rwe-generation/"
-research_area: "rwe-generation"
+layout: redirect
+title: Real-World Evidence
+permalink: /rwe-generation/
+redirect_to: /real-world-evidence/
+sitemap: false
 ---

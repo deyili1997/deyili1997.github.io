@@ -13,7 +13,7 @@ image: '/images/background_3.jpg'
 
 ## Research & Learning
 
-- [RWE Generation](/rwe-generation/): observational study design, causal inference, and real-world evidence.
+- [Real-World Evidence](/real-world-evidence/): observational study design, causal inference, and real-world evidence.
 - [Healthcare AI](/healthcare-ai/): patient representation learning, clinical prediction, and healthcare AI.
 - [Clinical Pharmacology](/clinical-pharmacology/): pharmacometrics and individualized therapy. Learning content: TBD.
 - [Investment Notes](/investment-notes/): a personal learning journal on U.S. equity investing.

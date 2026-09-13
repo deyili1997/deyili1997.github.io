@@ -2,15 +2,15 @@
 # Site Settings
 title: AI4Health
 logo: # You can add own logo. For example '/images/logo.png'.
-description: Research and learning notes in RWE generation, Healthcare AI, and clinical pharmacology.
+description: Research and learning notes in real-world evidence, Healthcare AI, and clinical pharmacology.
 
 
 #-------------------------------
 # Navigation Settings
 menu-settings:
   menu-items:
-    - title: 'RWE Generation'
-      url: '/rwe-generation/'
+    - title: 'Real-World Evidence'
+      url: '/real-world-evidence/'
     - title: 'Healthcare AI'
       url: '/healthcare-ai/'
     - title: 'Clinical Pharmacology'

@@ -30,7 +30,7 @@ defaults:
       path: ''
       type: causal_inference
     values:
-      research_area: rwe-generation
+      research_area: real-world-evidence
 
 include:
   - _pages

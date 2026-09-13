@@ -5,7 +5,7 @@ layout: default
   <article class="page study-page">
     <header class="study-header">
       <nav class="research-breadcrumb" aria-label="Breadcrumb">
-        <a href="{{ '/rwe-generation/' | relative_url }}">RWE Generation</a><span aria-hidden="true">/</span>
+        <a href="{{ '/real-world-evidence/' | relative_url }}">Real-World Evidence</a><span aria-hidden="true">/</span>
         {% if page.order == 0 %}<span aria-current="page">Causal Inference</span>{% else %}<a href="{{ '/causal-inference/' | relative_url }}">Causal Inference</a><span aria-hidden="true">/</span><span>Study note</span>{% endif %}
       </nav>
       <p class="study-eyebrow">{{ page.group }}{% if page.reading_label %} · {{ page.reading_label }}{% elsif page.order > 0 %} · Reading step {{ page.order }}{% endif %}</p>
