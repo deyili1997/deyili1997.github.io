@@ -1,31 +1,7 @@
 ---
 layout: page
-title: Contact Me
+title: Contact
 permalink: /contact/
-image: '/images/45.jpg'
 ---
-<div class="form-container">
-  {% if site.data.settings.contact.description %}
-  <p class="contact-description">{{ site.data.settings.contact.description }}</p>
-  {% endif %}
-  <form class="form"
-    action="{% if site.data.settings.contact.email %}https://formspree.io/f/{{ site.data.settings.contact.email }}{% else %}#{% endif %}" method="POST">
-    <div class="form__group">
-      <label class="form__label screen-reader-text" for="form-name">Your Name</label>
-      <input class="form__input" id="form-name" type="text" name="name" placeholder="Name" required>
-    </div>
-    <div class="form__group">
-      <label class="form__label screen-reader-text" for="form-email">Your Email</label>
-      <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="Email" required>
-    </div>
-    <div class="form__group">
-      <label class="form__label screen-reader-text" for="form-text">Your Message</label>
-      <textarea class="form__input" id="form-text" name="text" rows="10" placeholder="Message" required></textarea>
-    </div>
-    <div class="form__group">
-      <button class="button button--primary" type="submit">Send Message</button>
-    </div>
-    <input type="hidden" name="_next" value="{{ site.baseurl }}/contact/thanks/" />
-  </form>
-  <hr>
-</div>
+<p>Deyi Li<br><a href="mailto:{{ site.data.settings.contact.email }}">{{ site.data.settings.contact.email }}</a></p>
+<ul>{% for profile in site.data.settings.social %}<li><a href="{{ profile.link | escape }}">{{ profile.name }}</a></li>{% endfor %}</ul>

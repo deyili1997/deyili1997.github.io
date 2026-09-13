@@ -1,77 +1,26 @@
-#-------------------------------
-# Site Settings
-title: AI4Health
-logo: # You can add own logo. For example '/images/logo.png'.
-description: Research and learning notes in real-world evidence, Healthcare AI, and clinical pharmacology.
-
-
-#-------------------------------
-# Navigation Settings
-menu-settings:
-  menu-items:
-    - title: 'Real-World Evidence'
-      url: '/real-world-evidence/'
-    - title: 'Healthcare AI'
-      url: '/healthcare-ai/'
-    - title: 'Clinical Pharmacology'
-      url: '/clinical-pharmacology/'
-    - title: 'Investment'
-      url: '/investment/'
-    - title: 'Publications'
-      url: '/publication/'
-    - title: 'About'
-      url: '/about/'
-
-
-
-#-------------------------------
-# Author Settings
+title: Deyi Li
+description: Research in real-world evidence, healthcare AI, and clinical pharmacology; publications and study notes.
 author:
   name: Deyi Li
-  avatar: '/images/author.jpg'
-
-
-#-------------------------------
-# Hero Settings
-hero:
-  title: Deyi Li
-  description: Real-world evidence, Healthcare AI, and clinical pharmacology.
-  image: '/images/background_4.jpg'
-
-
-#-------------------------------
-# Contact Settings
 contact:
-  email: lideyi@ufl.edu # Add your email for contact form
-  description: If you have any questions about my research projects, please feel free to contact me. # Add a description of your form
-
-# NOTE
-# Norlin theme comes with a contact form built-in. You can use this form with Formspree (https://formspree.io/) service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
-
-
-#-------------------------------
-# Footer section
+  email: lideyi@ufl.edu
+navigation:
+  - title: Home
+    url: /
+  - title: Publications
+    url: /publication/
+  - title: Research
+    url: /#research
+  - title: Study notes
+    url: /#study-notes
+  - title: About
+    url: /about/
+  - title: Search
+    url: /search/
 social:
-- {icon: "fa-brands fa-google", name: "Google Scholar", link: "https://scholar.google.com/citations?user=RUSjHSoAAAAJ&hl=en"}
-- {icon: "fa-brands fa-github", name: "GitHub", link: "https://github.com/deyili1997"}
-- {icon: "fa-brands fa-linkedin-in", name: "LinkedIn", link: "https://www.linkedin.com/in/deyi-li-9209612b7/"}
-
-# Example of adding a new link to the footer - {icon: "fa-brands fa-mastodon", name: "Mastodon", link: "https://mastodon.social/"}
-# Other icons can be found at https://fontawesome.com/icons
-
-
-#-------------------------------
-# Comment Section (Disqus)
-disqus-identifier: # Set a site-specific Disqus shortname to enable comments.
-
-
-#-------------------------------
-# Google Analytics
-google-analytics: # Add your identifier. For example UA-99631805-1.
-
-
-#-------------------------------
-# Newsletter
-mailchimp: # To enable the mailchimp form, use the value 'enable'. To disable the form, leave the field blank.
-mailchimp-identifier: # Add your MailChimp form identifier. For example - gmail.us21.list-manage.com/subscribe/post?u=8aeb9c31a5c97a3a5f9ff2740&amp;id=0e31fd7793&amp
-mailchimp-button-text: Join
+  - name: Google Scholar
+    link: https://scholar.google.com/citations?user=RUSjHSoAAAAJ&hl=en
+  - name: GitHub
+    link: https://github.com/deyili1997
+  - name: LinkedIn
+    link: https://www.linkedin.com/in/deyi-li-9209612b7/

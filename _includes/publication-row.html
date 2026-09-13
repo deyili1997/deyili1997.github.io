@@ -1,11 +1,24 @@
 {% assign paper = include.paper %}
-<article class="pub-paper" id="{{ paper.id }}">
-        <div class="pub-year" aria-label="Publication year">{{ paper.year }}</div>
-        <div class="pub-paper-copy">
-          {% include publication-meta.html paper=paper omit_year=true %}
-          <h3><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a></h3>
-          <p class="pub-summary">{{ paper.summary | escape }}</p>
-          {% include publication-authors.html paper=paper %}
-        </div>
-        {% include publication-links.html paper=paper %}
-      </article>
+<article class="publication" id="{{ paper.id }}">
+  <h3><a href="{{ paper.url }}">{{ paper.title | escape }}</a></h3>
+  {% include publication-authors.html paper=paper %}
+  {% include publication-meta.html paper=paper %}
+  {% include publication-links.html paper=paper %}
+  {% if paper.summary %}
+  <details>
+    <summary>Summary</summary>
+    <p>{{ paper.summary | escape }}</p>
+  </details>
+  {% endif %}
+  {% if paper.image %}
+  <details class="publication-figure-details">
+    <summary>{{ paper.figure_label | escape }}</summary>
+    <figure class="publication-figure">
+      <a href="{{ paper.pdf | relative_url }}#page={{ paper.figure_page }}" aria-label="View {{ paper.figure_label | escape }} in {{ paper.title | escape }}">
+        <img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | escape }}" width="{{ paper.image_width }}" height="{{ paper.image_height }}" loading="lazy">
+      </a>
+      <figcaption>{{ paper.figure_label | escape }} · {{ paper.figure_credit | escape }}{% if paper.license %} · <a href="{{ paper.license_url }}">{{ paper.license | escape }}</a>{% endif %}</figcaption>
+    </figure>
+  </details>
+  {% endif %}
+</article>

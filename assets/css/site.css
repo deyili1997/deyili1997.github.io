@@ -1,0 +1,87 @@
+/* Plain document layout. Scientific figures and tables keep their own content. */
+html { color-scheme: light; }
+body {
+  max-width: 50rem;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+  color: #111;
+  background: #fff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+a { color: #0645ad; text-decoration: underline; text-underline-offset: .12em; }
+a:visited { color: #513487; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid #0645ad; outline-offset: 3px; }
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin: 0 0 1rem; font-size: 2em; }
+h2 { margin: 1.8rem 0 .7rem; font-size: 1.4em; }
+h3 { margin: 1.5rem 0 .6rem; font-size: 1.15em; }
+h4 { margin: 1.3rem 0 .5rem; font-size: 1em; }
+p, ul, ol, dl, details, figure { margin-top: .8rem; margin-bottom: 1rem; }
+ul, ol { padding-left: 1.5rem; }
+li { margin: .25rem 0; }
+li > p { margin: .5rem 0; }
+dt { font-weight: bold; }
+dd { margin-left: 1.5rem; }
+.site-header { border-bottom: 1px solid #ccc; padding-bottom: .8rem; margin-bottom: 1.8rem; }
+.site-header ul { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; list-style: none; margin: 0; padding: 0; }
+.site-header li { margin: 0; }
+.site-header a[aria-current="page"] { color: inherit; font-weight: bold; }
+.site-footer { border-top: 1px solid #ccc; margin-top: 3rem; padding-top: .5rem; font-size: .9em; }
+.site-footer p { margin: .5rem 0; }
+.skip-link { position: absolute; left: -10000px; }
+.skip-link:focus { position: static; display: inline-block; margin-bottom: 1rem; }
+.article-meta, figcaption { font-size: .9em; color: #444; }
+.article-meta { margin-bottom: 1.5rem; }
+.research-list li, .publication-list > li, .reading-list > li { margin-bottom: .85rem; }
+.reading-navigation { border-top: 1px solid #ccc; margin-top: 2rem; padding-top: .5rem; }
+.reading-navigation p { margin: .5rem 0; }
+summary { cursor: pointer; }
+details[open] > summary { margin-bottom: .8rem; }
+details > :last-child { margin-bottom: 0; }
+.table-of-contents, .note-directory { margin: 1.25rem 0; }
+blockquote, .study-callout { border-left: 2px solid #bbb; margin: 1.25rem 0; padding: .1rem 0 .1rem 1rem; }
+blockquote > :first-child, .study-callout > :first-child { margin-top: .4rem; }
+blockquote > :last-child, .study-callout > :last-child { margin-bottom: .4rem; }
+img, video, svg { max-width: 100%; height: auto; }
+figure { margin-left: 0; margin-right: 0; }
+figcaption { margin-top: .5rem; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 1.8rem 0; }
+pre, code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .88em; }
+pre { overflow-x: auto; padding: .75rem; border: 1px solid #ddd; line-height: 1.5; }
+pre code { font-size: 1em; }
+table { border-collapse: collapse; margin: 1rem 0; font-size: .95em; }
+th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+th { font-weight: bold; }
+.table-container { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+.table-container table { margin: 0; width: 100%; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .25rem 0; max-width: 100%; }
+pre.mermaid { border: 0; padding: 0; white-space: pre-wrap; }
+input, button { font: inherit; }
+input[type="search"] { box-sizing: border-box; max-width: 100%; padding: .25rem .4rem; border: 1px solid #777; border-radius: 0; }
+button { padding: .25rem .7rem; cursor: pointer; }
+.search-controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.search-controls input { flex: 1 1 15rem; min-width: 0; }
+#search-results > li p { margin: .3rem 0 1rem; }
+.publication h3 { font-size: 1em; margin: 1.5rem 0 .4rem; }
+.publication p { margin: .4rem 0; }
+.publication details { margin: .5rem 0; }
+.publication-figure { margin: 1rem 0; }
+.publication-contribution { font-size: .9em; }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) {
+  body { margin: 1.25rem auto; padding: 0 1rem; font-size: 16px; }
+  h1 { font-size: 1.8em; }
+  .site-header ul { gap: .25rem 1rem; }
+}
+@media print {
+  body { max-width: none; margin: 0; padding: 0; color: #000; font-size: 11pt; }
+  .site-header, .site-footer, .skip-link, .reading-navigation { display: none; }
+  a, a:visited { color: inherit; }
+  h1, h2, h3 { break-after: avoid; }
+  img, table { break-inside: avoid; }
+  pre, .table-container, mjx-container[display="true"] { overflow: visible; }
+}

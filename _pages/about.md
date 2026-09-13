@@ -2,7 +2,6 @@
 layout: page
 title: About
 permalink: /about/
-image: '/images/background_3.jpg'
 ---
 ## Deyi Li
 

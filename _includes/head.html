@@ -1,36 +1,19 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.data.settings.title }}{% endif %}</title>
-  <meta name='description' content='{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.data.settings.description }}{% endif %}'>
-
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.data.settings.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% if page.url == "/" %}{{ site.data.settings.title }}{% else %}{{ page.title }} – {{ site.data.settings.title }}{% endif %}">
-  <meta name="twitter:description" content="{% if page.url == "/" %}{{ site.data.settings.description | strip_html | xml_escape }}{% elsif page.description %}{{ page.description | strip_html | xml_escape }}{% else %}{{ page.excerpt | strip_html | xml_escape }}{% endif %}">
-  <meta name="twitter:image:src" content="{{ page.image | absolute_url }}">
-
-  <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="{% if page.url == "/" %}{{ site.data.settings.title }}{% else %}{{ page.title }} – {{ site.data.settings.title }}{% endif %}">
-  <meta property="og:description" content="{% if page.url == "/" %}{{ site.data.settings.description | strip_html | xml_escape }}{% elsif page.description %}{{ page.description | strip_html | xml_escape }}{% else %}{{ page.excerpt | strip_html | xml_escape }}{% endif %}">
-  <meta property="og:image" content="{{ page.image | absolute_url }}">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-  <style>
-  {% capture include_to_scssify %}
-    {% include main.scss %}
-  {% endcapture %}
-  {{ include_to_scssify | scssify }}
-  </style>
+  {% capture document_title %}{% if paginator.page > 1 %}Learning notes — Page {{ paginator.page }} | {% elsif page.title and page.title != site.data.settings.title %}{{ page.title }} | {% endif %}{{ site.data.settings.title }}{% endcapture %}
+  {% assign description = page.description | default: site.data.settings.description | strip_html | strip_newlines %}
+  <title>{{ document_title | strip | escape }}</title>
+  <meta name="description" content="{{ description | escape }}">
+  <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.data.settings.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+  <meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'causal-note' %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ document_title | strip | escape }}">
+  <meta property="og:description" content="{{ description | escape }}">
+  <meta property="og:url" content="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   {% if page.causal_notes %}
-  <link rel="stylesheet" href="{{ '/assets/css/causal-notes.css' | relative_url }}">
   <script>
     window.MathJax = {
       tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: true },
@@ -38,10 +21,8 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+  {% endif %}
+  {% if page.causal_notes or page.layout == 'post' %}
   <script type="module" src="{{ '/js/causal-notes.js' | relative_url }}"></script>
   {% endif %}
-  {% if page.publications %}
-  <link rel="stylesheet" href="{{ "/assets/css/publications.css" | relative_url }}">
-  {% endif %}
-  <link rel="stylesheet" href="{{ "/assets/css/research-areas.css" | relative_url }}">
 </head>

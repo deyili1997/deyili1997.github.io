@@ -1,25 +1,51 @@
 ---
 layout: default
-title: Deyi Li — Research & Learning
-description: Research and learning by Deyi Li in real-world evidence, Healthcare AI, clinical pharmacology, and U.S. equity investing.
-image: '/images/01.jpg'
+title: Deyi Li
+description: Deyi Li — research in real-world evidence, healthcare AI, and clinical pharmacology; publications and study notes.
 ---
-
-{% include research-home.html %}
-
-<div class="container research-reading-heading">
-  <p class="research-kicker">Reading &amp; reflection</p>
-  <div><h2>Latest learning notes</h2></div>
-</div>
-
-<div class="container">
-  <div class="row grid">
-    {% if site.posts.size > 0 %}
-      {% for post in paginator.posts %}
-        {% include article-content.html %}
-      {% endfor %}
-    {% endif %}
-  </div>
-</div>
-
+{% if paginator.page > 1 %}
+<h1>Learning notes</h1>
+<p>Page {{ paginator.page }} of {{ paginator.total_pages }}. <a href="{{ '/healthcare-ai/' | relative_url }}">Browse all Healthcare AI notes</a>.</p>
+<ul class="reading-list">
+  {% for post in paginator.posts %}<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><br><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %-d, %Y' }}</time></li>{% endfor %}
+</ul>
 {% include pagination.html %}
+{% else %}
+<h1>Deyi Li</h1>
+<p>My research interests include real-world evidence, healthcare AI, and clinical pharmacology.</p>
+<p><a href="mailto:{{ site.data.settings.contact.email }}">{{ site.data.settings.contact.email }}</a>{% for profile in site.data.settings.social %} · <a href="{{ profile.link | escape }}">{{ profile.name }}</a>{% endfor %}</p>
+
+<section aria-labelledby="research">
+  <h2 id="research">Research</h2>
+  <ul class="research-list">
+    {% for area in site.data.research_areas %}{% unless area.show_publications == false %}
+    <li><a href="{{ area.url | relative_url }}">{{ area.title }}</a>: {{ area.description | replace_first: 'Observational', 'observational' | replace_first: 'Patient', 'patient' | replace_first: 'Pharmacometrics', 'pharmacometrics' }}</li>
+    {% endunless %}{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="selected-publications">
+  <h2 id="selected-publications">Selected publications</h2>
+  <ul class="publication-list">
+    {% assign selected_papers = site.data.publications.papers | where: 'featured', true %}
+    {% for paper in selected_papers %}
+    <li><a href="{{ '/publication/' | relative_url }}#{{ paper.id }}">{{ paper.title }}</a><br><em>{{ paper.venue }}</em>, {{ paper.year }}.{% if paper.kind == 'Preprint' %} Preprint.{% endif %}</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{{ '/publication/' | relative_url }}">All publications</a></p>
+</section>
+
+<section aria-labelledby="study-notes">
+  <h2 id="study-notes">Study notes</h2>
+  {% assign healthcare_notes = site.posts | where: 'research_area', 'healthcare-ai' %}
+  <ul>
+    <li><a href="{{ '/causal-inference/' | relative_url }}">Causal Inference</a>: {{ site.causal_inference.size }} study notes on causal inference and target trial emulation.</li>
+    <li><a href="{{ '/healthcare-ai/' | relative_url }}#area-learning-title">Healthcare AI</a>: {{ healthcare_notes.size }} learning notes on graph learning, patient representation, and clinical prediction.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="other-interests">
+  <h2 id="other-interests">Other interests</h2>
+  <p><a href="{{ '/investment/' | relative_url }}">Investment</a>: a personal learning journal on U.S. equities, company analysis, and valuation.</p>
+</section>
+{% endif %}

@@ -35,10 +35,6 @@ defaults:
 include:
   - _pages
 
-sass:
-  sass_dir: _sass
-  style: compressed
-
 # Causal inference study notes
 collections:
   causal_inference:
@@ -46,6 +42,8 @@ collections:
     permalink: /causal-inference/:name/
 
 exclude:
+  - README.md
+  - CHANGELOG.md
   - CAUSAL_NOTES.md
   - PUBLICATIONS.md
   - RESEARCH_AREAS.md

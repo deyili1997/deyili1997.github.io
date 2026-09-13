@@ -17,10 +17,12 @@ The `PM/` source folder maps to Healthcare AI (`research_area: healthcare-ai`). 
 `_data/research_areas.json` defines the topic names, route URLs, folder mapping and descriptions. Only topics without `show_publications: false` appear as publication sections; Investment is excluded. `_data/publications.json` stores the publication records. Every record requires `research_area`, a folder-relative `source_file` such as `PM/2608.21712v2.pdf`, and a `source_sha256` matching the supplied PDF. Category membership must follow the user-assigned folder, without inferring a different category from the article title.
 
 - `_layouts/publications.html`: groups articles into the three research areas.
-- `_includes/publication-feature.html`, `publication-row.html`, and the other `publication-*.html` includes: reusable paper displays.
-- `assets/css/publications.css` and `assets/css/research-areas.css`: page design and shared research-area styles.
+- `_includes/publication-row.html` and the other `publication-*.html` includes: full bibliographic entries with author order, citation details, stable links, and optional summaries and figures.
+- `assets/css/site.css`: the shared, minimal typography used throughout the website.
 - `assets/publications/papers/`: the ten supplied PDFs, unchanged.
 - `assets/publications/figures/`: complete figures extracted from supplied PDFs. Preserve plotted content, attribution and license links.
+
+The page is a plain numbered bibliography grouped by research area. It uses formal paper titles and displays all authors. Summaries and full, unaltered figures are available in native HTML disclosure elements. The AKI subphenotypes article uses main-text Figure 3 from page 5 of its source PDF, with the original credit and license link.
 
 The page distinguishes journal articles, conference papers and arXiv preprints. SMART uses the formal 2026 issue year (online August 2025). DeepJ uses the officially confirmed AMIA 2025 conference year; index providers disagree about its exact proceedings publication date, so the public page omits the day. The tacrolimus article lists De-Yi Li third; equal-contribution credit belongs to Ling Li and Min Zhu.
 

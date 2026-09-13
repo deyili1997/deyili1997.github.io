@@ -2,41 +2,20 @@
 layout: default
 ---
 {% assign publication_areas = site.data.research_areas | where_exp: "item", "item.show_publications != false" %}
-<div class="publications-page">
-  <header class="pub-intro">
-    <p class="pub-kicker">Deyi Li · Research</p>
-    <div class="pub-intro-grid">
-      <h1>Publications<br><span>&amp; preprints.</span></h1>
-      <div class="pub-intro-copy">
-        <p>Research across real-world evidence, Healthcare AI, and clinical pharmacology.</p>
-        <a class="pub-scholar" href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-    <nav class="pub-jump" aria-label="Publication research areas">{% for area in publication_areas %}<a href="#{{ area.id }}">{{ area.title }}</a>{% endfor %}</nav>
-  </header>
-  {% for area in publication_areas %}
-  {% assign area_papers = site.data.publications.papers | where: 'research_area', area.id %}
-  {% assign area_highlights = area_papers | where: 'featured', true %}
-  {% assign area_remaining = area_papers | where: 'featured', false %}
-  <section id="{{ area.id }}" class="pub-section" data-area="{{ area.id }}" aria-labelledby="{{ area.id }}-title">
-    <header class="pub-area-heading"{% if area.legacy_id %} id="{{ area.legacy_id }}"{% endif %}>
-      <p class="pub-kicker">Research direction {{ area.number }}</p>
-      <h2 id="{{ area.id }}-title">{{ area.title }}<span class="pub-area-count">{{ area_papers.size }} {% if area_papers.size == 1 %}publication{% else %}publications{% endif %}</span></h2>
-      <p>{{ area.publication_description }}</p>
-    </header>
-    {% if area_highlights.size > 0 %}
-    <div class="pub-highlights">
-      {% for paper in area_highlights %}
-        {% assign use_lead = false %}{% if area_highlights.size == 1 %}{% assign use_lead = true %}{% endif %}
-        {% include publication-feature.html paper=paper lead=use_lead %}
-      {% endfor %}
-    </div>
-    {% endif %}
-    {% if area_remaining.size > 0 %}
-    <div class="pub-paper-list pub-area-papers">
-      {% for paper in area_remaining %}{% include publication-row.html paper=paper %}{% endfor %}
-    </div>
-    {% endif %}
-  </section>
-  {% endfor %}
-</div>
+<h1>Publications</h1>
+<p>Journal articles, conference papers, and preprints by research area. See also <a href="https://scholar.google.com/citations?user=RUSjHSoAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+<nav aria-label="Publication research areas">
+  <ul>
+    {% for area in publication_areas %}<li><a href="#{{ area.id }}">{{ area.title }}</a></li>{% endfor %}
+  </ul>
+</nav>
+{% for area in publication_areas %}
+{% assign area_papers = site.data.publications.papers | where: 'research_area', area.id %}
+<section id="{{ area.id }}" aria-labelledby="{{ area.id }}-title">
+  {% if area.legacy_id %}<span id="{{ area.legacy_id }}" aria-hidden="true"></span>{% endif %}
+  <h2 id="{{ area.id }}-title">{{ area.title }}</h2>
+  <ol class="publication-list">
+    {% for paper in area_papers %}<li>{% include publication-row.html paper=paper %}</li>{% endfor %}
+  </ol>
+</section>
+{% endfor %}

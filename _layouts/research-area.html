@@ -3,54 +3,49 @@ layout: default
 ---
 {% assign area = site.data.research_areas | where: 'id', page.research_area | first %}
 {% assign papers = site.data.publications.papers | where: 'research_area', area.id %}
-<div class="research-shell research-area-page" data-area="{{ area.id }}">
-  <header class="research-area-intro">
-    <nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">{{ area.title }}</span></nav>
-    <p class="research-kicker">{% if area.id == 'investment' %}Personal learning journal{% else %}Research direction {{ area.number }}{% endif %}</p>
-    <h1>{{ area.title }}</h1>
-    <p class="research-area-lead">{{ area.description }}</p>
-  </header>
-  <div class="research-area-grid{% if area.show_publications == false %} research-area-grid--notes{% endif %}">
-    <section class="research-module" aria-labelledby="area-learning-title">
-      {% if area.id == 'real-world-evidence' %}
-      <p class="research-kicker">Study collection</p>
-      <h2 id="area-learning-title">Causal Inference</h2>
-      <p>{{ area.study_description }} Explore potential outcomes, treatment strategies, time-related biases, weighting, and longitudinal methods.</p>
-      <a class="research-primary-link" href="{{ area.study_url | relative_url }}">Open the study guide <span aria-hidden="true">→</span></a>
-      <ul class="research-starting-points">
-        <li><a href="{{ '/causal-inference/potential-outcomes/' | relative_url }}">Potential outcomes</a><span>Start with the foundations</span></li>
-        <li><a href="{{ '/causal-inference/target-trial-emulation/' | relative_url }}">Target trial emulation</a><span>Turn a causal question into a study design</span></li>
-        <li><a href="{{ '/causal-inference/inverse-probability-weighting/' | relative_url }}">Inverse probability weighting</a><span>Connect identification and estimation</span></li>
-      </ul>
-      <p class="research-module-note">{{ site.causal_inference.size }} study notes</p>
-      {% elsif area.id == 'healthcare-ai' or area.id == 'investment' %}
-      <p class="research-kicker">Reading &amp; concepts</p>
-      <h2 id="area-learning-title">{% if area.id == 'investment' %}U.S. equity investing{% else %}Learning notes{% endif %}</h2>
-      {% if area.study_description %}<p>{{ area.study_description }}</p>{% endif %}
-      {% assign readings = site.posts | where: 'research_area', area.id %}
-      {% if readings.size == 0 %}
-      <p class="research-tbd"><span class="research-status">TBD</span> The first entry will be added here.</p>
-      {% else %}
-      <div class="research-reading-list">
-      {% for post in readings %}
-        <article><p class="research-reading-date">{{ post.date | date: '%b %-d, %Y' }}</p><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }} <span aria-hidden="true">↗</span></a></h3>{% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}</article>
-      {% endfor %}
-      </div>
-      {% endif %}
-      {% else %}
-      <p class="research-kicker">Study collection</p>
-      <h2 id="area-learning-title">{{ area.title }} notes</h2>
-      <p class="research-tbd"><span class="research-status">TBD</span> Learning content to be added.</p>
-      {% if area.id == 'clinical-pharmacology' %}<p>Existing publications on pharmacokinetic modeling and individualized therapy are available in the publications section.</p>{% endif %}
-      {% endif %}
-    </section>
-    {% unless area.show_publications == false %}
-    <aside class="research-papers-panel" aria-labelledby="area-papers-title">
-      <p class="research-kicker">{{ papers.size }} {% if papers.size == 1 %}publication{% else %}publications{% endif %}</p>
-      <h2 id="area-papers-title">Related publications</h2>
-      <ul>{% for paper in papers %}<li><span>{{ paper.venue }} · {{ paper.year }}</span><a href="{{ '/publication/' | relative_url }}#{{ paper.id }}">{{ paper.title | escape }}</a></li>{% endfor %}</ul>
-      <a class="research-primary-link" href="{{ '/publication/' | relative_url }}#{{ area.id }}">View this collection <span aria-hidden="true">→</span></a>
-    </aside>
-    {% endunless %}
-  </div>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a> / <span aria-current="page">{{ area.title }}</span></nav>
+<h1>{{ area.title }}</h1>
+<p>{{ area.description }}</p>
+<section aria-labelledby="area-learning-title">
+  {% if area.id == 'real-world-evidence' %}
+  <h2 id="area-learning-title">Causal Inference</h2>
+  <p>{{ area.study_description }} The collection contains {{ site.causal_inference.size }} study notes on potential outcomes, trial design, estimation, bias, and related methods.</p>
+  <p><a href="{{ area.study_url | relative_url }}">Causal Inference study guide</a></p>
+  <ul>
+    <li><a href="{{ '/causal-inference/potential-outcomes/' | relative_url }}">Potential outcomes</a></li>
+    <li><a href="{{ '/causal-inference/target-trial-emulation/' | relative_url }}">Target trial emulation</a></li>
+    <li><a href="{{ '/causal-inference/inverse-probability-weighting/' | relative_url }}">Inverse probability weighting</a></li>
+  </ul>
+  {% elsif area.id == 'healthcare-ai' or area.id == 'investment' %}
+  <h2 id="area-learning-title">{% if area.id == 'investment' %}Investment journal{% else %}Learning notes{% endif %}</h2>
+  {% if area.study_description %}<p>{{ area.study_description }}</p>{% endif %}
+  {% assign readings = site.posts | where: 'research_area', area.id %}
+  {% if readings.size == 0 %}
+  <p>TBD.</p>
+  {% else %}
+  <ul class="reading-list">
+    {% for post in readings %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      <time datetime="{{ post.date | date_to_xmlschema }}">({{ post.date | date: '%Y-%m-%d' }})</time>
+      {% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% else %}
+  <h2 id="area-learning-title">Study notes</h2>
+  <p>TBD.</p>
+  {% endif %}
+</section>
+{% unless area.show_publications == false %}
+<section aria-labelledby="area-papers-title">
+  <h2 id="area-papers-title">Related publications</h2>
+  <ul>
+    {% for paper in papers %}
+    <li><a href="{{ '/publication/' | relative_url }}#{{ paper.id }}">{{ paper.title | escape }}</a>. <cite>{{ paper.venue | escape }}</cite>, {{ paper.year }}.</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{{ '/publication/' | relative_url }}#{{ area.id }}">Publication details</a></p>
+</section>
+{% endunless %}

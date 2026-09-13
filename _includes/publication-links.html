@@ -1,4 +1,1 @@
-<div class="pub-links">
-  <a class="pub-read" href="{{ include.paper.url }}" target="_blank" rel="noopener noreferrer" aria-label="Read {{ include.paper.title | escape }}">{% if include.paper.kind == 'Preprint' %}Read preprint{% else %}Read paper{% endif %} <span aria-hidden="true">↗</span></a>
-  {% if include.paper.pdf %}<a class="pub-pdf" href="{{ include.paper.pdf | relative_url }}" aria-label="PDF of {{ include.paper.title | escape }}">PDF <span aria-hidden="true">↓</span></a>{% endif %}
-</div>
+<p class="publication-links">{% if include.paper.doi %}<a href="https://doi.org/{{ include.paper.doi }}">DOI: {{ include.paper.doi | escape }}</a>{% else %}<a href="{{ include.paper.url }}">Publication</a>{% endif %}{% if include.paper.pdf %} · <a href="{{ include.paper.pdf | relative_url }}" aria-label="PDF of {{ include.paper.title | escape }}">PDF</a>{% endif %}{% if include.paper.code_url %} · <a href="{{ include.paper.code_url }}" aria-label="Code for {{ include.paper.title | escape }}">Code</a>{% endif %}</p>

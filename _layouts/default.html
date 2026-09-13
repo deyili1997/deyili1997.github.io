@@ -1,24 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 {% include head.html %}
-
 <body>
-  {% if site.data.settings.google-analytics %}
-    {% include google-analytics.html %}
-  {% endif %}
-
+  <a class="skip-link" href="#main-content">Skip to content</a>
   {% include header.html %}
-
-  <!-- begin content -->
-  <main class="content" aria-label="Content">
+  <main id="main-content" tabindex="-1">
     {{ content }}
   </main>
-  <!-- end content -->
-
-  <div class="top" title="Top"><i class="fa-solid fa-chevron-up"></i></div>
   {% include footer.html %}
-  {% include javascripts.html %}
 </body>
-
 </html>
