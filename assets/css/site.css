@@ -7,7 +7,7 @@ body {
   color: #111;
   background: #fff;
   font-family: "Times New Roman", Times, serif;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.6;
   overflow-wrap: break-word;
 }
@@ -74,7 +74,7 @@ button { padding: .25rem .7rem; cursor: pointer; }
 .publication-contribution { font-size: .9em; }
 [hidden] { display: none !important; }
 @media (max-width: 40rem) {
-  body { margin: 1.25rem auto; padding: 0 1rem; font-size: 16px; }
+  body { margin: 1.25rem auto; padding: 0 1rem; font-size: 18px; }
   h1 { font-size: 1.8em; }
   .site-header ul { gap: .25rem 1rem; }
 }
