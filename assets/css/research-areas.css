@@ -2,7 +2,7 @@
 [data-area="real-world-evidence"]{--area-accent:#a8b8ff;--pub-accent:#a8b8ff}
 [data-area="healthcare-ai"]{--area-accent:#ff9292;--pub-accent:#ff9292}
 [data-area="clinical-pharmacology"]{--area-accent:#dfc490;--pub-accent:#dfc490}
-[data-area="investment-notes"]{--area-accent:#7ed9c4}
+[data-area="investment"]{--area-accent:#7ed9c4}
 .research-kicker{font-size:.875rem;font-weight:700;line-height:1.6;text-transform:uppercase;letter-spacing:.12em;color:var(--area-accent,#ff9292);margin:0 0 18px}
 .research-intro{display:flex;align-items:center;justify-content:space-between;gap:42px;margin-bottom:44px}
 .research-intro h1{font-size:clamp(3rem,6vw,4.5rem);line-height:1.1;letter-spacing:-.05em;font-weight:700;margin:0 0 18px}
@@ -20,7 +20,7 @@
 .research-card-meta{width:100%;font-size:.875rem;color:var(--area-muted);margin:0;line-height:1.7}
 .research-card-link{font-size:1rem;color:var(--area-accent);text-decoration:none;display:inline-flex;gap:18px;align-items:center;min-height:44px}
 .research-card-papers{font-size:.875rem;line-height:1.5;color:var(--area-muted);margin-left:auto}
-[data-area="investment-notes"] .research-status{border-color:#427f73;color:#7ed9c4}
+[data-area="investment"] .research-status{border-color:#427f73;color:#7ed9c4}
 .research-status{font-size:.875rem;display:inline-block;border:1px solid #8b7758;border-radius:4px;padding:2px 8px;color:#dfc490;vertical-align:middle;margin-left:7px}
 .research-reading-heading{padding-top:12px;margin-bottom:32px}
 .research-reading-heading>div{display:flex;gap:24px;justify-content:space-between;align-items:baseline}

@@ -5,9 +5,9 @@ The website has four peer topics, defined in `_data/research_areas.json`:
 - Real-World Evidence: `/real-world-evidence/`
 - Healthcare AI: `/healthcare-ai/`
 - Clinical Pharmacology: `/clinical-pharmacology/`
-- Investment Notes: `/investment-notes/`
+- Investment: `/investment/`
 
-The homepage, navigation and About page expose all four topics. Investment Notes is a personal learning journal on U.S. equities, rather than an academic publication category. Its `show_publications: false` flag hides publication links/panels and excludes it from the Publications page. The three academic publication groups still follow the user's `Publications/RWE`, `Publications/PM` and `Publications/CPP` folders. See `PUBLICATIONS.md` for metadata and PDF rules.
+The homepage, navigation and About page expose all four topics. Investment is a personal learning journal on U.S. equities, rather than an academic publication category. Its `show_publications: false` flag hides publication links/panels and excludes it from the Publications page. The three academic publication groups still follow the user's `Publications/RWE`, `Publications/PM` and `Publications/CPP` folders. See `PUBLICATIONS.md` for metadata and PDF rules.
 
 Real-World Evidence uses `real-world-evidence` as its internal topic ID and `/real-world-evidence/` as its canonical hub. The former `/rwe-generation/` hub redirects to it, and `/publication/#rwe-generation` remains an anchor alias for `/publication/#real-world-evidence`. The source publication folder remains `Publications/RWE/` and maps to Real-World Evidence.
 
@@ -17,7 +17,9 @@ Causal Inference is a study collection within Real-World Evidence. The guide rem
 
 Existing blog posts are Healthcare AI learning notes. They retain their URLs, search entries and homepage pagination. The post default is `research_area: healthcare-ai`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
 
-For an investment learning entry, add a normal `_posts/YYYY-MM-DD-slug.md` with `layout: post`, a title and description, and `research_area: investment-notes`. It will appear in the Investment Notes hub, homepage pagination and site search, and its breadcrumb will link back to the investment hub. Do not invent investment entries or import notes until the user supplies the source. Until the first entry exists, the homepage and hub show TBD automatically.
+Investment uses `investment` as its internal topic ID and `/investment/` as its canonical hub. The former `/investment-notes/` hub redirects to it.
+
+For an investment learning entry, add a normal `_posts/YYYY-MM-DD-slug.md` with `layout: post`, a title and description, and `research_area: investment`. It will appear in the Investment hub, homepage pagination and site search, and its breadcrumb will link back to the investment hub. Do not invent investment entries or import notes until the user supplies the source. Until the first entry exists, the homepage and hub show TBD automatically.
 
 Clinical Pharmacology learning content remains TBD. Existing PDF publications are available independently; do not hide them because the learning collection is still forthcoming.
 

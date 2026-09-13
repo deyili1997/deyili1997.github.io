@@ -37,11 +37,11 @@
     "study_status": "TBD"
   },
   {
-    "id": "investment-notes",
-    "title": "Investment Notes",
+    "id": "investment",
+    "title": "Investment",
     "number": "04",
     "description": "A personal learning journal on U.S. equities, company analysis, valuation, and investment decisions.",
-    "url": "/investment-notes/",
+    "url": "/investment/",
     "study_label": "Investment journal",
     "show_publications": false
   }

@@ -1,7 +1,7 @@
 ---
-layout: "research-area"
-title: "Investment Notes"
-description: "A personal learning journal by Deyi Li on U.S. equities, company analysis, valuation, and investment decisions."
-permalink: "/investment-notes/"
-research_area: "investment-notes"
+layout: redirect
+title: Investment
+permalink: /investment-notes/
+redirect_to: /investment/
+sitemap: false
 ---
