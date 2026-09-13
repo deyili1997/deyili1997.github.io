@@ -12,7 +12,7 @@ The English research portfolio lives at `/publication/` and uses the existing Je
 
 The `PM/` source folder maps to Healthcare AI (`research_area: healthcare-ai`). Preserve formal paper titles, even when they contain the phrase “predictive modeling.”
 
-`_data/research_areas.json` defines the topic names, route URLs, folder mapping and descriptions. Only topics without `show_publications: false` appear as publication sections; Investment Notes is excluded. Omics is also excluded until the user supplies classified Omics PDF articles. `_data/publications.json` stores the publication records. Every record requires `research_area`, a folder-relative `source_file` such as `PM/2608.21712v2.pdf`, and a `source_sha256` matching the supplied PDF. Category membership must follow the user-assigned folder, without inferring a different category from the article title.
+`_data/research_areas.json` defines the topic names, route URLs, folder mapping and descriptions. Only topics without `show_publications: false` appear as publication sections; Investment Notes is excluded. `_data/publications.json` stores the publication records. Every record requires `research_area`, a folder-relative `source_file` such as `PM/2608.21712v2.pdf`, and a `source_sha256` matching the supplied PDF. Category membership must follow the user-assigned folder, without inferring a different category from the article title.
 
 - `_layouts/publications.html`: groups articles into the three research areas.
 - `_includes/publication-feature.html`, `publication-row.html`, and the other `publication-*.html` includes: reusable paper displays.
