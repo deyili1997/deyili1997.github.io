@@ -7,16 +7,20 @@ order: 12
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. Risk, survival, and hazard are different quantities", "anchor": "section-1"}, {"title": "2. What assumption does the Cox model make?", "anchor": "section-2"}, {"title": "3. Why do the data need “time + event indicator”?", "anchor": "section-3"}, {"title": "4. A hand calculation: Risk sets and partial likelihood", "anchor": "section-4"}, {"title": "5. How does a real study get from data to results?", "anchor": "section-8"}, {"title": "6. Why do the biases discussed earlier affect Cox?", "anchor": "section-9"}, {"title": "7. Can time-dependent Cox solve every longitudinal problem?", "anchor": "section-12"}, {"title": "8. A correctly estimated Cox model can still be misinterpreted", "anchor": "section-13"}, {"title": "9. How do Cox, the g-formula, and IPW work together?", "anchor": "section-14"}, {"title": "10. Self-check", "anchor": "section-15"}, {"title": "References", "anchor": "section-16"}]
 previous_note: "/causal-inference/time-related-biases/"
 next_note: "/causal-inference/g-formula/"
 ---
 
+**A continuous three-stage reading path:** [Ordinary Cox → weighted Cox in TTE → federated Cox for beginners]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-12). Use the same four-person A/B table, adding patient weights and hospital structure one step at a time before reading the federated-paper formulas.
+
 Study guide: [Causal Inference Study Guide]({{ "/causal-inference/" | relative_url }}). For notation, see [Reading Causal Formulas: From Symbols to Questions]({{ "/causal-inference/reading-causal-formulas/" | relative_url }}); this note also explains formulas alongside their use.
 
 Prerequisite: time zero, follow-up, and censoring in [Target Trial Emulation]({{ "/causal-inference/target-trial-emulation/" | relative_url }}). Continue with [The G-Formula: From Standardization to Longitudinal Strategies]({{ "/causal-inference/g-formula/" | relative_url }}) and [Inverse Probability Weighting: From Propensity Scores to Longitudinal Weights]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}).
+
+**If survival analysis is completely new to you, first read [Start from zero: Understand follow-up records before survival curves]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-1).** Five patients’ records introduce events, censoring, risk sets, and KM curves before you return to Cox here; that introductory section requires no knowledge of weights or regression.
 
 Suppose we compare deaths in two patient groups. Knowing only “20 people died in group A and 10 in group B” is insufficient: how many people did each group originally contain? Did deaths happen early or late? Some people were observed for six months and others for five years—can these be treated as equally complete five-year records?
 
@@ -384,6 +388,8 @@ Another advanced issue is noncollapsibility: even without confounding, a conditi
 
 ## 9. How do Cox, the g-formula, and IPW work together?
 {: #section-14 }
+
+For the complete beginner-level connection, see [Weighted Survival Analysis in Target Trial Emulation]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}). The same A/B data support hand calculations of weighted risk sets and Kaplan–Meier, followed by an explanation of how weights enter both Cox risk sets and event contributions. Start with §1–§6 there; weighted Cox formulas are in §7.
 
 | Level | Responsibility |
 | --- | --- |

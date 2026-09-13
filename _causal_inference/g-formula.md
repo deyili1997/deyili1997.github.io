@@ -7,7 +7,7 @@ order: 13
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. Why not directly compare the two groups’ proportions of deaths?", "anchor": "section-1"}, {"title": "2. Calculating the baseline g-formula by hand", "anchor": "section-2"}, {"title": "3. Writing the calculation as a formula", "anchor": "section-7"}, {"title": "4. What if health status has more than two values, “high” and “low”?", "anchor": "section-8"}, {"title": "5. Why do sustained strategies require a “longitudinal” g-formula?", "anchor": "section-13"}, {"title": "6. Two treatment decisions: Putting numbers into the longitudinal formula", "anchor": "section-14"}, {"title": "7. The longitudinal formula and the actual computational workflow", "anchor": "section-19"}, {"title": "8. What if the outcome is death and some people die along the way?", "anchor": "section-20"}, {"title": "9. Why is “calculating two worlds” not enough?", "anchor": "section-21"}, {"title": "10. Differences from IPW and Cox", "anchor": "section-22"}, {"title": "11. Self-check", "anchor": "section-23"}, {"title": "References", "anchor": "section-24"}]
 previous_note: "/causal-inference/cox-proportional-hazards/"
@@ -486,7 +486,7 @@ For example, in a simplified scenario with no further history distinctions, the 
 
 The example also shows why denominators matter: **each interval’s death probability concerns people alive at its start, but the final cumulative risk concerns the original 100 people.** With 28 expected deaths across both intervals, divide 28 by the original 100, rather than calculating only among those still alive at the end.
 
-For a nonfatal outcome, specify in advance how competing events such as death enter the target question; do not casually treat them as ordinary noninformative censoring.
+For a nonfatal outcome, specify in advance how competing events such as death enter the target question; do not casually treat them as ordinary noninformative censoring. For three transition states and a two-period worked calculation, see [Competing events and adaptations of the classical methods]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-47).
 
 For implementation details, including variable ordering, history length, model fitting, natural-course checks, and simulation uncertainty, see [McGrath et al.: gfoRmula](https://pmc.ncbi.nlm.nih.gov/articles/PMC7351102/).
 

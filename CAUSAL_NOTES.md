@@ -4,12 +4,13 @@ The English causal inference collection extends the existing Norlin Jekyll site.
 
 - Public entry: `/causal-inference/` (`_pages/causal-inference.md`).
 - Articles: `_causal_inference/<stable-slug>.md`.
-- Reading order: front-matter `order`, `previous_note`, and `next_note`.
+- Reading order: front-matter `order`, `previous_note`, and `next_note`. Companion notes may use `reading_label` to share a step in the guide without renumbering the main learning route.
 - Navigation: `_data/settings.yml`; search and tag archives include the collection.
 - Layouts: `_layouts/causal-note.html` and `_layouts/causal-guide.html`.
 - Rendering: `assets/css/causal-notes.css`, `js/causal-notes.js`, and the conditional MathJax loader in `_includes/head.html`.
 - Figures and the reproducible synthetic example: `assets/causal-inference/`.
 - Source correspondence and SHA-256 fingerprints: `_data/causal_sources.json`.
+- Chinese heading to stable English anchor mapping: `_data/causal_source_headings.json`. Keep these mappings current when adding or translating sections.
 
 ## Updating a note
 

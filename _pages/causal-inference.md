@@ -1,13 +1,13 @@
 ---
 layout: "causal-guide"
 title: "Causal Inference Study Guide"
-description: "A guided reading route through 23 notes on causal inference, target trial emulation, estimation, and bias."
+description: "A guided reading route through 25 notes on causal inference, target trial emulation, estimation, and bias."
 group: "Guide"
 order: 0
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "Before you begin: understanding and remembering", "anchor": "section-1"}, {"title": "1. Recommended route: from causal questions to design and estimation", "anchor": "section-2"}, {"title": "2. Learning map", "anchor": "section-34"}, {"title": "3. Review by question", "anchor": "section-37"}, {"title": "4. Review by case", "anchor": "section-44"}, {"title": "5. A three-pass review method", "anchor": "section-49"}, {"title": "6. Maintaining the study guide", "anchor": "section-53"}]
 permalink: "/causal-inference/"
@@ -19,7 +19,7 @@ permalink: "/causal-inference/"
 
 **Read steps 1 through 21 below in order.** At each step, read only the indicated sections, then return here for the next step. You do not need to finish every formula, source passage, or advanced discussion first.
 
-There are currently **23 topic notes**: 21 form the first-pass route, g-estimation is step 22 for a second pass, and a separate TTE extension note discusses the literature. New material is placed within this route with links to the preceding and following topics.
+There are currently **25 topic notes**: 21 form the first-pass route; g-estimation is step 22 for a second pass. A separate TTE extension note discusses the literature, and the detailed longitudinal IPTW and weighted survival notes extend step 14. New material is placed within this route with links to the preceding and following topics.
 
 </aside>
 
@@ -131,6 +131,10 @@ Use each step’s “Read first” and “After reading” guidance to set the s
 #### 12. [The Cox Proportional Hazards Model: Risk Sets, Estimation, and Bias]({{ "/causal-inference/cox-proportional-hazards/" | relative_url }})
 {: #section-19 }
 
+**Continuous beginner route:** [Ordinary Cox → weighted Cox in TTE → federated Cox]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-12). Start with ordinary Cox using one shared example, add IPTW, and then move to local risk sets and aggregation across hospitals.
+
+**Start from zero:** first read [Understanding follow-up records before survival curves]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-1). Begin with events, censoring, risk sets, and unweighted Kaplan–Meier curves. Leave its weighted sections for later, then return to the Cox reading range below.
+
 **Read first:** §§1–6 and §8. Follow the sequence: why follow-up time matters → who is compared at each event → how relative scores form conditional probabilities → how an HR is selected. Calculate along with the four-person risk-set table in §4; leave the expandable derivative for the second pass.
 
 **After reading:** distinguish risk, hazard, and HR; identify each event-time comparison; and explain why the model does not automatically repair earlier design biases. Next, move from HRs to direct calculation of target-population risks.
@@ -145,11 +149,13 @@ Use each step’s “Read first” and “After reading” guidance to set the s
 #### 14. [Inverse Probability Weighting: From Propensity Scores to Longitudinal Weights]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }})
 {: #section-21 }
 
-**Read first:** §§1–6 → §§7–11. Ask who is underrepresented in an observed treatment group, how much weight they need, and why the weight is precisely an inverse probability. Recalculate the same 12.5% and 25% risks as the g-formula. Then use two decisions to understand multiplication of weights and distinguish treatment from censoring weights. Leave ATT and more complex stabilized weights for the second pass.
+**Read first:** IPW §§1–6, then [Longitudinal IPTW]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}) §§1–6, and finally return to IPW §§8–11. Understand a single inverse probability first, then cumulative weights through two decisions and health-status branches, and finally distinguish treatment from censoring selection. Leave the new note’s multivariable LR (§7), longer formula (§8), and stabilization (§11) for a second pass; consult ATT extensions as needed.
 
 **Research example:** continue with the [multivariable LR–IPTW example comparing initiation of drugs A and B]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-15). Substitute each patient’s features into LR, then inspect SMDs, stabilized weights, and one-year hospitalization risks. The single-variable example builds intuition; the A/B example connects to new-user comparisons in the next part.
 
-**After reading:** explain what each probability predicts, why its inverse is used, and why sustained strategies and artificial censoring need longitudinal data and corresponding assumptions. You are ready to understand how observational records are organized—and why the weighting step in CCW is essential.
+**Connection to survival outcomes:** next read [Weighted Survival Analysis in Target Trial Emulation]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}) §§1–6. Apply weights to events and risk sets to obtain a fixed-horizon risk. Save weighted Cox and longitudinal implementation in §§7–10 for a second pass. Then proceed to step 15, connecting the question and weights to an appropriate emulation design.
+
+**After reading:** explain what each probability predicts, why it is inverted, why sequential choices require sequential multiplication, and why later health need not be the same under AA and BB. You are ready to understand how observational records are organized—and why the weighting step in CCW is essential.
 
 ### Part 6: organize existing clinical records into a target trial
 {: #section-22 }
@@ -206,7 +212,7 @@ Use each step’s “Read first” and “After reading” guidance to set the s
 
 **After reading:** explain which information NLP, imaging, and machine learning help extract, measure, or model, and why they cannot guarantee elimination of unmeasured confounding. The first-pass route ends here. Use the integration exercise to test the full logic, rather than memorizing method names.
 
-**Literature extension:** after understanding the relationship between machine learning and adjustment, read [High-Throughput Drug Screening and Federated Target Trial Emulation]({{ "/causal-inference/high-throughput-federated-tte/" | relative_url }}). It adds discussion of the IPTW framework and Fig. 1/Boxes 1–2, including high-throughput cohorts, training/validation/test splits, model selection, and SMDs. Other discussions remain in development. Prerequisites are TTE, IPW, and Cox. Distinguish expansion of implementation scale from causal identification requirements, then return to the protocol exercise below.
+**Literature extension:** after understanding the relationship between machine learning and adjustment, read [High-Throughput Drug Screening and Federated Target Trial Emulation]({{ "/causal-inference/high-throughput-federated-tte/" | relative_url }}). It covers the IPTW framework and Fig. 1/Boxes 1–2, high-throughput cohorts, training/validation/test splits, model selection, SMDs, and multiple-testing correction. It also works through federated logistic regression and Cox regression with numerical examples, explains site-specific risk sets, and connects competing events to the choice of outcome measure. Prerequisites are TTE, IPW, and Cox. Distinguish expansion of implementation scale from causal identification requirements, then return to the protocol exercise below.
 
 ### Finish the main route: explain a protocol from beginning to end
 {: #section-31 }
@@ -292,7 +298,7 @@ Choose the group matching your current question; there is no need to reread the 
 
 | When you ask… | Return to… |
 | --- | --- |
-| Why does ATT retain treated people and weight only controls, and how does it differ from ATE? | [Inverse Probability Weighting: From Propensity Scores to Longitudinal Weights]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-7) |
+| Why does ATT leave treated people unchanged and weight only controls, and how does it differ from ATE? | [ATT: define whose question is being answered, then calculate control weights]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-7) |
 | Why is a causal effect not simply the difference between two observed group means? | [Potential Outcomes and Identification Assumptions]({{ "/causal-inference/potential-outcomes/" | relative_url }}) |
 | What exactly is a treatment effect, and why is it not the before–after change? | [Potential Outcomes and Identification Assumptions]({{ "/causal-inference/potential-outcomes/" | relative_url }}#section-1) |
 | What do Delta, Y, g, subscript 5, P, and =1 mean in a five-year risk-difference formula? | [Causal Contrasts and Estimands]({{ "/causal-inference/causal-contrasts-estimands/" | relative_url }}#section-7) |
@@ -374,6 +380,9 @@ Choose the group matching your current question; there is no need to reread the 
 
 | When you ask… | Return to… |
 | --- | --- |
+| How is survival analysis weighted, and how are events and risk sets weighted separately? | [Weighted Survival Analysis in Target Trial Emulation]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}) |
+| Why multiply the second weight by the first, and how do updated health and switching enter LR? | [Longitudinal IPTW]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}) |
+| Why check weighted balance, and what do SMDs, propensity-score overlap, weights, and ESS assess? | [Checking weighted balance for four baseline variables]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-22) |
 | What is SW_i, why do stabilized weights multiply by the group proportion, and do they necessarily reduce variance? | [Inverse Probability Weighting: From Propensity Scores to Longitudinal Weights]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-20) |
 | When g-formula and IPTW compare A/B, which models do they fit and how do they calculate risks? | [The G-Formula: From Standardization to Longitudinal Strategies]({{ "/causal-inference/g-formula/" | relative_url }}#section-9) |
 | At which TTE step is IPTW used, and how does it relate to randomization? | [High-Throughput Drug Screening and Federated Target Trial Emulation]({{ "/causal-inference/high-throughput-federated-tte/" | relative_url }}#section-4) |
@@ -475,7 +484,7 @@ If treatment effects remain unclear, first read [What exactly is a treatment eff
 2. [G-formula]({{ "/causal-inference/g-formula/" | relative_url }}), §§1–4: standardized risks for a shared baseline population of 1,000 people.
 3. [IPW]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}), §§1–5: weight the same table and verify the same 12.5% and 25% risks.
 4. [G-estimation]({{ "/causal-inference/g-estimation/" | relative_url }}), §§1–5: use a separate 200-person blood-pressure example to move from crude comparisons to candidate effects, then understand why the estimating equation aggregates within-health-stratum differences.
-5. Return to g-formula §§5–8, IPW §§7–9, and g-estimation §6 for two treatment decisions and sustained strategies.
+5. Read [Longitudinal IPTW]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}) §§1–7 for two decisions, health-status branches, and LR. Then return to g-formula §§5–8, IPW §§8–9, and g-estimation §6 to compare their treatment of sustained strategies.
 
 </details>
 

@@ -1,15 +1,15 @@
 ---
 layout: "causal-note"
 title: "High-Throughput Drug Screening and Federated Target Trial Emulation"
-description: "Explore high-throughput drug screening, IPTW model selection, data splits, balance diagnostics, and federated TTE questions."
+description: "A complete study companion to high-throughput drug screening and federated TTE: IPTW, model selection, Bonferroni correction, federated LR and weighted Cox, and competing events."
 group: "Extensions"
 order: 23
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. What does each paper extend?", "anchor": "section-1"}, {"title": "2. Where subsequent discussions belong", "anchor": "section-2"}, {"title": "3. Discussion: what is the IPTW framework?", "anchor": "section-3"}, {"title": "4. Reading the original text: High-throughput cohorts, ML-PS, and every data level in Boxes 1–2", "anchor": "section-13"}, {"title": "5. Discussion: Does classical IPTW require train/test splitting? How does LR obtain each propensity score?", "anchor": "section-28"}, {"title": "6. References and local originals", "anchor": "section-39"}]
+toc: [{"title": "1. What does each paper extend?", "anchor": "section-1"}, {"title": "2. Where subsequent discussions belong", "anchor": "section-2"}, {"title": "3. Discussion: what is the IPTW framework?", "anchor": "section-3"}, {"title": "4. Reading the original text: High-throughput cohorts, ML-PS, and every data level in Boxes 1–2", "anchor": "section-13"}, {"title": "5. Discussion: Does classical IPTW require train/test splitting? How does LR obtain each propensity score?", "anchor": "section-28"}, {"title": "5.1 “Participating in fitting” differs from “fitting using only oneself”", "anchor": "section-29"}, {"title": "5.2 Fitting an actual LR to the existing 1,000-person example", "anchor": "section-30"}, {"title": "5.3 Treated people and controls within the same disease stratum have the same e(L)", "anchor": "section-31"}, {"title": "5.4 Is fitting and weighting the same people data leakage?", "anchor": "section-32"}, {"title": "5.5 Differences from this paper and cross-fitting", "anchor": "section-33"}, {"title": "5.6 Connecting to a research example: Multiple baseline variables, comparing drug A with B", "anchor": "section-34"}, {"title": "5.7 Does TTE require equal group sizes?", "anchor": "section-35"}, {"title": "5.8 How do the g-formula and IPTW differ?", "anchor": "section-36"}, {"title": "5.9 Why does ATT weight treated people by 1 and controls by odds?", "anchor": "section-37"}, {"title": "5.10 Stabilized IPTW and SW_i: Define first, then read the formula", "anchor": "section-38"}, {"title": "5.11 How does baseline IPTW extend to sustained A/B strategies?", "anchor": "section-44"}, {"title": "5.12 How is survival analysis weighted in TTE?", "anchor": "section-45"}, {"title": "5.13 Why does high-throughput TTE need a Bonferroni correction?", "anchor": "section-46"}, {"title": "5.14 Reading the federated TTE paper: Why is treatment the dependent variable and baseline covariates the independent variables?", "anchor": "section-56"}, {"title": "5.15 How are IPTW and propensity-score matching related, and how do they differ?", "anchor": "section-62"}, {"title": "5.16 Unpacking federated LR: From one patient's probability to training across hospitals", "anchor": "section-63"}, {"title": "5.17 Unpacking federated weighted Cox: Equations (5)–(9)", "anchor": "section-77"}, {"title": "5.18 How do competing events affect AD risk, Cox models, and IPTW?", "anchor": "section-100"}, {"title": "6. References and source articles", "anchor": "section-39"}]
 previous_note: "/causal-inference/g-estimation/"
 next_note: "/causal-inference/"
 ---
@@ -190,6 +190,36 @@ For the full foundational derivation see [IPW]({{ "/causal-inference/inverse-pro
 
 Basis: Results, Fig. 1, and Boxes 1–2 on pages 2–4 of the 2023 paper's PDF, plus Methods, Table 1, and Equations (1)–(5) on pages 10–12. This section explains the reported algorithm step by step; it does not claim an audit of the open-source code. Illustrative sample sizes, scores, and SMD examples are not study results.
 
+### Original English passage
+{: #section-40 }
+
+> Taking the OneFlorida database (see Data Section) as our discovery set, we included 73,927 patients with MCI diagnosis from 2012 to 2020 (Fig. 1a). We found 1,825 unique drug ingredients and, for each drug ingredients we emulated 100 trials by building different comparison groups (exposed to random alternative drugs, or exposed to similar drugs under the same ATC-L2 category), leading to 182,500 trials in total. We focused on 66 drugs with 6,600 emulated trials of which each treatment group has ≥ 500 patients.
+>
+> For each emulated trial, we randomly partitioned the data into mutually exclusive training and testing subsets with a ratio of 80:20. Different machine learning-based propensity score (ML-PS) models, including regularized logistic regression (LR), gradient-boosted machines (GBM), multi-layer perceptrons (MLP), and long short-term memory networks (LSTM), were trained on the same training set following a tenfold cross-validation (CV) procedure (“Method” Section and Fig. 1b), and the best model hyperparameters were selected by following three strategies: (a) the area under the receiver operating characteristic curve (AUC) score on the validation fold during the CV procedure, (b) the cross-entropy loss (negative log-transformed likelihood) on the validation fold during the CV procedure, and (c) our proposed strategy, which leverages balance performance on the training and validation combined folds, and AUC on the validation fold during the CV procedure (Method Section and Box 1).
+>
+> We evaluated the performance of selected models in terms of balancing baseline covariates before and after IPTW on the training, testing, and combined datasets. We considered 267-dimensional baseline covariates including age, gender, comorbidities, and medication use history (Method section). We considered one covariate as balanced if its standardized mean difference (SMD) of its prevalence ≤ 0.1<sup>24</sup>, and one emulated trial before/after IPTW is balanced if the ratio of unbalanced features among all covariates before/after IPTW ≤ 2%<sup>7</sup>. We summarized our cross-validation algorithm for the ML-PS model selection and training in Box 1 (Method section), the evaluation algorithm in Box 2 (Method section), and an illustration in Fig. 1b.
+
+### Full rendering of the passage in the study notes
+{: #section-41 }
+
+The study used OneFlorida as its discovery dataset and included 73,927 patients diagnosed with mild cognitive impairment (MCI) during 2012–2020 (Fig. 1a). It identified 1,825 distinct drug ingredients. For every ingredient, 100 trials were emulated by constructing different comparison groups: people receiving randomly selected alternative drugs, or people receiving similar drugs in the same ATC-L2 category. This produced 182,500 emulations overall. The focused analysis included 66 drugs and their 6,600 emulations, with at least 500 patients in each target-treatment group.
+
+Within every emulation, the data were randomly divided into nonoverlapping training and test subsets in an 80:20 ratio. On the same training subset, tenfold cross-validation trained machine-learning propensity-score models: regularized logistic regression (LR), gradient-boosted machines (GBM), multilayer perceptrons (MLP), and long short-term memory networks (LSTM). Three separate strategies selected hyperparameters: (a) validation-fold area under the receiver operating characteristic curve (AUC); (b) validation-fold cross-entropy, the negative log likelihood; or (c) the authors' strategy, combining covariate balance across the training and validation folds with AUC on the validation fold (Methods and Box 1).
+
+The selected models were evaluated for baseline-covariate balance before and after IPTW in training, test, and combined datasets. The 267-dimensional baseline covariates included age, gender, comorbidities, and medication history. An individual covariate was considered balanced when its standardized mean difference (SMD) was no greater than 0.1<sup>24</sup>. An emulation was considered balanced before or after IPTW when, in the corresponding state, no more than 2% of all covariates remained unbalanced<sup>7</sup>. Box 1 summarizes cross-validation for model selection and training, Box 2 evaluation, and Fig. 1b illustrates the procedure. The superscripts 24 and 7 are references in the original passage; the subsequent sections clarify the continuous-variable and treatment-group terminology.
+
+### Fig. 1: Screenshot of the overall workflow
+{: #section-42 }
+
+![Fig. 1: High-throughput target trial emulation, ML-PS selection, and drug-repurposing screening](/assets/causal-inference/tte-extension/zang-2023-fig-1.png)
+
+### Boxes 1–2: Screenshots of model training, selection, and evaluation algorithms
+{: #section-43 }
+
+![Boxes 1 and 2: Cross-validation for ML-PS selection and evaluation on training and test datasets](/assets/causal-inference/tte-extension/zang-2023-box-1-2.png)
+
+*The reader supplied these two screenshots from Zang et al. (2023). They accompany the step-by-step analysis below.*
+
 ### 4.1 First identify the role of this passage within TTE
 {: #section-14 }
 
@@ -316,6 +346,8 @@ For example, candidate A has mean imbalance count 4 and AUC 0.70; B has 7 and 0.
 
 ### 4.10 SMD and two levels of passing criteria
 {: #section-23 }
+
+For a beginner's step-by-step calculation, see [Step Six: Check Weighted Balance in the Four Baseline Variables]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-22). It moves from the purpose of diagnostics, weighted means, and variances to hand calculations of simulated SMDs, separate overlap/weight/ESS checks, and the limits of those checks.
 
 **Typography correction: The text says SMD ≤0.1; the following 24 is a citation number. The 7 after 2% is also a citation number.** It is not 0.124 or 2% raised to the seventh power.
 
@@ -531,9 +563,885 @@ SW_i is person i's stabilized weight; SW is the abbreviation and i the patient i
 
 Ordinary weights replace those numerators with 1; stabilization multiplies everyone within a drug group by the same constant. It changes overall scale without altering relative within-group contributions, so normalized group risks, their difference, and within-group effective sample sizes remain unchanged here. The name does not guarantee improved precision or eliminate near-zero denominators. Stabilization is neither weight truncation nor a change from ATE to ATT.
 
-For each component and calculation, see [Step Five: Use A's Probability for Drug A and B's for Drug B]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-20). Symbol definitions now appear before that section's patient table.
+For each component and calculation, see [Step Five: Use A's Probability for Drug A and B's for Drug B]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-20). Symbol definitions now appear before that section's patient table. A separate 100-person table begins with raw A/B counts of 40/60: ordinary weighting makes each group represent 100 people, whereas stabilized weight sums are 40/60. Within both groups, low- and high-risk people remain equally represented. The theoretical explanation of ‘in expectation’ is in an optional details section.
 
-## 6. References and local originals
+### 5.11 How does baseline IPTW extend to sustained A/B strategies?
+{: #section-44 }
+
+See [Longitudinal IPTW: Sustained Drug A versus Drug B and Why Weights Multiply Across Periods]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}) for a separate beginner's explanation. It motivates multiplication through successive selections of people, allows treatment to change subsequent health, and uses two multivariable LR models to calculate actual-action probabilities for AA/BB/AB/BA. The paper's baseline model-selection workflow does not automatically constitute an analysis of sustained longitudinal strategies. Each decision requires the appropriate history, temporal ordering, and correspondence to the strategy.
+
+### 5.12 How is survival analysis weighted in TTE?
+{: #section-45 }
+
+The companion [Weighted Survival Analysis in TTE: From Risk Sets to Survival Curves and Cox Models]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}) first explains events, censoring, and risk sets. An eight-person A/B table then weights events and at-risk records at each time and multiplies the KM survival contributions. It connects these calculations to weighted Cox models, multivariable LR, time-varying weights, and inference. This fills in the survival-analysis component of Fig. 1c without conflating PS fitting with outcome-risk prediction.
+
+### 5.13 Why does high-throughput TTE need a Bonferroni correction?
+{: #section-46 }
+
+**High-throughput drug screening looks for effects across many drugs. Even if every analysis uses an appropriate method, random variation can produce apparently effective candidates. Bonferroni moves from controlling false positives in each individual test to controlling them across a whole family of tests. It informs significance judgments after effect estimation; it does not calculate propensity scores or patient weights.**
+
+#### Step one: What are we testing when we compare only drug A with drug B?
+{: #section-47 }
+
+Suppose the question is whether eligible people who initiate A, versus B, have different one-year mortality risks. We use risk at a fixed time here, without needing a Cox model yet.
+
+The true risk difference in the population is what we want to know; its estimate varies across finite samples. Even if the true mortality risks under A and B are equal, one sample may have fewer deaths in group A. Under its assumptions, IPTW can adjust for confounding, but it cannot remove finite-sample random variation.
+
+Call the statement “A and B have equal one-year mortality risks in the target population” the **null hypothesis**, written $$H_0$$. A hypothesis test asks how unusual the observed result would be if $$H_0$$ and the statistical model and sampling assumptions held.
+
+A **p value** is the probability, under the null and relevant assumptions, of a test statistic at least as extreme as the observed one. A two-sided test counts extreme results in both directions, A being better and A being worse. A one-sided test addresses a direction specified beforehand; its direction cannot be selected after seeing the result.
+
+Thus, p = 0.03 **does not mean “a 3% probability that A is ineffective,”** or “a 97% probability that A is effective.”
+
+The **significance level $$\alpha$$** is a prespecified bound on the tolerated false-positive rate, often 0.05. For a well-calibrated test under a true null, repeatedly sampling from the same population and performing the same test would wrongly reject the null in no more than 5% of repetitions. This is a **type I error**, or false positive. The 5% describes the procedure's long-run error rate, not the probability that a particular positive conclusion already obtained is false.
+
+#### Step two: Why do more screened drugs make it easier to find something “significant” by chance?
+{: #section-48 }
+
+Consider a teaching scenario with 20 prespecified comparisons: A₁ versus B, A₂ versus B, …, A₂₀ versus B. Suppose all true effects are zero and every test separately uses a 0.05 threshold.
+
+For easy calculation, initially assume independent tests and an actual false-positive probability of exactly 0.05 for each test:
+
+- One test avoids a false positive with probability 0.95.
+- Two tests both avoid one with probability 0.95 × 0.95.
+- All 20 avoid one with probability $$0.95^{20}$$, approximately 35.85%.
+- At least one false positive occurs with probability $$1-0.95^{20}$$, approximately **64.15%**.
+
+Actual screening comparisons share patients or comparator drugs, so their tests are usually correlated. Independence here only illustrates the accumulation of opportunities; the numerical result is not the paper's actual false-positive rate.
+
+| Number of simultaneous tests | Probability of at least one false positive when each uses 0.05: teaching scenario with all nulls true, independence, and exactly 5% error per test |
+| --- | --- |
+| 1 | 5.00% |
+| 10 | 40.13% |
+| 20 | 64.15% |
+| 66 | 96.61% |
+| 312 | Approximately 99.99999% |
+
+A different question is the average number of false positives. If all nulls are true and each test has exactly a 0.05 error rate, 312 tests produce an expected 312 × 0.05 = 15.6 false positives. This expectation does not require independence. It does not guarantee 15 or 16 every time, nor say that 5% of the positive results are false.
+
+#### Step three: What does Bonferroni control?
+{: #section-49 }
+
+First define a **family**: the set of hypotheses whose results will be interpreted together and whose false-positive risk we want to control together. The 20 prespecified candidate-drug comparisons are one example.
+
+The **family-wise error rate (FWER)** is the probability of wrongly rejecting at least one true null hypothesis in this family. Even if some drugs really are effective, FWER still concerns erroneous rejection of any remaining true nulls.
+
+A target of FWER ≤ 0.05 means that repeating the entire research procedure would yield at least one false positive with probability no greater than 5%. It does not give each selected drug a 95% probability of effectiveness, nor imply that at most 5% of selected drugs are ineffective.
+
+#### Step four: Allocate the family's 0.05 across its tests
+{: #section-50 }
+
+Define:
+
+- $$m$$: the total number of hypothesis tests in the family requiring correction.
+- $$\alpha$$: the desired upper bound on the family's error rate, such as 0.05.
+- $$\alpha/m$$: the significance threshold allocated to each test.
+
+The Bonferroni rule is:
+
+$$
+\text{Per-test threshold}=\frac{\alpha}{m}.
+$$
+
+For $$m=20$$, this is 0.05 / 20 = 0.0025. A p value of 0.03 formerly passed the 0.05 threshold; it now has to fall below 0.0025. Death records, IPTW weights, and the estimated risk difference do not change. Only the threshold for sufficiently strong statistical evidence changes.
+
+**Why does dividing by m work?**
+
+The probability of at least one error cannot exceed the sum of the individual error probabilities. If each of 20 tests has an error probability no greater than 0.0025, the family's probability of at least one error is no greater than 20 × 0.0025 = 0.05. Some errors can occur together; summing their probabilities double-counts these overlaps, giving an upper bound.
+
+This probability relationship is the union bound. **It does not require independent tests.** It requires valid p values under each true null and proper inclusion of the family to be controlled. Nor must all drugs be ineffective: the number of true nulls is at most m, so their summed error probabilities still cannot exceed 0.05.
+
+#### Step five: Alternatively, report adjusted p values without changing the threshold
+{: #section-51 }
+
+Let $$p_j$$ be the raw p value for test j. Its Bonferroni-adjusted value is:
+
+$$
+p_{j,\mathrm{adj}}=\min(1,m\,p_j).
+$$
+
+Here j is simply a test index. The function min chooses the smaller of two numbers, so the reported adjusted p value never exceeds 1. For example, 20 × 0.08 = 1.6 is reported as 1.
+
+These approaches make the same decision:
+
+1. Compare the raw p value with 0.05 / m.
+2. Compare the adjusted p value with 0.05.
+
+**Choose one. Do not multiply p by m and then compare it with 0.05 / m: that corrects twice.**
+
+These are teaching results for three of a study's 20 prespecified comparisons:
+
+| Comparison | Estimated one-year mortality risk difference: candidate minus B | Raw p value | Adjusted p value: 20 × p | Significant after correction? |
+| --- | --- | --- | --- | --- |
+| A₁ versus B | −3 percentage points | 0.030 | 0.600 | No |
+| A₂ versus B | −4 percentage points | 0.002 | 0.040 | Yes |
+| A₃ versus B | −5 percentage points | 0.0001 | 0.002 | Yes |
+
+The risk differences remain −3, −4, and −5 percentage points. A₁ fails the corrected threshold: “insufficient evidence under this multiple-testing standard” is appropriate. This does not prove that A₁ and B are identical.
+
+#### Step six: Where does the paper's 0.00016 come from?
+{: #section-52 }
+
+In “Screening and prioritization,” the paper explicitly gives **0.05 / 312 ≈ 1.6 × 10⁻⁴**. The 312 is the sum of 66 drug-level evaluations in OneFlorida and 246 in MarketScan. A drug may be evaluated in both databases, so 312 is not a count of distinct drugs after deduplication. The paper first summarizes successfully balanced emulations for each drug and reports drug-level bootstrap p values. It does not simply use the total number of emulated trials as this denominator. [Methods and screening criteria](https://www.nature.com/articles/s41467-023-43929-1#Sec10)
+
+For a drug-level raw p = 0.001, the result is below 0.05 but above 0.05 / 312 and therefore fails the threshold. Equivalently, the adjusted p is 312 × 0.001 = 0.312. A raw p = 0.0001 gives an adjusted p = 0.0312 and passes. Use the full precision of 0.05 / 312 in calculations, rounding only for display.
+
+**m counts tests requiring joint error control. It is not the number of patients, covariates, CV folds, or necessarily computer model runs.**
+
+If a study defines one prespecified summary test per drug, consider that drug-level family. If instead it tests 100 comparator constructions and promotes only the smallest p, it adds selection opportunities; “only one drug, therefore one test” is inadequate. Likewise, choosing the most significant outcome, time point, subgroup, or model after seeing results is not fixed by correcting only the few final results displayed.
+
+#### Step seven: Where does Bonferroni enter TTE?
+{: #section-53 }
+
+| Stage | Main work | Main question addressed |
+| --- | --- | --- |
+| Target-trial design | Define the population, A/B strategies, time zero, outcome, and follow-up | Whose causal question are we answering, and what is it? |
+| Cohort construction and confounding adjustment | Baseline multivariable LR → PS → IPTW → balance and weight diagnostics | Appropriately handle measured confounding of treatment choice |
+| Outcome analysis and inference | Weighted survival analysis or risk estimation; effects, standard errors, and p values | How large and how uncertain is the estimated effect? |
+| Multiple-testing decisions | Define the family and apply Bonferroni or another method | How often might the whole screening process produce a chance positive? |
+| Further evaluation | Effect magnitude, clinical relevance, external replication, and sensitivity analyses | Does the candidate warrant further research? |
+
+Plan the family and correction rule before inspecting results. The numerical comparison with the threshold follows calculation of p values. Bonferroni does not alter patient weights, train ML-PS models, or divide the SMD threshold of 0.1 by the number of drugs.
+
+#### Step eight: What can and cannot be concluded after passing the correction?
+{: #section-54 }
+
+Passing means meeting the prespecified multiple-testing standard for statistical evidence. It does not establish a causal drug effect by itself. Unmeasured confounding, incorrect time zero, informative censoring, or inappropriate standard errors can all produce excessively small p values. Bonferroni cannot repair these problems; its guarantee assumes that the input tests are valid.
+
+An ordinary 95% confidence interval excluding the null also does not automatically pass Bonferroni. For corresponding two-sided tests and intervals from the same model, an equivalent interval-based correction raises each interval's confidence level to $$1-\alpha/m$$. For m = 20 this is 99.75%; for m = 312 it is approximately 99.98397%. Intervals become wider while point estimates remain unchanged. This correspondence cannot be mechanically applied to one-sided tests, different bootstrap definitions, or intervals from different models.
+
+#### Step nine: Why not always use Bonferroni?
+{: #section-55 }
+
+It is simple, intuitive, and allows dependence among tests. With many tests, however, the threshold becomes very low and may miss true effects: power decreases. It can be especially conservative when tests are highly correlated or contain redundant information. High-throughput research must address multiplicity, but need not always choose Bonferroni.
+
+Holm also controls FWER, using stepwise thresholds and generally offering more power than simple Bonferroni. Benjamini–Hochberg controls a different quantity, the **false discovery rate (FDR)**: the expected proportion of erroneous rejections among all rejections across repetitions, defining that proportion as zero when there are no rejections. Its guarantees also depend on the tests' dependence structure. FWER ≤ 5% and FDR ≤ 5% are not interchangeable. [Official R documentation on p-value adjustment](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html)
+
+**Self-check:** Ten candidate drugs are prespecified, family-level α = 0.05, and one drug has raw p = 0.01. The per-test threshold is 0.005 and its adjusted p is 0.10, so it fails. Correction does not shrink its effect estimate or establish that the drug has no effect.
+
+### 5.14 Reading the federated TTE paper: Why is treatment the dependent variable and baseline covariates the independent variables?
+{: #section-56 }
+
+**Original passage supplied by the reader:**
+
+> Specifically, treatment assignment served as the dependent variable, while baseline covariates acted as independent variables.
+
+**Translation of the explanation:** The model treats observed treatment group as the dependent variable and baseline covariates as its independent variables.
+
+**In plain language, this LR is a propensity-score model. It inputs pretreatment characteristics, learns their relationship with actual treatment choice, and outputs the probability of receiving the target treatment. This step does not predict death or disease.**
+
+#### First identify every column using drugs A and B
+{: #section-57 }
+
+For teaching, we rewrite the passage's exposed/nonexposed comparison as A versus B to connect with earlier sections. This does not imply that the paper's nonexposed group necessarily receives one particular drug B.
+
+Let Z record actual initiation: Z = 1 for A, Z = 0 for B. Let L contain pretreatment age, diabetes, severity, and use of background treatment C.
+
+| Patient | Age | Diabetes: yes 1, no 0 | Pretreatment severity | Background treatment C: used 1, not used 0 | Actual group Z |
+| --- | --- | --- | --- | --- | --- |
+| Patient 1 | 75 | 1 | 2 | 0 | 1: drug A |
+| Patient 2 | 60 | 0 | 0 | 1 | 0: drug B |
+| Patient 3 | 75 | 1 | 2 | 0 | 0: drug B |
+
+**Independent variables** are explanatory or predictive input columns: the first four baseline characteristics here. The **dependent variable** is the label the model fits: the last column, observed treatment group Z.
+
+The statistical name “dependent variable” does not necessarily refer to the study's final clinical outcome. One study can fit multiple models, each with its own label. Treatment is the PS model's label; the subsequent survival model uses event times and censoring information to analyze clinical outcomes.
+
+Nor does “independent variables” imply mutual statistical independence. Age and diabetes can be correlated. The terminology itself does not establish causal relationships.
+
+#### What does multivariable LR calculate?
+{: #section-58 }
+
+Write the conditional probability of A as e(L), where e is a probability function and L the patient's baseline characteristics. A hat marks an estimated probability, $$\widehat e(L)$$.
+
+LR multiplies features by coefficients and adds them into a score η, then converts that score into a probability between zero and one:
+
+$$
+\eta=\beta_0+\beta_1\frac{\text{age}-70}{10}+\beta_2\text{diabetes}+\beta_3\text{severity}+\beta_4\text{background treatment C},
+$$
+
+$$
+\widehat e(L)=\frac{1}{1+\exp(-\eta)}.
+$$
+
+β₀ is the intercept; the remaining β coefficients are learned from training data. Subtracting 70 from age and dividing by 10 expresses age in decades relative to 70. The function exp is exponential; software can perform the probability conversion.
+
+For hand calculation, **suppose** the fitted coefficients are −0.5, 0.4, 0.8, 0.6, and −0.3. These are hypothetical teaching coefficients, not paper estimates or the coefficients actually fitted in the preceding 3,000-person simulation.
+
+Patient 1's score is:
+
+$$
+\eta_1=-0.5+0.4\times0.5+0.8\times1+0.6\times2-0.3\times0=1.7.
+$$
+
+Thus $$\widehat e(L_1)\approx0.846$$: the model estimates that patients with these features have approximately an 84.6% probability of A and a 15.4% probability of B. **This is neither Patient 1's one-year death probability nor the probability that A works.**
+
+#### Why predict group membership when the actual group is known?
+{: #section-59 }
+
+Actual group membership and its probability are different information.
+
+Patient 1 actually used A, a fact coded 1. Their score can still be 0.846 rather than 1. Patient 3 actually used B, coded 0. If their inputs exactly match Patient 1's, the same model also gives Patient 3 an A probability of 0.846, not zero.
+
+During training, software uses everyone's L and actual Z to estimate shared coefficients under which the observed choices are plausible. During prediction, it substitutes each L into the fitted formula. It learns treatment-choice patterns from many people rather than copying each person's observed 0/1 label.
+
+#### How is that probability subsequently used in IPTW?
+{: #section-60 }
+
+For ordinary baseline ATE IPTW, A recipients receive $$1/\widehat e(L)$$ and B recipients $$1/[1-\widehat e(L)]$$. Patient 1 therefore has weight approximately 1/0.846 = 1.18; Patient 3 has approximately 1/0.154 = 6.47. Calculations use unrounded probabilities.
+
+These characteristics more often correspond to A, so actual B recipients with these features are relatively uncommon. Giving those B records greater weight helps the weighted B group represent this type of patient. This adjusts baseline-composition differences due to treatment selection; it does not directly weight people according to their likelihood of dying.
+
+Stabilized IPTW additionally multiplies the numerator by the corresponding marginal group proportion. Targets such as ATT require other weights. The formula here illustrates ordinary ATE weighting and does not establish which numerator the paper uses.
+
+#### What changes when training is “federated”?
+{: #section-61 }
+
+In the supplied passage, the authors use federated learning to train global LR. Institutions jointly train a model whose relationship remains “baseline characteristics → probability of treatment group.” Federation describes cross-institution training arrangements, without changing this LR's dependent variable to death or disease. The methods specify what is exchanged and how iteration proceeds.
+
+The whole sequence is **baseline characteristics → federated LR propensity scores → individual IPTW → federated Cox survival analysis → adjusted HR and confidence interval**. PS LR and Cox have different jobs within the same study.
+
+### 5.15 How are IPTW and propensity-score matching related, and how do they differ?
+{: #section-62 }
+
+See [IPTW versus PSM]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-48) for a detailed comparison starting from the same multivariable LR. It explains matching versus weighting, ATE/ATT, common support, balance diagnostics, and subsequent outcome analysis.
+
+### 5.16 Unpacking federated LR: From one patient's probability to training across hospitals
+{: #section-63 }
+
+#### Screenshots of the original text
+{: #section-64 }
+
+![Local and global objectives for federated LR](/assets/causal-inference/tte-extension/li-2025-federated-lr-objective.png)
+
+![Hospital weights, regularization, and federated algorithms](/assets/causal-inference/tte-extension/li-2025-federated-lr-regularizers.png)
+
+These screenshots were supplied by the reader. All patients, coefficients, and numbers below are teaching examples. Equations (3)–(4) have been checked against the journal webpage. This discussion explains the formulas and identifies notation issues; it does not establish what the authors' code actually implements.
+
+#### 1. Locate the task: These formulas are still training a propensity-score model
+{: #section-65 }
+
+Several hospitals jointly fit LR using pretreatment features to predict actual use of A versus B. Only after obtaining the final model do they calculate individual propensity scores, then IPTW, and then analyze outcomes. These formulas have not yet estimated a drug's effect on mortality.
+
+The paper uses different notation from earlier sections: **T is the observed treatment label, and z the baseline feature vector.** Do not mistake z for the earlier treatment indicator Z. T here is not survival time either.
+
+#### 2. Symbol dictionary
+{: #section-66 }
+
+| Symbol | Meaning | Example |
+| --- | --- | --- |
+| K | Total participating hospitals | Two hospitals |
+| k | Hospital index | k = 1 is the first hospital |
+| Nₖ | Number of patients in hospital k | N₁ = 2 |
+| n | Patient index within that hospital | n = 1, 2 |
+| $$T_n^{(k)}$$ | Actual treatment label for patient n in hospital k | 1 for A, 0 for B |
+| $$z_n^{(k)}$$ | That patient's baseline features | Age, diabetes, severity, background treatment C |
+| π | The full LR coefficient set, including intercept | Corresponds to the earlier LR β vector; not the circle constant |
+| $$e(z_n^{(k)})$$ | This person's predicted probability of A under the current coefficients | 0.8 |
+| $$L_{PS}^{(k)}(\pi)$$ | Likelihood contribution of hospital k's treatment labels for these LR coefficients | Changes with π |
+| log | Natural logarithm | log(0.8) ≈ −0.2231 |
+| pₖ | Hospital aggregation proportion Nₖ/N | N is the sum of patient counts across hospitals |
+
+Superscript (k) labels a hospital; it is not exponentiation. PS abbreviates propensity score, rather than an operation. Changing π changes the predicted probabilities. The notation e(z) suppresses that dependence; $$e_\pi(z)$$ makes it explicit.
+
+#### 3. How does multivariable LR produce a probability?
+{: #section-67 }
+
+For example, let z = (1, (age−70)/10, diabetes, severity, background treatment C), where the initial 1 supplies the intercept. Take current coefficients π = (−0.5, 0.4, 0.8, 0.6, −0.3). These are candidate coefficients for a teaching calculation, not coefficients trained from the few-person table here.
+
+Multiply corresponding entries and add them to obtain $$\eta=\pi^Tz$$. The superscript T means transpose and is unrelated to the treatment label T.
+
+For someone aged 75, with diabetes, severity 2, and no use of C, η = −0.5 + 0.4×0.5 + 0.8×1 + 0.6×2 − 0.3×0 = 1.7.
+
+$$
+e_\pi(z)=\frac{1}{1+\exp(-\eta)}\approx0.8455.
+$$
+
+This is the model's probability of A for that person. Training adjusts the shared coefficients π so that the actual treatment labels of all patients receive more plausible probabilities.
+
+#### 4. Why does one patient's contribution contain two parts?
+{: #section-68 }
+
+Temporarily remove hospital and patient indices:
+
+$$
+T\log e+(1-T)\log(1-e).
+$$
+
+Because T is either zero or one, it acts like a switch:
+
+- Actual A, T = 1: the expression becomes log(e); the second term is multiplied by zero.
+- Actual B, T = 0: it becomes log(1−e); the first term is multiplied by zero.
+
+It simply takes **the logarithm of the probability the model assigns to the treatment actually received**.
+
+| Actual drug | Predicted probability e of A | Probability assigned to the actual drug | Patient's log-likelihood contribution |
+| --- | --- | --- | --- |
+| A | 0.8 | 0.8 | log(0.8) ≈ −0.2231 |
+| A | 0.2 | 0.2 | log(0.2) ≈ −1.6094 |
+| B | 0.8 | 0.2 | log(0.2) ≈ −1.6094 |
+| B | 0.2 | 0.8 | log(0.8) ≈ −0.2231 |
+
+Since −0.2231 exceeds −1.6094, a better-fitting model obtains a larger log likelihood. Actual B recipients should not contribute log(e), because e always means the probability of A.
+
+#### 5. Why do likelihoods multiply and log likelihoods add?
+{: #section-69 }
+
+An individual's 0/1 treatment label is a Bernoulli variable. The probability of the observed label can be written $$e^T(1-e)^{1-T}$$: T = 1 leaves e; T = 0 leaves 1−e.
+
+Under the usual conditionally independent Bernoulli model, given patient features, the joint probability of all observed labels multiplies their corresponding probabilities. Holding the data fixed and treating the coefficients as quantities to choose makes this expression a likelihood. It is not the probability that the coefficients are true.
+
+For example, in one hospital Patient 1 actually receives A with model e = 0.8, and Patient 2 actually receives B with model e = 0.3:
+
+$$
+L=0.8\times(1-0.3)=0.56.
+$$
+
+Taking logarithms gives:
+
+$$
+\log L=\log0.8+\log0.7\approx-0.5798.
+$$
+
+Logs turn multiplication into addition, simplify calculation and differentiation, and avoid numerical problems from multiplying many small probabilities. Since log is increasing, maximizing L and maximizing log L give the same optimizing coefficients.
+
+**The Σ in equation (3) counts n from 1 through Nₖ, adding every patient's contribution within that hospital.**
+
+The paper calls this a partial log likelihood. The expression is actually the ordinary Bernoulli LR log-likelihood contribution from one hospital, rather than the risk-set-based Cox partial likelihood.
+
+#### 6. What does software actually do during training?
+{: #section-70 }
+
+Keep patient features and observed T fixed, change π, and recompute probabilities and log likelihood. Optimization finds a more suitable shared coefficient set. It does not independently set each A patient's probability to 1 and each B patient's to 0.
+
+Compare another candidate model for the same two patients. Suppose its coefficients give Patient 1 probability 0.6 and Patient 2 probability 0.4. Its log likelihood is log0.6 + log0.6 ≈ −1.0217, below the earlier −0.5798. Looking only at these two patients' likelihood, the earlier candidate is better.
+
+Software often **minimizes negative log likelihood**, adding a minus sign to equation (3). In this example the loss improves from 1.0217 to 0.5798. This is the summed binary cross-entropy; dividing by the number of people gives average cross-entropy.
+
+To understand update directions, one patient's log-likelihood gradient with respect to the coefficients is (T−e)z. A gradient is a collection of numbers indicating which small coefficient changes increase the score. For the intercept, the corresponding feature entry is 1: an A recipient with e = 0.8 contributes 0.2; a B recipient with e = 0.3 contributes −0.3. Contributions from all patients jointly determine coefficient updates. Gradient ascent maximizes log likelihood, whereas gradient descent minimizes its negative. One patient's contribution cannot determine the direction of the entire coefficient update.
+
+#### 7. What do the two summation levels in the global formula do?
+{: #section-71 }
+
+Abbreviate hospital k's local log likelihood as $$\ell_k(\pi)$$. Equation (4) has the structure:
+
+$$
+\sum_{k=1}^{K}p_k\left[\ell_k(\pi)+L_{reg}(\pi)\right].
+$$
+
+The inner level aggregates patients within a hospital, and the outer level aggregates hospitals. The proportion pₖ = Nₖ/N weights each hospital; these proportions sum to 1.
+
+If hospital 1 has two people and hospital 2 has six, total N = 8, p₁ = 0.25, and p₂ = 0.75. A hospital's aggregation weight is not an individual's IPTW: the former organizes model training; the latter adjusts treatment comparisons after model fitting.
+
+**The paper's normalization convention needs checking.** Equation (3) already sums patient contributions. If equation (4) then multiplies that sum by Nₖ/N, each person's data contribution is additionally multiplied by their hospital's proportion. Here, each patient in hospital 2 receives coefficient 0.75, versus 0.25 in hospital 1—a threefold difference.
+
+If individual losses have similar magnitude, a hospital's total contribution then scales like $$N_k^2/N$$. The two-person and six-person hospitals contribute in a 1:9 ratio, versus 1:3 under equal weighting of patients.
+
+A common federated objective that gives patients equal weight is:
+
+$$
+F_k(\pi)=-\frac{1}{N_k}\sum_{n=1}^{N_k}\left[T_n^{(k)}\log e_\pi(z_n^{(k)})+(1-T_n^{(k)})\log(1-e_\pi(z_n^{(k)}))\right],
+$$
+
+$$
+F(\pi)=\sum_k\frac{N_k}{N}F_k(\pi)=-\frac1N\sum_k\ell_k(\pi).
+$$
+
+Average within each hospital first, then aggregate by patient-count proportions: every patient's weight becomes 1/N. Alternatively, directly sum hospital log-likelihood sums without another factor Nₖ/N. Read literally, the printed formula is not this standard equal-patient objective. It may omit a convention that local losses are averaged, but code verification is needed. The distinction matters especially when hospital sample sizes differ. [Original FedAvg paper](https://proceedings.mlr.press/v54/mcmahan17a.html)
+
+#### 8. Federated training does more than add likelihood scores
+{: #section-72 }
+
+An objective says how to score a model; a training algorithm says how to change its coefficients. A general teaching description of FedAvg is:
+
+1. The server sends current shared coefficients to each hospital.
+2. Each hospital starts from that common point and performs several local updates.
+3. Each returns its updated parameters or updates.
+4. The server aggregates them using sample proportions and sends out the next round's shared coefficients.
+
+Suppose the two hospitals return 0.4 and 0.8 for one coefficient. The server's result is 0.25×0.4 + 0.75×0.8 = 0.7. Other coefficient positions are aggregated similarly. Averaging coefficients does not directly average patients' propensity scores; the logistic transformation is nonlinear.
+
+One aggregation round is not an exact solution to the optimum from centralized training on all patients. Local step counts, learning rates, heterogeneity, and convergence affect the process. The local objective supplies a scalar score; updating requires gradients or parameter information. Calculating the global objective does not require sending patient records to the server.
+
+#### 9. Why introduce regularization?
+{: #section-73 }
+
+Hospitals may differ in patient age, disease severity, prescribing habits, and other features, causing local updates to move in different directions. Regularization or proximal constraints limit particular parameter changes to help stabilize optimization. They do not make the true patient distributions identical or prove that unmeasured confounding has disappeared.
+
+For FedProx, let $$\pi_t$$ be the fixed coefficients sent by the server in the current round, and u the local candidate coefficients optimized at hospital k. A standard local objective is:
+
+$$
+\min_u\left\{F_k(u)+\frac{\mu}{2}\|u-\pi_t\|^2\right\}.
+$$
+
+$$F_k$$ is the local mean negative log likelihood. The following nonnegative penalty discourages local coefficients from moving too far from this round's shared starting point. During local optimization, $$\pi_t$$ is fixed and u varies. The paper's abbreviated π and $$\pi^{(k)}$$ do not clearly display these roles and round dependence.
+
+The expression $$\|u-\pi_t\|^2$$ sums the squared coefficient differences. For two displayed coefficients, global (0.4, 0.8) and local (0.6, 0.7) give squared distance (0.6−0.4)² + (0.7−0.8)² = 0.05. With μ = 2, the penalty is 2/2 × 0.05 = 0.05.
+
+μ controls constraint strength: larger values discourage departing from the global starting point more strongly; μ = 0 removes the penalty. Dividing by 2 simplifies differentiation, giving derivative $$\mu(u-\pi_t)$$; it does not represent two hospitals. A proximal penalty shrinks toward the global starting point, unlike ordinary ridge's shrinkage directly toward zero. [Original FedProx paper](https://arxiv.org/abs/1812.06127)
+
+#### 10. The printed plus sign cannot be interpreted without the optimization direction
+{: #section-74 }
+
+The screenshot adds a positive squared distance to log L. If maximized literally, that term rewards distance, contrary to the intended constraint. The consistent penalty conventions are:
+
+- **Maximize log likelihood minus a nonnegative penalty.**
+- **Minimize negative log likelihood plus a nonnegative penalty.**
+
+Suppose two models both have log likelihood −10 and penalties 1 and 5. Incorrectly adding and maximizing gives −9 and −5, favoring the model farther away. Subtraction gives −11 and −15, correctly favoring the smaller distance.
+
+Treat the screenshot as a formulation needing clarification of its sign convention. Do not implement “log L plus positive squared penalty” as a maximization objective literally. This observation does not establish the same error in the authors' code.
+
+#### 11. How should the three algorithm descriptions be read?
+{: #section-75 }
+
+**FedAvg:** The paper sets $$L_{reg}=0$$. Intuitively, there is no such explicit penalty: hospitals update locally, and the server computes a weighted average. This does not mean stopping training or having no hyperparameters.
+
+**The screenshot's squared difference between adjacent rounds:** $$\pi_t^{(k)}-\pi_{t-1}^{(k)}$$ subtracts a hospital's previous-round coefficients from its current-round coefficients. Its squared norm measures the size of the change. Used consistently as a penalty, it can discourage large jumps between rounds. Here t indexes training rounds, not patient follow-up time or treatment occasions in longitudinal IPTW.
+
+**This is not the standard definition of FedAvgM.** FedAvgM's central feature is server momentum: the server retains some information from previous aggregated updates, combines it with the present update, and updates the shared model. It is not simply an adjacent-parameter squared penalty added to local loss. Read the paper's direct identification of the two cautiously. [Original FedAvgM paper](https://arxiv.org/abs/1909.06335)
+
+**FedProx:** Local optimization penalizes departure from the current global starting point, as in the squared-distance example above. It encourages, rather than guarantees, equality of local and global coefficients.
+
+#### 12. Connecting back to IPTW
+{: #section-76 }
+
+After multiple training rounds, obtain global coefficients $$\widehat\pi$$. Each hospital inserts local patients' baseline z to calculate $$e_{\widehat\pi}(z)$$. For a final e = 0.8, ordinary IPTW is 1.25 for an A recipient and 5 for a B recipient. Next assess balance and weights, then undertake appropriate outcome analysis.
+
+| Easily confused quantity | What it controls or represents |
+| --- | --- |
+| π | LR coefficients mapping features to probabilities |
+| pₖ = Nₖ/N | Hospital aggregation proportion |
+| e(z) | One patient's probability of A |
+| Individual IPTW | A patient's contribution to treatment-effect analysis |
+| μ | Strength of the proximal penalty |
+| t | Federated training round |
+
+Source check: [Li et al. (2025), methods equations (3)–(4) and Box 1](https://www.nature.com/articles/s41746-025-01803-y). The normalization and sign issues above are mathematical checks of the printed formulas. Their implementation requires a separate code review.
+
+### 5.17 Unpacking the federated weighted Cox formulas: Equations (5)–(9)
+{: #section-77 }
+
+**Continuous beginner route:** [Ordinary Cox → weighted Cox in TTE → federated Cox]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-12). Use one example to understand ordinary Cox, add IPTW, and then move to local risk sets and parameter aggregation across hospitals.
+
+#### Original figures
+{: #section-101 }
+
+![Cox hazard function and unweighted partial likelihood](/assets/causal-inference/tte-extension/li-2025-cox-5-6.png)
+
+![Weighted Cox and the federated objective](/assets/causal-inference/tte-extension/li-2025-cox-7-9.png)
+
+![Site weights and regularization](/assets/causal-inference/tte-extension/li-2025-cox-aggregation.png)
+
+We unpack these expressions using a teaching example of time from initiation of drug A or B to all-cause death. First read [Survival analysis from zero]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-1). These numbers are not the paper’s results. The formula structure was checked against the journal webpage; the implementation code has not been audited.
+
+#### 1. The prediction target changes: from treatment choice to the rate of events
+{: #section-78 }
+
+The preceding LR model maps baseline characteristics to the probability of receiving drug A, from which IPTW is calculated. Cox instead maps treatment and selected covariates to the instantaneous death rate at time t among people who have not yet died. LR coefficients π and Cox coefficients β are different parameter sets, with different training labels and objectives.
+
+Here t denotes patient follow-up time. In the preceding federated parameter subscripts, t denoted a training round. These meanings must be kept separate.
+
+#### 2. Equation (5): h(t|z) = h₀(t) exp(βᵀz)
+{: #section-79 }
+
+The hazard h(t|z) is the instantaneous event rate at time t, conditional on remaining event-free until then. For example, if h = 0.02 per month, over a very short interval of 0.1 month with an approximately constant rate, event probability is approximately 0.02 × 0.1 = 0.002. This is not the probability of dying by t, nor does it mean a fixed 2% dies every month. A rate need not be below 1.
+
+The baseline hazard h₀(t) is the model’s rate when all input variables equal zero, and may change over time. “Baseline” here does not mean the instant treatment begins, or a constant rate. Covariates can be centered, so an all-zero input is a model reference rather than necessarily a real “zero-year-old patient.”
+
+The expression βᵀz multiplies each coefficient by its corresponding input and sums the products; superscript T denotes transposition. The positive quantity exp(βᵀz) is a multiplier of the baseline hazard, **not the LR probability e(z)**. Here exp is the exponential function, while e(z) names the propensity-score function.
+
+The paper uses z for Cox inputs in general. This notation alone does not establish that they are exactly the same inputs used in baseline LR. To estimate an A/B treatment HR, the Cox design matrix must include a treatment indicator or an equivalent treatment parameterization.
+
+For the simplest comparison after IPTW, we use a working model containing only treatment indicator A: A=1 for drug A and A=0 for drug B. Write $$h(t\mid A)=h_0(t)\exp(\beta_A A)$$. Thus $$h_B(t)=h_0(t)$$ and $$h_A(t)=h_0(t)\exp(\beta_A)$$, giving $$HR=\exp(\beta_A)$$. If $$\beta_A=\log(0.5)$$, HR=0.5: the model’s hazard among surviving A recipients is half the corresponding hazard among surviving B recipients. Cumulative mortality probability need not be halved.
+
+If Cox also includes age, diabetes, and other covariates, βᵀz can expand to β_A A + β_age × age + β_D × diabetes + …. The treatment coefficient generally describes an HR conditional on these inputs. Distinguish a weighted, treatment-only marginal working model from a covariate-adjusted conditional model. A causal interpretation of an HR also requires care, particularly because the groups’ survivor populations can differ during follow-up.
+
+#### 3. Recognizing risk sets in one patient table
+{: #section-80 }
+
+Assume baseline multivariable LR has already produced propensity scores; we do not fit another LR here. This four-person table is a teaching device, not a randomized trial or an adequate sample for a substantive study.
+
+| Patient | Actual drug | Follow-up record, months | LR probability of drug A | Unstabilized IPTW |
+| --- | --- | --- | --- | --- |
+| Person 1 | A | Dies at month 2 | 0.5 | 2 |
+| Person 2 | A | Alive at the end of month 6 | 0.5 | 2 |
+| Person 3 | B | Dies at month 4 | 0.8 | 5 |
+| Person 4 | B | Last confirmed alive at month 3, then lost to follow-up | 0.5 | 2 |
+
+Immediately before the month-2 death, all four patients remain observed and alive: the risk set is {Person 1, Person 2, Person 3, Person 4}. Person 1 belongs to the risk set immediately before their own death.
+
+Person 4 is lost at month 3 and leaves subsequent risk sets, but their earlier information remains. Immediately before the month-4 death, the risk set is {Person 2, Person 3}: Person 1 has died and Person 4 has been lost.
+
+In $$R_i^{(k)}$$, i indexes an event time and k indexes a hospital. E is the number of distinct event times: here E=2, with t₁=2 and t₂=4. It is neither the six-month horizon nor the four patients. Event-time and patient indices differ; Equation (6)’s use of i as shorthand for the event patient can obscure this distinction.
+
+#### 4. Equation (6): given an event now, who is the event patient?
+{: #section-81 }
+
+Without tied event times, one event contributes:
+
+$$
+\frac{\exp(\beta^Tz_{\mathrm{event}})}{\sum_{j\in R_i}\exp(\beta^Tz_j)}.
+$$
+
+The numerator is the actual event patient’s relative hazard. The denominator sums relative hazards over all patients j in risk set R_i. Under the Cox model, this is the event-identity contribution conditional on an event occurring at that time—not the patient’s probability of dying by that time.
+
+Why does h₀(t) disappear? Within a risk set, the model gives everyone a common baseline hazard, which cancels between numerator and denominator. We can therefore estimate β without first specifying h₀(t)’s shape: this is central to partial likelihood. Predicting an entire survival curve still requires baseline cumulative hazard information; h₀(t) has not ceased to exist.
+
+Let $$r=\exp(\beta_A)$$ denote a candidate HR. Try r=0.5: each A patient has relative hazard 0.5 and each B patient has relative hazard 1.
+
+At month 2, the denominator is 0.5+0.5+1+1=3. Person 1’s numerator is 0.5, giving a contribution of 1/6.
+
+At month 4, only Person 2 and Person 3 remain. The denominator is 0.5+1=1.5, and Person 3’s numerator is 1, giving 2/3.
+
+Π means multiply all the contributions, so the unweighted partial likelihood is (1/6) × (2/3) = 1/9. These are conditional event-identity contributions, **not the survival probabilities multiplied in Kaplan–Meier estimation**.
+
+For arbitrary r, this table gives $$[r/(2r+2)]\times[1/(r+1)]$$. Software varies β_A, and therefore r, to find a larger partial likelihood. Evaluating it once does not estimate the HR.
+
+#### 5. Equation (7): why does IPTW appear twice?
+{: #section-82 }
+
+Temporarily suppress hospital and tied-event indices and examine one event:
+
+$$
+\left[\frac{\exp(\beta^Tz_{\mathrm{event}})}{\sum_{j\in R_i}w_j\exp(\beta^Tz_j)}\right]^{w_{\mathrm{event}}}.
+$$
+
+**First, w_j appears in the denominator.** Every person still in the risk set contributes their relative hazard multiplied by their own weight, forming a weighted risk set.
+
+**Second, the event weight appears as the exponent outside the brackets.** The event patient belongs to the denominator, but their observed event also requires a weighted contribution. Since $$\log(a^w)=w\log(a)$$, taking logs multiplies this event’s log contribution by w. The exponent is not a dose, w actual deaths, or an instruction to interpret a death probability raised to a power.
+
+Weighting only the denominator omits the event contribution’s weight; weighting only the event omits risk-set weighting. Weights describe statistical contributions rather than new real patients.
+
+The absence of w from the paper’s numerator is not necessarily an error. Including the event weight there adds $$w_{\mathrm{event}}\log w_{\mathrm{event}}$$ after taking logs. When propensity-score weights are fixed during Cox optimization, that term does not depend on β and does not change its optimum. The printed formula can therefore be viewed as a weighted partial-likelihood objective with such constants omitted. Each weighted fraction should not automatically be read as a normalized event-identity probability.
+
+#### 6. Weighting the four-person example step by step
+{: #section-83 }
+
+Continue evaluating the candidate HR r=0.5.
+
+At month 2, Person 1 contributes 2×0.5=1 to the weighted risk set, Person 2 contributes 1, Person 3 contributes 5×1=5, and Person 4 contributes 2×1=2: total 9. Event patient Person 1 has weight 2, so:
+
+$$
+\text{Month-2 contribution}=\left(\frac{0.5}{9}\right)^2.
+$$
+
+At month 4, the risk set contains only Person 2 and Person 3. Its denominator is 2×0.5+5×1=6. Event patient Person 3 has weight 5:
+
+$$
+\text{Month-4 contribution}=\left(\frac{1}{6}\right)^5.
+$$
+
+Multiply the contributions to obtain the weighted partial likelihood at this candidate HR. Its log form is easier to read:
+
+$$
+\ell_w=2[\log0.5-\log9]+5[\log1-\log6].
+$$
+
+For a general candidate r:
+
+$$
+\ell_w(r)=2[\log r-\log(4r+7)]-5\log(2r+5).
+$$
+
+Maximizing this curve produces the fitted value. The unweighted optimum in this example is r=1; the weighted optimum is approximately r=0.8982. This miniature example checks the formula; four records cannot establish a credible treatment effect. Weighting does not guarantee that an HR will move in a particular direction.
+
+#### 7. D, q, and nested products: multiple events at the same time
+{: #section-84 }
+
+$$\mathcal D_i^{(k)}$$ is hospital k’s set of event patients at time t_i; $$|\mathcal D_i^{(k)}|$$ is its size. q enumerates people within that set. For example, if two people die at month 4, q takes values 1 and 2.
+
+Equation (7)’s inner product multiplies contributions from event patients at the same time; the outer product multiplies across distinct event times. An empty event set contributes a product of 1. People who remain at risk still enter denominators for that hospital’s other events.
+
+The screenshot repeatedly uses the same complete risk-set denominator for tied events. Its structure is a **Breslow-type treatment of ties**, rather than an exact formula universally used by every Cox implementation. Efron, Breslow, and exact methods are different choices. See the [official R survival documentation](https://stat.ethz.ch/R-manual/R-devel/library/survival/html/coxph.html).
+
+#### 8. Equation (8): multiply hospital contributions without pooling risk sets
+{: #section-85 }
+
+Ignoring regularization and additional hospital weights, Equation (8) has the structure $$L(\beta)=\prod_k L^{(k)}(\beta)$$. Every hospital uses the same coefficient vector β, constructs its own local event contributions, and these are multiplied. Taking logs yields $$\sum_k\ell_k(\beta)$$.
+
+**The denominator remains R_i^(k), the risk set within one hospital.** When hospital 1 has an event, hospital 2’s at-risk patients do not enter hospital 1’s denominator under this expression.
+
+This structure corresponds to within-hospital comparisons with shared coefficients, as in a hospital-stratified Cox model. It is not the same as putting all patients into a single unstratified Cox model. A stratified model can have hospital-specific baseline hazards h₀ₖ(t) and common β; a pooled unstratified model instead uses a common risk set across hospitals at each event time. The product of local contributions can correspond to a centralized, hospital-stratified objective, although additional weighting, regularization, or finite-round optimization can further change results.
+
+Shared β means jointly estimating model coefficients, not averaging independently estimated hospital HRs or assuming identical baseline mortality rates everywhere. See the [official explanation of stratified Cox models](https://stat.ethz.ch/R-manual/R-devel/library/survival/html/coxph.html).
+
+#### 9. Equation (9): unpack the federated objective from one patient outward
+{: #section-86 }
+
+![Equation (9): the federated weighted Cox partial log-likelihood objective](/assets/causal-inference/tte-extension/li-2025-cox-eq9-closeup.png)
+
+The paper introduces it as follows:
+
+> Finally, the partial log-likelihood of our federated CoxPH model is shown in Eq. (9).
+
+In plain language, the equation presents the federated Cox proportional hazards model’s partial log-likelihood.
+
+**Start with the operation: select candidate Cox coefficients, calculate weighted event contributions within each hospital, combine them locally, then aggregate using hospital proportions and add the chosen regularization term. Software repeatedly changes the coefficients to find better values.**
+
+The expression is long because it simultaneously represents patients, event times, hospitals, and optimization. Read from the inside rather than memorizing the whole expression. The source’s normalization and penalty-sign conventions require clarification; we first expand the printed formula faithfully, then discuss those issues separately. This is not a code audit.
+
+##### 9.1 Lay out the complete printed expression
+{: #section-87 }
+
+$$
+\log L(\boldsymbol\beta)
+=
+\sum_{k=1}^{K}p_k
+\left\{
+\log\left[
+\prod_{i=1}^{E}
+\prod_{q=1}^{|\mathcal D_i^{(k)}|}
+\left(
+\frac{\exp(\boldsymbol\beta^T\boldsymbol z_{i,q}^{(k)})}
+{\displaystyle\sum_{j\in R_i^{(k)}}w_j^{(k)}\exp(\boldsymbol\beta^T\boldsymbol z_j^{(k)})}
+\right)^{w_{i,q}^{(k)}}
+\right]
++L_{\mathrm{reg}}(\boldsymbol\beta)
+\right\}.
+$$
+
+Inside the braces, log acts on the whole product. L_reg is outside that log but remains inside the braces multiplied by hospital weight p_k. **This is neither log(product + L_reg) nor an expression with the hospital proportion inside the log.**
+
+| Symbol | Reading | What does it index or represent? |
+| --- | --- | --- |
+| K, k | Total hospitals, hospital k | Hospitals |
+| E, i | Number of distinct event times, event-time index i | Event times during follow-up |
+| $$R_i^{(k)}$$ | Hospital k’s risk set immediately before t_i | People still observed and event-free |
+| $$j\in R_i^{(k)}$$ | Iterate over patient j in the risk set | All at-risk patients, not only event patients |
+| $$\mathcal D_i^{(k)}$$ | Hospital k’s event set at t_i | People who actually die then |
+| $$\lvert\mathcal D_i^{(k)}\rvert$$ | Number of people in the set | Two if two people die simultaneously |
+| q | The q-th event patient in that set | Distinguishes patients with the same event time |
+| $$z_{i,q}^{(k)},z_j^{(k)}$$ | Event-patient and risk-set-patient model inputs | For example, the A/B indicator and selected covariates |
+| β | Cox coefficient vector | Parameters to estimate, not LR coefficients π |
+| w | One patient’s IPTW | Magnitude of a patient’s contribution |
+| $$p_k=N_k/N$$ | Hospital sample proportion | Hospital-level contribution, not IPTW |
+| L_reg | Regularization term | Additional parameter constraint; see the sign convention below |
+
+The source uses E for event times generally. One interpretation uses the combined grid of event times across hospitals: if a hospital has no event at a time, its D set is empty and the inner product equals 1. Enumerating each hospital’s own event times is also possible, provided that the appropriate local risk sets are used.
+
+##### 9.2 Innermost term: what number is exp(βᵀz)?
+{: #section-88 }
+
+βᵀz multiplies corresponding coefficients and variables and sums them. With treatment A and age, for example, βᵀz = β_A A + β_age × age. Superscript T is transposition, not a treatment label; exp is the exponential function.
+
+For hand calculation, retain the weighted treatment-only Cox working model: A=1 for drug A and A=0 for drug B. Let $$r=\exp(\beta_A)$$, the candidate model’s HR:
+
+- Drug A patient: $$\exp(\beta_A\times1)=r$$.
+- Drug B patient: $$\exp(\beta_A\times0)=1$$.
+
+Try r=0.5, corresponding to candidate $$\beta_A=\log(0.5)\approx-0.6931$$. This is **a trial parameter used to evaluate the model, not a fitted result**. Relative hazards are 0.5 for A and 1 for B; that 0.5 is neither a propensity score nor a death probability.
+
+##### 9.3 The denominator: the current weighted risk set, not everyone enrolled
+{: #section-89 }
+
+Temporarily name the denominator $$B_i^{(k)}(\beta)$$:
+
+$$
+B_i^{(k)}(\beta)
+=\sum_{j\in R_i^{(k)}}w_j^{(k)}\exp(\beta^Tz_j^{(k)}).
+$$
+
+B is simply a convenient name for the denominator, not an indicator for drug B. Read the calculation in order: select someone in the risk set → calculate their relative hazard → multiply by IPTW → sum over all people in that risk set.
+
+Reuse the four-person table, now assigned to hospital 1. Baseline multivariable LR has already provided PS values; these teaching scores were not fitted from the four records alone.
+
+| Patient | Drug | Follow-up record | LR probability of drug A | IPTW w |
+| --- | --- | --- | --- | --- |
+| Person 1 | A | Dies at month 2 | 0.5 | 2 |
+| Person 2 | A | Alive at the end of month 6 | 0.5 | 2 |
+| Person 3 | B | Dies at month 4 | 0.8 | 5 |
+| Person 4 | B | Last confirmed alive at month 3, then lost to follow-up | 0.5 | 2 |
+
+At month 2, all four are in the risk set immediately before the death. At candidate r=0.5:
+
+$$
+B_1^{(1)}=2\times0.5+2\times0.5+5\times1+2\times1=9.
+$$
+
+At month 4 only Person 2 and Person 3 remain:
+
+$$
+B_2^{(1)}=2\times0.5+5\times1=6.
+$$
+
+Person 1 has died and Person 4 has been lost, so neither enters the month-4 denominator. Event patients still belong to the risk set immediately before their events: Person 1 at month 2 and Person 3 at month 4 each enter their own denominator.
+
+##### 9.4 The numerator: the actual event patient’s relative hazard
+{: #section-90 }
+
+Person 1 dies at month 2 and, as a drug A patient, has relative hazard 0.5: the fraction is 0.5/9.
+
+Person 3 dies at month 4 and, as a drug B patient, has relative hazard 1: the fraction is 1/6.
+
+The numerator gives the actual event patient’s relative hazard; the denominator gives the weighted total relative hazard of everyone at risk in that hospital at that time. This is not deaths divided by enrollment, nor a treatment probability.
+
+The event contribution itself has not yet been weighted. That next layer must not be omitted.
+
+##### 9.5 The exponent w: the event itself also contributes according to its weight
+{: #section-91 }
+
+Person 1 has weight 2, giving the month-2 contribution:
+
+$$
+\left(\frac{0.5}{9}\right)^2.
+$$
+
+Person 3 has weight 5, giving the month-4 contribution:
+
+$$
+\left(\frac16\right)^5.
+$$
+
+A square or fifth power does not mean that one patient died repeatedly. Its meaning is clearest after taking logs:
+
+$$
+\log(a^w)=w\log a.
+$$
+
+The exponent w multiplies the event’s log contribution by w. A patient therefore contributes in two ways: while at risk, their weight enters the denominator; when an event occurs, their weight also controls the event contribution. Weighting just one location generally does not reproduce this weighted Cox objective.
+
+Be careful with “larger means more important.” When 0<a<1, raising a to a larger power makes the number smaller. This does not mean the patient matters less. Between two candidate coefficient sets, a larger w amplifies the record’s **difference in log scores**. For candidate fractions 0.1 and 0.2, that difference is log 2 with weight 1 and 5 log 2 with weight 5.
+
+Adding the event weight to the numerator would add only w log w to the log expression. For Cox optimization with fixed weights, this additional term does not depend on β and does not change the best β. The printed equation omits such constants; its fractions should not simply be interpreted as individual event probabilities that sum to 1.
+
+##### 9.6 Two products: event patients within a time, then distinct times
+{: #section-92 }
+
+Π means multiply these terms, not add them.
+
+- The inner product over q separately calculates and multiplies the contributions if two people have events at the same time.
+- The outer product over i multiplies the contributions from the first event time, second event time, and so on.
+
+This example has one event patient per time, so each inner product contains one term. Hospital 1’s product at the candidate coefficient is:
+
+$$
+L^{(1)}_w(\beta)=\left(\frac{0.5}{9}\right)^2\left(\frac16\right)^5.
+$$
+
+In a different teaching scenario, suppose two patients a and b have events together, with weights w_a and w_b, relative hazards r_a and r_b, and common denominator B. That time contributes $$(r_a/B)^{w_a}(r_b/B)^{w_b}$$. Its log is $$w_a\log r_a+w_b\log r_b-(w_a+w_b)\log B$$. The screenshot reuses the common denominator, corresponding to Breslow-type tie handling; do not equate this mechanically with other ties algorithms.
+
+##### 9.7 The outer log: turn a product into additive contributions
+{: #section-93 }
+
+Use three identities: log(ab)=log a+log b; log(a^w)=w log a; and log(a/b)=log a−log b. Hospital 1’s score is therefore:
+
+$$
+\ell_1(\beta)=2[\log0.5-\log9]+5[\log1-\log6]\approx-14.739541.
+$$
+
+Here ℓ₁ is shorthand for hospital 1’s log contribution. **It is a score for comparing candidate coefficients, not an HR, p value, or survival probability.**
+
+The complete local log expansion is:
+
+$$
+\ell_k(\beta)=\sum_{i=1}^{E}\sum_{q=1}^{|\mathcal D_i^{(k)}|}
+ w_{i,q}^{(k)}
+\left[
+\beta^Tz_{i,q}^{(k)}
+-\log\left(\sum_{j\in R_i^{(k)}}w_j^{(k)}\exp(\beta^Tz_j^{(k)})\right)
+\right].
+$$
+
+Since log(exp(x))=x, the exponential in the numerator becomes βᵀz. Understand this expanded expression, then return to the product in the screenshot: they are two ways of writing the same local data contribution.
+
+##### 9.8 Add a second hospital and calculate the outermost layer
+{: #section-94 }
+
+Suppose hospital 2 has two patients: Person 5 takes B and dies at month 1; Person 6 takes A and remains alive through month 6. Both have baseline PS 0.5 and IPTW 2. Use the same candidate HR r=0.5.
+
+Hospital 2’s month-1 local risk set contains only Person 5 and Person 6. The denominator is 2×1+2×0.5=3; event patient Person 5 has numerator 1 and weight 2:
+
+$$
+\ell_2(\beta)=2[\log1-\log3]\approx-2.197225.
+$$
+
+Total sample size N=4+2=6, so p₁=4/6=2/3 and p₂=2/6=1/3. **Set regularization to zero and follow the printed expression literally**:
+
+$$
+J_{\mathrm{printed}}(\beta)
+=\frac23\ell_1(\beta)+\frac13\ell_2(\beta)
+\approx -10.558769.
+$$
+
+This global number is the score for candidate r=0.5 under this objective, not a final estimate. J names the complete printed optimization objective, distinguishing it from a likelihood without additional hospital proportions.
+
+Change the coefficient to one corresponding to r=1 and repeat. Hospital 1 scores −14.525341, hospital 2 scores −2.772589, and the printed global objective is −10.607757. Because the score at r=0.5 is higher, the printed objective prefers r=0.5 **among these two candidates**. This does not establish an optimum of exactly 0.5; optimization must continue.
+
+A crucial detail remains: when hospital 2 has its month-1 death, hospital 1’s four patients do not enter its denominator. A risk set pooled across both hospitals would have denominator 9+3=12 at that time, rather than 3. **Aggregating hospital scores does not automatically pool risk sets.**
+
+##### 9.9 L_reg: where is it added, and what does it constrain?
+{: #section-95 }
+
+Temporarily hide the detailed data term. The printed expression has the outer form:
+
+$$
+J_{\mathrm{printed}}(\beta)=\sum_kp_k[\ell_k(\beta)+L_{reg}(\beta)].
+$$
+
+L_reg is an additional parameter constraint, not an event, patient weight, or baseline hazard. If every hospital truly has the same L_reg independent of k, the weights summing to 1 leave one copy after aggregation. A local FedProx penalty, however, normally depends on the local candidate parameters and the current round’s global reference, and should be expressed with the relevant hospital and round dependence.
+
+For one local treatment coefficient, suppose the server sends reference β_ref=−0.3, the local candidate is u=−0.7, and μ=2. The nonnegative penalty is:
+
+$$
+P_k(u)=\frac\mu2(u-\beta_{ref})^2=\frac22(-0.7+0.3)^2=0.16.
+$$
+
+At u=−0.4, the penalty is only 0.01. Local fitting must trade off fit to the data against departing from the common starting point. During this local update β_ref is fixed, while u is optimized.
+
+**The sign matters.** If ℓ is a log-likelihood to maximize, maximize ℓ−P. If minimizing negative log-likelihood, use −ℓ+P. The screenshot’s “+L_reg” acts as a penalty only under a consistent sign convention. Together with the preceding description of L_reg as a positive squared distance, one cannot literally maximize “ℓ + positive distance”: that would reward divergence. This flags the printed convention; it does not establish that the code contains the same problem.
+
+##### 9.10 Why hospital proportions p_k and patient weights w are different
+{: #section-96 }
+
+| Comparison | Patient IPTW w | Hospital proportion p_k |
+| --- | --- | --- |
+| Origin | Patient’s PS and actual treatment | Hospital enrollment divided by total enrollment |
+| Location | Risk-set denominator and event exponent | Outside the complete hospital objective |
+| Immediate role | Adjust patient contributions to the treatment comparison | Determine relative influence of hospital objectives |
+| Directly interchangeable? | No | No |
+
+Report these weights’ origins separately. For a fixed within-hospital constant, some ways of incorporating p_k into patient weights can yield the same data-term optimization up to parameter-independent constants. Regularization and variance still require corresponding treatment; that algebra does not make the weights conceptually identical.
+
+Equation (8) multiplies hospital likelihoods, whose log is simply $$\sum_k\ell_k$$. Adding p_k in Equation (9) gives a different weighted objective, not merely an algebraic rewrite. If each local ℓ_k already sums events, multiplying by hospital sample proportion changes hospital influence again. Whether a local term is first averaged, and its averaging denominator, require checking the implementation. Do not silently insert a denominator and present it as the authors’ actual procedure.
+
+##### 9.11 An objective function is neither a training algorithm nor a reported effect
+{: #section-97 }
+
+We just calculated a score for a given β. Training instead involves a sequence: the server sends parameters → hospitals update locally from the shared starting point → parameters or updates return → the server aggregates → another round begins. Averaging a few likelihood scores alone does not produce an HR; optimization needs parameter and gradient information or equivalent update machinery.
+
+After obtaining treatment coefficient $$\widehat\beta_A$$, compute $$HR=\exp(\widehat\beta_A)$$. A 95% CI also requires an appropriate standard error. Patient records, PS weights, and timing are treated as given during the current Cox coefficient update; that does not eliminate weight-estimation uncertainty from inference for the complete study.
+
+**Restate Equation (9) in order:** relative hazard → local weighted risk-set denominator → event contribution and its weight → all events at that time → all local event times → logarithm → regularization convention → hospital-proportion aggregation. Keep three interpretation boundaries explicit: local risk sets, local normalization, and the penalty sign.
+
+##### 9.12 Self-check: five questions about the nested structure
+{: #section-98 }
+
+1. Why is Person 4 absent from the month-4 denominator? Person 4 was lost at month 3 and is no longer in the observed risk set.
+2. Where is Person 1’s weight at month 2? In both the weighted denominator and the exponent of Person 1’s own event contribution.
+3. What does q do when two patients die simultaneously? It enumerates their separate event contributions.
+4. Is p_k a treatment probability? No: it is a hospital sample proportion.
+5. Does calculating a negative global score produce an HR? No: optimize β, then exponentiate the treatment coefficient.
+
+#### 10. Iteration, HRs, and confidence intervals
+{: #section-99 }
+
+The server sends current β, hospitals update using local risk sets and patient weights, and the server aggregates parameters for the next round. Defining an objective does not prove that finitely many rounds of parameter averaging attain its exact optimum. If the model includes treatment coefficient β_A, the final HR is $$\exp(\widehat\beta_A)$$.
+
+A 95% CI requires uncertainty estimation. A common Wald form is $$\exp[\widehat\beta_A\pm1.96\,SE(\widehat\beta_A)]$$, but the standard-error calculation must suit IPTW, clustering, and the federated design. Weighted contributions are not newly observed independent patients. Equations (5)–(9) alone do not establish how PS-estimation uncertainty or hospital dependence was handled; those require examining the inference implementation.
+
+Baseline IPTW does not automatically address informative censoring. Assess the Cox proportional-hazards assumption, measured balance, overlap, and weight stability separately. An HR is not a risk ratio and cannot by itself provide an absolute risk at a chosen year.
+
+Source comparison: [Li et al. (2025), Federate Cox Proportional Hazards Model, Equations (5)–(9)](https://www.nature.com/articles/s41746-025-01803-y). The discussion of Equations (8)–(9) and local risk sets is a mathematical reading of the printed formulas, not a code-audit result.
+
+
+
+### 5.18 How do competing events affect AD risk, Cox models, and IPTW?
+{: #section-100 }
+
+See [Competing Events and Adaptations of Classical Methods]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-47). The detailed explanation starts with death versus loss to follow-up, calculates 1−KM and AJ/CIF by hand, and then addresses cause-specific Cox, Fine–Gray, weighted AJ, PSM, and the g-formula. It also distinguishes the TTE total-effect question from a hypothetical question in which death is eliminated.
+
+## 6. References and source articles
 {: #section-39 }
 
 1. Zang et al. (2023). [Journal article](https://doi.org/10.1038/s41467-023-43929-1). Locations: PDF pages 1–4 and 10–12.

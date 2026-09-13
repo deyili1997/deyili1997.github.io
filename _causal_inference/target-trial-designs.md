@@ -10,7 +10,7 @@ date: "2026-09-09"
 last_modified_at: "2026-09-09"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. Comparison table", "anchor": "section-1"}, {"title": "2. Three questions for selecting design components", "anchor": "section-2"}, {"title": "3. How do the two forms of “repeated records” differ?", "anchor": "section-3"}, {"title": "4. Connections to ITT, PP, and three time-related biases", "anchor": "section-4"}, {"title": "5. Judgments required by every design", "anchor": "section-5"}, {"title": "6. Self-check", "anchor": "section-6"}]
-previous_note: "/causal-inference/inverse-probability-weighting/"
+previous_note: "/causal-inference/weighted-survival-analysis/"
 next_note: "/causal-inference/active-comparator-new-user/"
 ---
 

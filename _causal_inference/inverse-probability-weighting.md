@@ -7,11 +7,11 @@ order: 14
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
-toc: [{"title": "1. Continue with the same 1,000-person table", "anchor": "section-1"}, {"title": "2. Step 1: Estimate the propensity score", "anchor": "section-2"}, {"title": "3. Step 2: Invert the probability of the action actually received", "anchor": "section-3"}, {"title": "4. Step 3: Weight both people and deaths", "anchor": "section-4"}, {"title": "5. Why does the weighted-risk formula have this form?", "anchor": "section-5"}, {"title": "6. Steps for baseline IPW in an actual study", "anchor": "section-6"}, {"title": "7. Why multiply weights across time for sustained strategies?", "anchor": "section-26"}, {"title": "8. IPTW and IPCW: Do not confuse the probabilities", "anchor": "section-29"}, {"title": "9. Are IPW and a marginal structural model the same thing?", "anchor": "section-31"}, {"title": "10. Large weights, stabilized weights, and positivity", "anchor": "section-32"}, {"title": "11. What assumptions does IPW require?", "anchor": "section-35"}, {"title": "12. Review alongside the g-formula", "anchor": "section-36"}, {"title": "13. Self-check", "anchor": "section-37"}, {"title": "References", "anchor": "section-38"}]
+toc: [{"title": "1. Continue with the same 1,000-person table", "anchor": "section-1"}, {"title": "2. Step 1: Estimate the propensity score", "anchor": "section-2"}, {"title": "3. Step 2: Invert the probability of the action actually received", "anchor": "section-3"}, {"title": "4. Step 3: Weight both people and deaths", "anchor": "section-4"}, {"title": "5. Why does the weighted-risk formula have this form?", "anchor": "section-5"}, {"title": "6. Steps for baseline IPW in an actual study", "anchor": "section-6"}, {"title": "6.1 A complete multivariable logistic regression example: Initiating drug A versus drug B", "anchor": "section-15"}, {"title": "Step 6: Check weighted balance on the four baseline variables", "anchor": "section-22"}, {"title": "6.2 IPTW and PSM: One propensity score, two ways to construct comparable groups", "anchor": "section-48"}, {"title": "7. Why multiply weights across time for sustained strategies?", "anchor": "section-26"}, {"title": "8. IPTW and IPCW: Do not confuse the probabilities", "anchor": "section-29"}, {"title": "9. Are IPW and a marginal structural model the same thing?", "anchor": "section-31"}, {"title": "10. Large weights, stabilized weights, and positivity", "anchor": "section-32"}, {"title": "11. What assumptions does IPW require?", "anchor": "section-35"}, {"title": "12. Review alongside the g-formula", "anchor": "section-36"}, {"title": "13. Self-check", "anchor": "section-37"}, {"title": "References", "anchor": "section-38"}]
 previous_note: "/causal-inference/g-formula/"
-next_note: "/causal-inference/target-trial-designs/"
+next_note: "/causal-inference/longitudinal-iptw/"
 ---
 
 Study guide: [Causal Inference Study Guide]({{ "/causal-inference/" | relative_url }}). For notation, see [Reading Causal Formulas: From Symbols to Questions]({{ "/causal-inference/reading-causal-formulas/" | relative_url }}); every formula below is also explained where it appears.
@@ -31,7 +31,7 @@ When exchangeability, positivity, consistency, and related conditions hold and t
 
 IPW means inverse probability weighting. IPTW is inverse probability of treatment weighting; IPCW is inverse probability of censoring weighting, which uses the inverse probability of **remaining uncensored**. They address different selection processes.
 
-**On a first reading, calculate the tables in §1–4, focusing on “weighting both people and deaths.”** Then read the multivariable drug A versus B logistic regression example in §6.1 to connect hand calculations with a research workflow, followed by longitudinal weights in §7–8. Leave the two estimators in §5 and extreme weights and longitudinal stabilization in §10 for a second reading. Stabilized weights are first defined before the table in §6.1.
+**On a first reading, calculate the tables in §1–4, focusing on “weighting both people and deaths.”** Then read the multivariable drug A versus B logistic regression example in §6.1 to connect hand calculations with a research workflow, then use §7 to enter the separate longitudinal IPTW note and return here for censoring weights in §8. Leave the two estimators in §5 and extreme weights and longitudinal stabilization in §10 for a second reading. Stabilized weights are first defined before the table in §6.1.
 
 ## 1. Continue with the same 1,000-person table
 {: #section-1 }
@@ -452,7 +452,41 @@ $$
 
 Read: **how common this person’s actual drug is in the whole cohort, divided by how common it is among people with their baseline characteristics**. The numerator is a marginal proportion without conditioning on individual health; the denominator is a health-conditional probability. They operate at different probability levels. SW_i can be below or above 1.
 
-Why rescale? For ordinary baseline ATE weights using true propensity scores, each group’s weight sum equals total sample size N in expectation, giving expected total weight 2N. Multiplying by each group’s marginal proportion gives expected group totals N×P(Z=1) and N×P(Z=0), summing to N, with expected overall mean weight 1. N is the whole target sample size. Estimated probabilities in actual data need not satisfy these equalities exactly. This changes weighted-data scale, not the number of real patients; weights need not sum to 1.
+**First use a separate 100-person A/B teaching table to see what “rescaling” does.** It has only low- and high-risk categories for hand calculation; it is not the preceding 3,000-person simulation.
+
+| Baseline health | Actually taking A | Actually taking B | Total | Proportion choosing A in this category |
+| --- | ---: | ---: | ---: | ---: |
+| Low risk | 10 | 40 | 50 | 10/50=0.2 |
+| High risk | 30 | 20 | 50 | 30/50=0.6 |
+| Total | 40 | 60 | 100 | Overall A=40%, B=60% |
+
+The target is all 100 people, half low risk and half high risk. Ordinary ATE weights make each drug group represent this target composition:
+
+| Health and drug | Original count | Ordinary weight calculation | Ordinary weighted count | Stabilizing multiplier | Stabilized weighted count |
+| --- | ---: | --- | ---: | --- | ---: |
+| Low risk, A | 10 | 1/0.2=5 | 50 | Overall A proportion, 0.4 | 20 |
+| High risk, A | 30 | 1/0.6=5/3 | 50 | Overall A proportion, 0.4 | 20 |
+| Low risk, B | 40 | 1/0.8=1.25 | 50 | Overall B proportion, 0.6 | 30 |
+| High risk, B | 20 | 1/0.4=2.5 | 50 | Overall B proportion, 0.6 | 30 |
+
+After ordinary weighting, A has 50+50=100 and B also has 100, totaling 200. **These are the contributions through which each group represents all 100 target patients—not 100 additional patients or an error that must be corrected.**
+
+After stabilization, every A weight is multiplied by 0.4, producing a total of 20+20=40. Every B weight is multiplied by 0.6, producing 30+30=60. The combined total returns to 100. The 100 actual records have weights summing to 100, so the mean weight per record is 100/100=1; this does not mean every weight equals 1.
+
+Look at the health proportions *within* each group. Ordinary weighting gives both A and B 50% low-risk and 50% high-risk patients. After stabilization, the low-risk proportion is 20/40=50% in A and 30/60=50% in B. Both still match the whole target population. **Rescaling totals from 100/100 to 40/60 does not restore the original, imbalanced health compositions: 25%/75% in A and approximately 66.7%/33.3% in B.**
+
+Rescaling therefore brings the overall weight scale closer to the original sample while retaining the within-group relative contributions needed here. For a risk normalized by its own group's weight sum, the multiplier cancels between numerator and denominator; either ordinary or stabilized weights can be used. “200 became 100” is not by itself a reason to claim better precision.
+
+<details class="study-callout" markdown="1">
+<summary>Second reading: What does “in expectation” mean?</summary>
+
+This small table uses each stratum's actual count proportions, so the totals 100/100 and 40/60 hold exactly. Multivariable models generally do not produce exact equality in a single sample.
+
+The theoretical expectation means imagining many samples, each of size N, drawn from the same population through the same mechanism; weighting with true propensity scores; and averaging the weight sums across samples. Ordinary A and B weight sums each average N, totaling 2N. After multiplication by the true marginal treatment proportions, they average N×P(Z=1) and N×P(Z=0), totaling N. N is original sample size, and P(Z=1) and P(Z=0) are the population probabilities of choosing A and B, which sum to 1. These are theoretical averages, not promises that every actual sample meets the equalities exactly.
+
+Actual analysis also estimates propensity scores and uses sample group proportions. The mean stabilized weight is therefore often near 1, but exact equality to 1 does not determine whether the method is correct.
+
+</details>
 
 An A patient with ordinary weight 5 receives stabilized weight 5×0.373=1.865; another A patient with weight 2 receives 0.746. Their relative contributions remain 5/2=2.5, so within-group relative weights are unchanged.
 
@@ -484,7 +518,113 @@ The earlier single-variable example produced exactly 1,000 weighted people per g
 #### Step 6: Check weighted balance on the four baseline variables
 {: #section-22 }
 
-This table uses the same weighted-mean/variance SMD definition as the extension reading note: absolute between-group mean difference divided by the square root of the average of the two variances, calculated separately for each variable.
+This section asks whether weighting has done what we need it to do, before Step 7 compares hospitalization outcomes. It uses the same 3,000-person simulation: 1,119 drug A and 1,881 drug B patients. Every number is simulated for teaching. **We are examining pretreatment characteristics, not testing whether drug A works.**
+
+##### 6.1 Why check? Calculating weights does not make the groups comparable by itself
+{: #section-39 }
+
+A and B were not randomly assigned. The original A group is older, more frequently diabetic, and sicker; these differences may affect both drug choice and hospitalization.
+
+Logistic regression estimates treatment probabilities from the features and model form supplied. It may omit important relationships, use an inappropriate form, or encounter data without comparable patients. Obtaining a numerical weight does not establish that these problems are solved.
+
+Before looking at effectiveness, therefore, check three different things:
+
+| Diagnostic purpose | What does it ask? | Main methods |
+| --- | --- | --- |
+| Baseline balance | After weighting, are age, health, and history distributions more similar between groups? | Weighted means/proportions, SMDs, and distribution checks |
+| Data overlap | Do both A and B contain observations for patients with similar treatment propensities? | Group-specific PS distributions, sparse intervals, and individual histories |
+| Weight concentration | Does the result depend on a few patients with extremely large weights? | Weight distributions, tail contributions, and ESS |
+
+These checks cannot replace one another. Means may appear balanced because one or two patients carry much of a group's representation. Equal means can also conceal different age distributions.
+
+##### 6.2 First method: Understand weighted means and proportions
+{: #section-40 }
+
+A **mean** is an average level, such as average age in group A. Everyone contributes equally to an ordinary mean; in a weighted mean, each person contributes according to the previously calculated weight.
+
+Take a separate three-person example with ages 60, 70, and 80 and weights 1, 1, and 2. The ordinary mean is 70 years; the weighted mean is:
+
+$$
+(60\times1+70\times1+80\times2)/(1+1+2)=72.5\text{ years}.
+$$
+
+Nobody's age changes; the 80-year-old contributes twice as much. Likewise, a change in this study's weighted mean age reflects statistical contributions, not patients becoming younger.
+
+The general formula is:
+
+$$
+\mu_w=\frac{\sum_i w_i x_i}{\sum_i w_i}.
+$$
+
+$$\mu_w$$ is the weighted mean; $$i$$ indexes patients; $$x_i$$ is one baseline characteristic for that patient; and $$w_i$$ is the diagnostic weight, which can be the stabilized $$SW_i$$ defined earlier. $$\sum$$ means addition across people. Calculate A's mean using only A patients, and B's using only B patients; do not pool both into one mean.
+
+**The mean of a binary variable is a proportion.** Code recorded diabetes as 1 and its absence as 0. Averaging these indicators gives the diabetes proportion. If the three patients' diabetes indicators are 0, 1, and 1, with the same weights 1, 1, and 2, the weighted proportion is (0×1+1×1+1×2)/4=75%. It is not a direct count ratio, but “sum of weights among patients with diabetes ÷ sum of weights in the whole group.”
+
+Thus “27.31% diabetes after weighting in A” means patients with diabetes contribute approximately 27.31% of A's total weight. It does not mean that diagnoses or original patient counts were changed.
+
+##### 6.3 Why not just inspect the raw difference? SMD provides a common scale
+{: #section-41 }
+
+Age differences are measured in years, diabetes-proportion differences in percentage points, and severity in another score. Their raw magnitudes are not directly comparable. Even a three-year age difference means something different when ages are tightly clustered versus widely spread.
+
+The **standardized mean difference, SMD, divides the between-group mean difference by a scale describing within-group variation in that variable.** Here we take the absolute value to focus on magnitude:
+
+$$
+\mathrm{SMD}=\frac{|\mu_A-\mu_B|}{\sqrt{(s_A^2+s_B^2)/2}}.
+$$
+
+- $$\mu_A,\mu_B$$: the A/B means of one variable; for a binary variable these are proportions.
+- $$|\mu_A-\mu_B|$$: the absolute difference, regardless of which group is higher.
+- $$s_A^2,s_B^2$$: within-group variances, describing how individual values vary around their group mean. These are not standard errors of the means.
+- $$(s_A^2+s_B^2)/2$$: the average variance. Taking its square root returns to the variable's original units, giving the pooled standard-deviation scale used here.
+- Numerator and denominator units cancel, leaving SMD unitless. SMD=0.1 means a mean difference of about one tenth of this standard-deviation scale, not “10% of patients are imbalanced.”
+
+First understand variance and standard deviation. Ages 60, 70, and 80 have ordinary mean 70 and deviations −10, 0, and 10. Squared deviations are 100, 0, and 100. Sample variance=(100+0+100)/(3−1)=100 years², and standard deviation=√100=10 years. Squaring prevents positive and negative deviations from canceling; the square root restores years as the unit.
+
+Use ordinary means and variances before weighting and their weighted counterparts afterward. **The comparison concerns differences in the same baseline variable among the same patients before and after statistical weighting—not patients' changes during follow-up.**
+
+<details class="study-callout" markdown="1">
+<summary>For reproduction: How is this example's weighted variance calculated?</summary>
+
+To match the formula in the paper's extension note, the script uses:
+
+$$
+s_w^2=\frac{\sum_i w_i}{(\sum_i w_i)^2-\sum_i w_i^2}\sum_iw_i(x_i-\mu_w)^2.
+$$
+
+$$\mu_w,x_i,w_i$$ have the same meanings as above; $$s_w^2$$ is weighted variance. Square each person's deviation from the weighted mean, multiply by their weight, and sum. The leading fraction is a sample correction factor. $$(\sum w_i)^2$$ squares the sum, whereas $$\sum w_i^2$$ sums individually squared weights; they differ. When all weights equal 1, the factor becomes 1/(number of people−1), recovering ordinary sample variance.
+
+In the three-person example, $$\mu_w=72.5$$. The weighted sum of squared deviations is 1×(60−72.5)²+1×(70−72.5)²+2×(80−72.5)²=275. Weights sum to 4 and squared weights to 6, so variance=4/(16−6)×275=110 years² and standard deviation≈10.488 years.
+
+Software implementations of SMD differ; some retain the preweighting standard deviation in the denominator. This note's table recalculates weighted variances using the definition above. Align definitions when comparing software and inspect variances themselves, so an inflated denominator is not mistaken for better adjustment of means.
+
+</details>
+
+##### 6.4 Calculate the table's age and diabetes SMDs step by step
+{: #section-42 }
+
+**Age before weighting:**
+
+1. A's mean is 72.016418 years and B's 69.078417, differing by about 2.938 years.
+2. Their variances are approximately 44.617816 and 45.035372 years².
+3. The pooled standard-deviation scale is √[(44.617816+45.035372)/2]≈6.695267 years.
+4. SMD≈2.938/6.695267≈0.439.
+
+**Age after weighting:**
+
+1. A's weighted mean is 70.296075 and B's 70.158071, differing by about 0.138 years.
+2. Weighted variances are approximately 45.643801 and 45.969204 years².
+3. The pooled standard-deviation scale is approximately 6.768050 years.
+4. SMD≈0.138/6.768050≈0.020.
+
+We therefore see more than “0.439 got smaller”: the mean age difference fell from about 2.94 to 0.14 years and also became much smaller relative to the spread of age.
+
+**Diabetes before weighting:** A=0.396783 and B=0.202552, giving a difference of 0.194231, or about 19.42 percentage points. Using binary-variable variances produces a pooled standard deviation of about 0.447868, so SMD≈0.194231/0.447868≈0.434.
+
+**Diabetes after weighting:** A=0.273104 and B=0.274195. Their absolute difference is about 0.001090, or 0.109 percentage points. The pooled standard deviation is about 0.446036, giving SMD≈0.00244, displayed as 0.002 to three decimal places. Calculations use full precision, so working backward from rounded table entries may give slightly different values.
+
+##### 6.5 How should you read the table? Inspect each row, then the overall pattern
+{: #section-43 }
 
 | Baseline variable | A before weighting | B before weighting | Before SMD | A after weighting | B after weighting | After SMD |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -493,9 +633,101 @@ This table uses the same weighted-mean/variance SMD definition as the extension 
 | Mean severity score | 0.509 | −0.122 | 0.653 | 0.101 | 0.114 | 0.012 |
 | Background treatment C use | 38.96% | 44.87% | 0.120 | 41.92% | 42.57% | 0.013 |
 
-Originally A patients are older, more often diabetic, and sicker. All four differences shrink after weighting, but **exact equality was not artificially imposed**. This differs from the perfectly balanced single-variable hand calculation and better reflects finite samples. Mean SMDs alone cannot assess every nonlinear, interaction, or distributional difference.
+A common rough diagnostic reference is **absolute SMD below 0.1**; to follow the paper's definition, this example counts ≤0.1 as meeting its criterion. This is a rule of thumb, not a mathematical boundary proving successful causal identification. Research quality does not fundamentally change between 0.099 and 0.101.
 
-The estimated PS range is about 0.0323–0.9087 and the largest stabilized weight about 6.870; weights were not truncated. Effective sample sizes (ESS) are approximately 818 for A and 1,632 for B, below actual counts. ESS diagnoses weight concentration; it neither creates patients nor replaces standard-error estimation. Real analyses should additionally inspect group-specific PS distributions and support for target strategies; a positive minimum alone does not establish positivity.
+- Age: 0.439→0.020, substantially reducing the original difference and meeting this criterion.
+- Diabetes: 0.434→0.002, substantially reducing the proportion difference and meeting the criterion.
+- Severity: 0.653→0.012, the largest original difference, with closer weighted means.
+- Background treatment C: 0.120→0.013, originally just above the reference threshold and closer after weighting.
+
+An appropriate statement is: **The four measured baseline variables have similar weighted means or proportions, and all four absolute SMDs are below 0.1.** Do not claim that all confounding is eliminated, that randomization has been achieved, or that this table shows drug effectiveness.
+
+Group sizes were not equalized, nor were all means forced to match exactly. Equal means can conceal different distributions: one group could all be age 70, while the other is half 50 and half 90. Both means are 70, but their age distributions differ greatly. Real studies should examine weighted distribution plots, quantiles, variances, and important nonlinear terms and interactions—for example, the proportion both elderly and severely ill. A common Love plot displays each variable's pre- and postweighting SMD alongside a 0.1 reference line, making remaining imbalances easier to locate. It does not replace distribution checks.
+
+Do not use “baseline comparison p>0.05” as a balance criterion. P values also depend on sample size, and nonsignificance does not imply similarity. A high treatment-model AUC is not a pass criterion either: AUC measures discrimination of treatment choice. For principles of mean/proportion, distribution, and overlap diagnostics, see [Austin and Stuart (2015)](https://pmc.ncbi.nlm.nih.gov/articles/PMC4626409/).
+
+##### 6.6 Second check: Do the groups' propensity scores overlap?
+{: #section-44 }
+
+**Purpose: check that the comparison is not being forced between entirely different patients.** The logistic regression's ê(L) predicts A's probability. If a category has high ê but almost nobody actually receives B, little evidence describes its outcomes under B. The analogous problem occurs when low-ê regions contain few A patients.
+
+**Method: separate patients by actual A/B receipt and inspect PS histograms or densities, together with counts in each interval.** With unequal group sizes, within-group proportions or densities help compare shapes, but retain actual counts to avoid concealing sparse data.
+
+The updated script exports these unweighted counts:
+
+| Predicted probability of A | Actual A count | Actual B count |
+| --- | ---: | ---: |
+| 0≤ê<0.2 | 88 | 507 |
+| 0.2≤ê<0.4 | 359 | 839 |
+| 0.4≤ê<0.6 | 368 | 413 |
+| 0.6≤ê<0.8 | 273 | 114 |
+| 0.8≤ê≤1 | 31 | 8 |
+
+**Interpretation:** Both drugs appear in every broad interval, suggesting some overlap. However, only eight B patients are in the highest-probability interval. Examine whether a small number of tail observations carry its representation and whether their baseline histories are comparable with A patients. Counts in five broad bins do not establish positivity within finer regions or joint multivariable histories.
+
+The overall range of 0.0323–0.9087 reports only minimum and maximum estimated values, not where the groups overlap. Logistic outputs generally lie between 0 and 1 by construction, so “all probabilities are positive” does not prove positivity. Group-specific ranges are approximately A=0.0624–0.9037 and B=0.0323–0.9087; overlapping ranges likewise cannot replace interval counts and characteristic checks.
+
+##### 6.7 Third check: Are weights concentrated in a few patients?
+{: #section-45 }
+
+**Purpose: identify heavy dependence on a small number of patients.** For example, an actual B patient with ê=0.99 has characteristics strongly associated with A. Their stabilized B weight is 0.627/(1−0.99)=62.7, so changes to that record could matter greatly.
+
+**Method:** Within A and B, inspect minima, medians, 95th/99th percentiles, maxima, and the share of total group weight held by a small number of the largest weights. The median means about half the weights fall below it; the 95th percentile means about 95% do not exceed it—not a 95% confidence interval. Software quantile interpolation may differ slightly.
+
+| Stabilized weight SW | A group | B group |
+| --- | ---: | ---: |
+| Minimum | 0.413 | 0.648 |
+| Median | 0.809 | 0.884 |
+| 95th percentile | 2.136 | 1.693 |
+| 99th percentile | 3.294 | 2.441 |
+| Maximum | 5.976 | 6.870 |
+| Share of total weight in the largest approximately 1% of records | 4.61% | 3.36% |
+
+The last row rounds 1% of each group's count upward: 12 A and 19 B patients. Those 12 A patients carry about 4.61% of A's total contribution. This describes concentration, not their exact influence on the final effect estimate, which also depends on their outcomes and other factors.
+
+**Interpretation:** Weights are unequal, but “the maximum is below 10” does not establish safety. No fixed acceptable upper limit applies to all studies. Assess tail counts, relative contributions, overlap, ESS, influential patients' characteristics, and sensitivity analyses together. Weights were not truncated here.
+
+##### 6.8 What is ESS, and why is it below the actual count?
+{: #section-46 }
+
+Here, **effective sample size, ESS, is a diagnostic based on weight inequality.** It asks approximately how many records with similar contributions this group resembles in terms of concentration. It neither removes patients nor precisely measures all independent information in the treatment-effect estimator.
+
+Take a separate four-person example. If all weights equal 1, contributions are equal and ESS=4. If weights are 1, 1, 1, and 7, the last patient carries 70% of the total. There are still four people, but information is no longer evenly distributed.
+
+A common formula is:
+
+$$
+\mathrm{ESS}=\frac{(\sum_iw_i)^2}{\sum_iw_i^2}.
+$$
+
+Here $$i$$ ranges only over the drug group, and $$w_i$$ is that patient's weight, possibly $$SW_i$$. The numerator squares the sum of weights; the denominator sums squared individual weights. Squaring makes large weights more prominent in the denominator. Equal weights give ESS equal to the actual group size; for nonnegative weights, greater concentration reduces ESS.
+
+For the unequal four-person example, ESS=(1+1+1+7)²/(1²+1²+1²+7²)=100/52≈1.92. This does not mean only 1.92 people remain; a few records dominate the contributions.
+
+Actual calculations for this simulation are:
+
+- A: stabilized weights sum to about 1,119.987 and squared weights to 1,534.034. ESS≈1,119.987²/1,534.034≈817.7, versus 1,119 actual patients—about 73.1% of the original count.
+- B: stabilized weights sum to about 1,879.687 and squared weights to 2,164.577. ESS≈1,632.3, versus 1,881 actual patients—about 86.8%.
+
+**Interpretation:** A's weights are less even, with a larger relative ESS reduction. These two numbers alone cannot establish adequate precision. Rare outcomes may still provide few events, and repeated records introduce correlation. Formal analysis needs standard errors and confidence intervals appropriate to the estimator.
+
+Multiplying every weight in a group by the same constant multiplies both ESS's numerator and denominator by its square, which cancels. Moving from ordinary to stabilized weights therefore does not recover ESS here. Smaller-looking stabilized weights do not create information.
+
+##### 6.9 What if diagnostics are poor? What can you conclude afterward?
+{: #section-47 }
+
+| Finding | What to examine or do first |
+| --- | --- |
+| An important variable retains a large SMD | Check units, coding, missing-data handling, and baseline measurement timing; assess justified nonlinearities or interactions omitted from the treatment model, revise, and repeat diagnostics |
+| Similar means but different distributions | Examine quantiles, variances, plots, and relevant variable combinations; do not focus solely on passing a mean-SMD threshold |
+| A patient category receives almost exclusively one drug | Assess common eligibility and data support; explicitly revise the target or population if necessary, rather than dropping patients while claiming the original full-population ATE |
+| Extreme weights and sharply reduced ESS | Investigate model/data problems and tail patients; conduct prespecified or transparently reported sensitivity analyses. Truncation changes estimation, requiring new balance and result checks—not merely smaller numbers |
+
+Revise models with attention to design, baseline balance, and data support, not “which model makes the effect significant.” Diagnostics interact: a more complex model is not necessarily better, and reducing extreme weights may sacrifice balance.
+
+**What this step supports in this example:** The four measured variables have much closer means/proportions; broad PS bins show overlap, but few B records occur in the high-probability region; unequal weights reduce A/B ESS to about 818/1,632. We can proceed to report teaching outcome estimates while retaining these limitations. We cannot yet claim complete joint-distribution balance, absence of unmeasured confounding, or that an actual clinical study meets an acceptable evidence standard.
+
+For reproduction, the accompanying script now exports each variance, SMD denominator, group-specific weight quantiles, weight sums and squared sums, PS-bin counts, and tail contributions. There is no need to reconstruct intermediate values from rounded display tables. Step 7 now uses the weights to compare one-year hospitalization outcomes.
 
 #### Step 7: Use these weights to compare one-year risks for A and B
 {: #section-23 }
@@ -540,73 +772,106 @@ Read through Step 5 and manually calculate patients 2 and 4’s weights, then ex
 In the script, a=1 means drug A and a=0 drug B, corresponding to Z here. y1prob/y0prob are simulated hospitalization probabilities under A/B initiation; their names must not be mistaken for treatment/no treatment.
 
 
+### 6.2 IPTW and PSM: One propensity score, two ways to construct comparable groups
+{: #section-48 }
+
+**Inverse probability of treatment weighting (IPTW) assigns different statistical weights to patients. Propensity score matching (PSM) uses propensity scores to find suitable comparators. Neither is the propensity score itself, and neither is the final outcome model.**
+
+#### A common starting point: Multivariable logistic regression predicts A/B choice
+{: #section-49 }
+
+Let Z=1 mean initiating drug A and Z=0 initiating B. L includes age, diabetes, pretreatment severity, and background treatment C use. The propensity score e(L)=P(Z=1 | L) is the probability of receiving A among people with these features, not mortality risk.
+
+Both methods can use the preceding multivariable logistic regression: fit coefficients with Z as the dependent variable and L as predictors, then obtain each person's ê(L). A logistic model does not inherently belong to IPTW or PSM; the distinction is how its scores are subsequently used.
+
+For a separate illustration with hypothetical coefficients, set η=−0.5+0.4×(age−70)/10+0.8×diabetes+0.6×severity−0.3×background treatment C, and ê(L)=1/[1+exp(−η)]. A 75-year-old with diabetes, severity 2, and no C use has η=1.7 and ê(L)≈0.846. The following sections explain how to use this multivariable score. These coefficients are teaching choices, not the preceding simulation's fitted estimates.
+
+#### PSM: Find drug B patients with nearby propensity scores
+{: #section-50 }
+
+Suppose the A patient's score is 0.846 and candidate B patients score 0.840, 0.600, and 0.200. Nearest-neighbor matching first considers 0.840 because it is closest to 0.846.
+
+That does not mean the two patients have identical age, diabetes, or severity. Different feature combinations can produce similar scores. The propensity score's balancing property concerns population distributions, not “two people with the same score are the same person.” After matching estimated scores in a finite sample, examine balance for each baseline variable.
+
+Specify common matching rules in the analysis:
+
+- **1:1 matching:** match each A patient with one B patient; 1:2 and other ratios are possible.
+- **Nearest neighbor:** choose the closest candidate on a specified distance scale, such as the score or its logit. State the scale.
+- **Caliper:** impose a maximum allowable distance. Even the nearest patient may be too far away; do not force the match. For a purely illustrative caliper of 0.02 on the raw score scale, 0.846 can match 0.840 but not 0.600. A value of 0.02 is not a universal recommendation.
+- **With or without replacement:** decide whether the same B patient may be reused for other A patients. Reuse creates no additional patients; analysis must account for contributions and dependence.
+
+Simple 1:1 matching without replacement retains matched patients; unmatched patients do not enter that matched sample's effect estimate. With complete one-year mortality follow-up, compare death proportions in matched A and B groups. With censoring, use survival analysis compatible with the matching design and censoring mechanism. Standard errors should appropriately account for matched-set structure, rather than treating every matched record as independent by default.
+
+#### IPTW: Let the probability of the actual action determine its contribution
+{: #section-51 }
+
+For ordinary baseline IPTW targeting all eligible patients' ATE, A patients receive 1/ê(L) and B patients 1/[1−ê(L)].
+
+With the same score of 0.846, actual A receipt produces weight about 1.18; actual B receipt produces about 6.47. B is rarer among people with these features, so its records receive greater representation.
+
+Baseline IPTW without truncation or restriction to common support usually retains positive weights for all analysis patients. Retaining records does not guarantee precision: a few large weights can substantially reduce ESS. Use the weights to estimate risks, risk differences, or weighted survival quantities, rather than comparing only unweighted outcome proportions.
+
+#### The distinction most often misread: Whose average effect is estimated?
+{: #section-52 }
+
+**ATE** asks how average outcomes differ if all eligible patients initiate A versus all initiate B. The ordinary ATE IPTW weights above target this population.
+
+**ATT** asks how average outcomes differ among actual A initiators if all initiate A versus if those same people initiate B. Common matching designs that use A as the anchor and find B controls for each A patient usually target ATT. If some A patients cannot be matched and are excluded, the supported population may become successfully matched A patients rather than the entire original A group.
+
+IPTW can also target ATT, with A weights 1 and B weights ê(L)/[1−ê(L)]. Matching is likewise not limited to one target or algorithm. Do not memorize “IPTW always means ATE and PSM always means ATT.”
+
+If IPTW's ATE differs from PSM's matched-population effect, the populations and their effects may differ; neither computation is necessarily wrong. Before treating them as cross-validation, align target populations, A/B strategies, outcomes, follow-up, effect scales, and analysis rules.
+
+#### Comparison table
+{: #section-53 }
+
+| Feature | IPTW | Common PSM: A-anchored nearest-neighbor matching |
+| --- | --- | --- |
+| Use of PS | Convert it into each patient's weight | Measure distance between candidate matches |
+| Patient contribution | Determined by the specified weights | Determined by matching inclusion, ratio, and reuse |
+| Must original group sizes be equal? | No | No; 1:1 matching without replacement produces equal matched counts afterward |
+| Target population | Determined by weights, such as ATE or ATT | Usually A patients; clarify the target if A patients are lost |
+| Signs of poor overlap | Extreme weights and reduced ESS | No suitable matches, or residual differences from forced matches |
+| Key diagnostics | Weighted variable-specific SMDs/distributions, PS overlap, weights, and ESS | Matched variable-specific SMDs/distributions, distances, retained counts, and excluded patients' characteristics |
+| Subsequent analysis | Weighted outcome estimation with suitable inference | Outcome estimation and inference compatible with matching structure |
+
+#### A connection: Matching also allocates statistical contributions
+{: #section-54 }
+
+In the simplest 1:1 matching without replacement, selected records can be viewed as contributing 1 and unselected records 0. More complex matching can generate noninteger or reuse weights. These are not automatically the IPTW weights 1/e or 1/(1−e).
+
+Both methods aim to create treatment and comparison populations comparable on baseline features, but assign contributions differently. Do not mechanically apply original IPTW after matching on the assumption that more adjustment is better; combined estimators need a clear target and methodological justification.
+
+#### Shared limitations and choosing between methods
+{: #section-55 }
+
+Both require appropriately defined treatment strategies, no unmeasured confounding, sufficient treatment-choice support in the target population, and suitable model and analysis conditions. Neither repairs an incorrect time zero, immortal time bias, or unmeasured variables. Small SMDs provide evidence of measured balance, not proof of achieved randomization.
+
+In TTE, both belong to confounding adjustment after protocol and cohort definition and before outcome-effect estimation. Define the ATE/ATT question first, then assess available data. With a full-population ATE target and good overlap, ATE IPTW directly corresponds to the target. If A users are the focus and B provides enough comparable patients, matching or ATT weighting may be considered. With severe lack of overlap, neither creates nonexistent comparisons.
+
+Do not choose based on which method gives a significant p value. First assess whether they answer the same question, balance baseline features, have data support, and permit appropriate inference. Neither baseline PSM nor baseline IPTW automatically handles time-varying confounding for sustained strategies.
+
+References: [Austin's propensity-score methods review](https://pmc.ncbi.nlm.nih.gov/articles/PMC3144483/); [Austin on paired and unpaired inference after matching](https://pubmed.ncbi.nlm.nih.gov/21337595/); [Li and colleagues on target populations and balancing weights](https://arxiv.org/abs/1404.1785).
+
+
 ## 7. Why multiply weights across time for sustained strategies?
 {: #section-26 }
 
-The baseline example handles one initial treatment choice. Sustained strategies involve a sequence: after health changes, patients may continue, stop, or switch, and each decision can relate to future prognosis. Weights must therefore update over follow-up to reflect treatment choices experienced so far.
+This section is expanded in [Longitudinal IPTW: Sustained Drug A versus Drug B]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}). After the baseline example here, beginners should read that note's §1–§6, then return for censoring weights in §8.
 
-Why is a baseline weight insufficient? It makes initial treatment groups comparable on required baseline features only. If sicker patients later stop treatment more often, the continuing group’s composition changes again. **The first weighting cannot pre-empt a second selection that has not occurred yet.** After a new decision, we must address its additional composition changes.
+The central idea is that the first weight addresses baseline treatment choice. Later health affects the second choice, requiring another adjustment to the contribution already carried forward: cumulative weight=first factor×second factor. Time passing does not automatically require more weights; the need depends on the target strategy and treatment/censoring selection processes.
 
 ### A numerical example with two decisions
 {: #section-27 }
 
-A patient is actually treated at both decisions:
+Of 100 people with the same baseline health, 50 choose A and receive first weight 2. Suppose their relevant histories remain alike before the second decision and 10 continue A; the second factor is 5. These 10 people receive cumulative weight 2×5=10, totaling 100. Adding to obtain 7, or using either factor alone, does not address both selections.
 
-- At baseline, treatment probability given baseline health is 0.5.
-- At the second decision, probability of continuing given previous treatment, current health, and relevant history is 0.2.
-
-To understand multiplication, simplify the counts further: start with 100 people sharing baseline health. Fifty receive first treatment, each weighted 2. Suppose those 50 also share the same relevant history before the second decision, and 10 continue. Only one fifth of that group’s continuation experience is observed, so each of those 10 records receives another factor of 5. Finally, $$10\times2\times5=100$$ represents the original 100. This representation still depends on exchangeability, positivity, and related conditions at each decision.
-
-Using only the second weight gives $$10\times5=50$$: it handles the second selection but not the first, where only half were treated. Adding 2 and 5 is also wrong. The second adjustment applies to already weighted records; it **multiplies their contribution by five again**.
-
-Multiplying the two **treatment-choice probabilities** along this actual history gives $$0.5\times0.2=0.1$$, with cumulative weight:
-
-$$
-W=\frac1{0.5}\times\frac1{0.2}=10.
-$$
-
-$$W$$ is this person’s cumulative treatment weight through the second decision. The first weight is $$1/0.5=2$$ and the second factor $$1/0.2=5$$, giving $$2\times5=10$$. Weights have neither years nor people as units. The general formula below calls this two-step weight $$W_i^A(1)$$; 1 is the last decision index because baseline starts at 0.
-
-The count example deliberately gives identical relevant histories at each stage so the sequence 100→50→10 isolates two selections. Real health develops along different branches. The 0.1 calculated along one person’s history is generally not the joint probability of their entire “health and treatment history,” because health-state probabilities were not included. Nor is it directly the whole population’s proportion treated twice. It combines only successive treatment-choice mechanisms to construct a record’s weight.
-
-The first interval’s record carries only weight 2 at that time; weight 10 applies only after the second decision. **Future treatment choices must not determine earlier records’ weights.**
-
-If the patient actually does not receive the second treatment, with no-treatment probability 0.8 given that history, the new factor is $$1/0.8$$, not $$1/0.2$$. Cumulative weight becomes $$(1/0.5)\times(1/0.8)=2.5$$. This is a different actual treatment history and cannot retain the “treated twice” weight of 10.
-
-**The longer formula is needed only to generalize these two steps to repeated decisions.** It repeats the same operation. Subscripts now identify both “who” and “which decision”: $$i$$ still indexes people, $$k$$ indexes decisions beginning at baseline 0, and $$K$$ is the latest decision included. For baseline and one subsequent decision, $$k=0,1$$ and $$K=1$$, giving two steps.
-
-$$\bar L_{ik}$$ includes person $$i$$’s health history through just before decision $$k$$, and $$\bar A_{i,k-1}$$ is their preceding treatment history. An unstabilized longitudinal treatment weight is:
-
-$$
-W_i^A(K)=\prod_{k=0}^K
-\frac1{P(A_k=A_{ik}\mid\bar A_{i,k-1},\bar L_{ik})}.
-$$
-
-Break down the long expression:
-
-- $$W_i^A(K)$$: person $$i$$’s cumulative treatment weight through decision $$K$$. Uppercase $$W$$ highlights accumulation across steps; superscript $$A$$ labels “treatment weight,” not a power, and $$K$$ specifies how far accumulation goes.
-- $$\prod_{k=0}^K$$: multiply terms from baseline step 0 through step $$K$$, unlike the addition indicated by $$\sum$$.
-- $$A_k$$: the treatment variable at decision $$k$$; $$A_{ik}$$: person $$i$$’s actual value then. Continuing treatment gives $$A_{ik}=1$$ and its treatment probability; no treatment uses 0.
-- $$\bar A_{i,k-1}$$: all of this person’s treatment history before the current decision. The bar means history, **not an average**. For example, $$\bar A_{i1}=(A_{i0},A_{i1})$$ includes baseline and decision 1. The comma separating subscripts improves readability.
-- $$\bar L_{ik}$$: relevant observed health history through just before the current action. Health must be measured before that treatment decision.
-- Denominator $$P(\cdot\mid\cdot)$$: conditional probability, among people with that history, of the same action person $$i$$ actually takes now. Each step predicts using that person’s history rather than one common probability for everyone.
-
-Read: **follow the person’s treatment history; at every decision invert the probability of the actual action, multiplying all inverse probabilities up to that time**. Actual analysis uses estimated conditional probabilities. The unadorned probabilities define the weight, not imply true probabilities are known.
-
-The denominator always refers to **this person’s actual action at this decision**. With survival data, update only records still in the observed risk set; do not invent treatment decisions after death.
-
-At $$k=0$$ there is no prior treatment history, so $$\bar A_{i,-1}$$ is empty, not evidence of a real “decision −1.” The first denominator is $$P(A_0=A_{i0}\mid L_{i0})$$, the probability of the person’s actual baseline action given baseline health. This formula includes treatment weights only; informative censoring also requires §8’s mechanism.
+For the complete count explanation, health branches, and weighted AA/BB outcomes, see the new note's §3–§5. Its §7 calculates probabilities and weights for four treatment histories using two actually fitted multivariable logistic regressions. Symbols are defined before use, and the longer formula appears in §8.
 
 ### Why include time-varying health in the weight model?
 {: #section-28 }
 
-We must address “which histories make a person more likely to continue or stop now.” If health affects both treatment and outcome, omitting it may leave confounding of that decision.
-
-Health affected by prior treatment still belongs appropriately in the denominator of later treatment probabilities. Suitable weighted estimation then compares marginal strategy outcomes. It does not fix everyone’s post-treatment health to the same value.
-
-After weights are calculated, specify the two treatment rules being compared and use a matching weighted estimator or model. Cumulative weights are not themselves a treatment effect.
-
-This differs from putting post-treatment health directly into an ordinary outcome Cox model and reading its treatment coefficient as a total effect. For the basic principle, see [Cole and Hernán (2008)](https://pmc.ncbi.nlm.nih.gov/articles/PMC2732954/).
+It may affect both the current drug choice and subsequent outcomes. However, previous treatment may have changed this health state, so adjustment should not force later health distributions to be identical under sustained AA and BB. The new note's §6 uses the severely ill branch, 5×8=40, to explain why we do not also invert the probability of the health state. Its §9–§11 cover event timing, sequential diagnostics, stabilization, and connections to CCW.
 
 ## 8. IPTW and IPCW: Do not confuse the probabilities
 {: #section-29 }
@@ -658,8 +923,12 @@ With several selection mechanisms, properly defined treatment and censoring weig
 
 First distinguish [Point Interventions and Sustained Strategies]({{ "/causal-inference/point-sustained-strategies/" | relative_url }}).
 
+Nonfatal outcomes also require handling competing events such as death. See [Competing events and adaptations of classical methods]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}#section-47). Treatment weights do not automatically remove competing events; weighted Aalen–Johansen estimation can estimate real-world cumulative risk.
+
 ## 9. Are IPW and a marginal structural model the same thing?
 {: #section-31 }
+
+For how weights actually enter time-to-event analysis, see [Weighted Survival Analysis in TTE: From Risk Sets to Survival Curves and Cox]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}). First calculate weighted events, risk sets, and KM products using its eight-person table, then connect the same baseline multivariable logistic regression to death and loss-to-follow-up times. Do not apply complete one-year outcome proportions directly to incompletely followed data.
 
 Calculating weights does not finish effect estimation. Weights specify each record’s contribution; those records must still yield strategy risks or fit a strategy–outcome relationship. This explains why IPW and MSM are distinct.
 

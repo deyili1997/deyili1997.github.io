@@ -7,7 +7,7 @@ order: 5
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. Interpreting the original text: What is the author comparing?", "anchor": "section-1"}, {"title": "2. How is the same patient handled under different protocols?", "anchor": "section-2"}, {"title": "3. A point intervention does not mean “one dose” or “one day of follow-up”", "anchor": "section-3"}, {"title": "4. Why does an initiation effect require only baseline treatment-confounding adjustment?", "anchor": "section-4"}, {"title": "5. Why can different adherence rates produce different initiation effects?", "anchor": "section-5"}, {"title": "6. A sustained strategy means following ongoing rules, not never stopping", "anchor": "section-7"}, {"title": "7. Why do sustained strategies involve time-varying confounding?", "anchor": "section-8"}, {"title": "8. Why not just put all time-varying disease measurements into a Cox model?", "anchor": "section-16"}, {"title": "9. What can methods do, and what can they not guarantee?", "anchor": "section-19"}, {"title": "10. Use this table when reviewing", "anchor": "section-20"}, {"title": "Sources", "anchor": "section-21"}]
 previous_note: "/causal-inference/intention-to-treat-per-protocol/"
@@ -41,6 +41,8 @@ First read **the patient-handling table in §2 → §3 → §5–§6 → §10** 
 
 </aside>
 
+
+A separate beginner explanation of two treatment decisions: [Longitudinal IPTW: Sustained Drug A versus Drug B]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}). Start with the patient-count branches and why weights multiply, then study time-varying health and the LR model at each decision. Compare the treatment strategies and censoring rules with those in this note.
 
 ## 1. Interpreting the original text: What is the author comparing?
 {: #section-1 }

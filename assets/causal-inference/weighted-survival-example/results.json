@@ -1,0 +1,123 @@
+{
+  "hand": {
+    "A": {
+      "weighted": {
+        "survival": 0.2666666666666667,
+        "risk": 0.7333333333333333,
+        "steps": [
+          {
+            "time": 2.0,
+            "risk_weight": 10.0,
+            "death_weight": 2.0,
+            "survival": 0.8
+          },
+          {
+            "time": 5.0,
+            "risk_weight": 6.0,
+            "death_weight": 4.0,
+            "survival": 0.2666666666666667
+          }
+        ]
+      },
+      "unweighted": {
+        "survival": 0.375,
+        "risk": 0.625,
+        "steps": [
+          {
+            "time": 2.0,
+            "risk_weight": 4.0,
+            "death_weight": 1.0,
+            "survival": 0.75
+          },
+          {
+            "time": 5.0,
+            "risk_weight": 2.0,
+            "death_weight": 1.0,
+            "survival": 0.375
+          }
+        ]
+      }
+    },
+    "B": {
+      "weighted": {
+        "survival": 0.4,
+        "risk": 0.6,
+        "steps": [
+          {
+            "time": 1.0,
+            "risk_weight": 10.0,
+            "death_weight": 2.0,
+            "survival": 0.8
+          },
+          {
+            "time": 4.0,
+            "risk_weight": 8.0,
+            "death_weight": 4.0,
+            "survival": 0.4
+          }
+        ]
+      },
+      "unweighted": {
+        "survival": 0.5,
+        "risk": 0.5,
+        "steps": [
+          {
+            "time": 1.0,
+            "risk_weight": 4.0,
+            "death_weight": 1.0,
+            "survival": 0.75
+          },
+          {
+            "time": 4.0,
+            "risk_weight": 3.0,
+            "death_weight": 1.0,
+            "survival": 0.5
+          }
+        ]
+      }
+    },
+    "cox": {
+      "beta": -0.30003017491873274,
+      "HR": 0.7407958668893767,
+      "score": 0.0
+    }
+  },
+  "multivariable": {
+    "n": 3000,
+    "PS_beta": [
+      -0.6869696432408633,
+      0.4807250335372541,
+      0.781640876942982,
+      0.617510168029177,
+      -0.498737023888771
+    ],
+    "A_n": 1119,
+    "B_n": 1881,
+    "A": {
+      "events": 222,
+      "losses": 311,
+      "crude_event_fraction": 0.19839142091152814,
+      "KM_risk": 0.23812797209894954,
+      "weighted_KM_risk": 0.1895856468906778
+    },
+    "B": {
+      "events": 375,
+      "losses": 452,
+      "crude_event_fraction": 0.19936204146730463,
+      "KM_risk": 0.232026377254126,
+      "weighted_KM_risk": 0.2662859976214703
+    },
+    "weighted_cox_stabilized": {
+      "beta": -0.39671222046802845,
+      "HR": 0.6725275374469165,
+      "score": 1.687538997430238e-14
+    },
+    "weighted_cox_unstabilized": {
+      "beta": -0.39696242244708113,
+      "HR": 0.6723592907747827,
+      "score": 1.4210854715202004e-14
+    },
+    "risk_difference": -0.07670035073079251,
+    "risk_ratio": 0.7119625086715102
+  }
+}

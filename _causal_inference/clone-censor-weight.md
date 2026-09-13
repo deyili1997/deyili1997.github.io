@@ -7,7 +7,7 @@ order: 18
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. Why is this design needed?", "anchor": "section-1"}, {"title": "2. Clone: Copy records and assign strategies at baseline", "anchor": "section-4"}, {"title": "3. Censor: Censor the copy at its first strategy deviation", "anchor": "section-6"}, {"title": "4. Weight: Why is weighting needed after censoring?", "anchor": "section-9"}, {"title": "5. Which assumptions does weighting require?", "anchor": "section-11"}, {"title": "6. Why does it generally estimate a per-protocol strategy effect?", "anchor": "section-12"}, {"title": "7. Three applications: Dialysis timing, treatment duration, and dynamic rules", "anchor": "section-16"}, {"title": "8. Difference from sequential trials", "anchor": "section-33"}, {"title": "Sources", "anchor": "section-34"}]
 previous_note: "/causal-inference/sequential-trials/"
@@ -48,6 +48,8 @@ If you wonder “is looking into the future forbidden, so how can later treatmen
 
 
 A worked multivariable example: [Complete multivariable LR-IPTW example comparing drug A with drug B]({{ "/causal-inference/inverse-probability-weighting/" | relative_url }}#section-15) shows how baseline characteristics for 3,000 people enter one shared LR model to produce propensity scores, weights for both groups, balance diagnostics, and one-year risks. Z=0 denotes drug B, rather than no treatment. Those are baseline treatment weights and cannot directly replace this note's censoring weights for continued strategy compatibility.
+
+A separate beginner explanation of two treatment decisions: [Longitudinal IPTW: Sustained Drug A versus Drug B]({{ "/causal-inference/longitudinal-iptw/" | relative_url }}). Start with the patient-count branches and why weights multiply, then study time-varying health and the LR model at each decision. Compare the treatment strategies and censoring rules with those in this note.
 
 ## 1. Why is this design needed?
 {: #section-1 }

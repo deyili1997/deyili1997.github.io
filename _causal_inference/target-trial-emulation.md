@@ -7,7 +7,7 @@ order: 8
 math: true
 causal_notes: true
 date: "2026-09-09"
-last_modified_at: "2026-09-09"
+last_modified_at: "2026-09-13"
 tags: ["causal-inference", "target-trial-emulation"]
 toc: [{"title": "1. First understand the symbols in the figure", "anchor": "section-1"}, {"title": "2. Upper panel: Why is aligning the three elements easier in a randomized trial?", "anchor": "section-2"}, {"title": "3. Lower panel: What is \\(A_S\\) in an observational study?", "anchor": "section-3"}, {"title": "4. What happens without alignment? An immortal-time-bias example", "anchor": "section-7"}, {"title": "5. Connection to ITT and PP: Two different levels of question", "anchor": "section-9"}, {"title": "6. Follow-up origins, endpoints, and censoring", "anchor": "section-10"}, {"title": "7. Seven questions to ask when revisiting the timing", "anchor": "section-20"}, {"title": "Sources", "anchor": "section-21"}]
 previous_note: "/causal-inference/pragmatic-trials/"
@@ -499,6 +499,8 @@ Read alongside [Initiation effects and sustained-strategy effects]({{ "/causal-i
 
 ## 7. Seven questions to ask when revisiting the timing
 {: #section-20 }
+
+Companion reading on turning time alignment into outcome estimation: [Weighted Survival Analysis in Target Trial Emulation]({{ "/causal-inference/weighted-survival-analysis/" | relative_url }}) explains how to form risk sets from a common time zero, handle events and censoring, and use IPTW in survival curves and Cox models.
 
 1. At $$T_0$$, does the patient satisfy target-trial eligibility?
 2. What determines enrollment and grouping? Is subsequent information used for compatibility at that later time, or to backfill earlier eligibility and group membership based on future successful treatment or survival?
