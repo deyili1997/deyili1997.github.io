@@ -11,11 +11,12 @@ layout: default
   <h2 id="area-learning-title">Causal Inference</h2>
   <p>{{ area.study_description }} The collection contains {{ site.causal_inference.size }} study notes on potential outcomes, trial design, estimation, bias, and related methods.</p>
   <p><a href="{{ area.study_url | relative_url }}">Causal Inference study guide</a></p>
-  <ul>
-    <li><a href="{{ '/causal-inference/potential-outcomes/' | relative_url }}">Potential outcomes</a></li>
-    <li><a href="{{ '/causal-inference/target-trial-emulation/' | relative_url }}">Target trial emulation</a></li>
-    <li><a href="{{ '/causal-inference/inverse-probability-weighting/' | relative_url }}">Inverse probability weighting</a></li>
-  </ul>
+  {% assign causal_notes = site.causal_inference | sort: 'order' %}
+  <ol class="reading-list">
+    {% for note in causal_notes %}
+    <li><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
+    {% endfor %}
+  </ol>
   {% elsif area.id == 'healthcare-ai' or area.id == 'investment' %}
   <h2 id="area-learning-title">{% if area.id == 'investment' %}Investment journal{% else %}Learning notes{% endif %}</h2>
   {% if area.study_description %}<p>{{ area.study_description }}</p>{% endif %}

@@ -13,7 +13,7 @@ Real-World Evidence uses `real-world-evidence` as its internal topic ID and `/re
 
 Healthcare AI uses `healthcare-ai` as its internal topic ID and `/healthcare-ai/` as its canonical hub. The former `/predictive-modeling/` hub redirects to it, and `/publication/#predictive-modeling` remains an anchor alias for `/publication/#healthcare-ai`. Original paper titles and post URLs are retained. The source publication folder remains `Publications/PM/` and maps to Healthcare AI.
 
-Causal Inference is a study collection within Real-World Evidence. The guide remains at `/causal-inference/` and all existing note URLs are retained. The causal-note layout shows the Real-World Evidence breadcrumb; collection defaults also set `research_area: real-world-evidence`.
+Causal Inference is a study collection within Real-World Evidence. All collection notes are listed directly on the RWE hub under `#area-learning-title`, sorted numerically by `order`, in one flat list. The homepage's Causal Inference link opens this list. The guide remains at `/causal-inference/` as an additional reading aid and all existing note URLs are retained. The causal-note layout shows the Real-World Evidence breadcrumb; collection defaults also set `research_area: real-world-evidence`.
 
 Real-World Evidence also has standalone paper notes in `_posts/` with `research_area: real-world-evidence`. The RWE hub lists them under `#area-paper-notes-title`, independently of the foundational Causal Inference collection. The homepage exposes both collections and counts the RWE paper notes separately. Use `math: true` for notes requiring MathJax, and preserve explicit paper-note permalinks under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
 
