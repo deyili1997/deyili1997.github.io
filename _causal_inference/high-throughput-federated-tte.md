@@ -16,6 +16,8 @@ next_note: "/causal-inference/"
 
 Study guide: [Causal Inference Study Guide]({{ "/causal-inference/" | relative_url }}). Foundational framework: [Target Trial Emulation]({{ "/causal-inference/target-trial-emulation/" | relative_url }}).
 
+For full paper-by-paper methodological readings, see [high-throughput AD drug repurposing]({{ "/rwe/high-throughput-ad-target-trial-emulation/" | relative_url }}) and [federated target trial emulation]({{ "/rwe/federated-target-trial-emulation/" | relative_url }}). A related extension, [EmulatRx]({{ "/rwe/emulatrx-agentic-trial-design/" | relative_url }}), uses AI agents to coordinate trial design and emulation. All three are collected in the [Real-World Evidence paper notes]({{ "/real-world-evidence/" | relative_url }}#area-paper-notes-title).
+
 <aside class="study-callout study-callout--note" markdown="1">
 
 **Purpose of this note**

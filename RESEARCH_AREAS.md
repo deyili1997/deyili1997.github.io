@@ -15,6 +15,8 @@ Healthcare AI uses `healthcare-ai` as its internal topic ID and `/healthcare-ai/
 
 Causal Inference is a study collection within Real-World Evidence. The guide remains at `/causal-inference/` and all existing note URLs are retained. The causal-note layout shows the Real-World Evidence breadcrumb; collection defaults also set `research_area: real-world-evidence`.
 
+Real-World Evidence also has standalone paper notes in `_posts/` with `research_area: real-world-evidence`. The RWE hub lists them under `#area-paper-notes-title`, independently of the foundational Causal Inference collection. The homepage exposes both collections and counts the RWE paper notes separately. Use `math: true` for notes requiring MathJax, and preserve explicit paper-note permalinks under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
+
 Existing blog posts are Healthcare AI learning notes. They retain their URLs, search entries and the legacy paginated archive. The post default is `research_area: healthcare-ai`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
 
 Investment uses `investment` as its internal topic ID and `/investment/` as its canonical hub. The former `/investment-notes/` hub redirects to it.
