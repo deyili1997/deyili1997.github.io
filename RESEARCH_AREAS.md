@@ -21,6 +21,8 @@ The RWE hub puts foundations and paper readings side by side on wide screens and
 
 Add a dated Markdown file in `_posts/` with `layout: post`, `title`, `description`, and `research_area: real-world-evidence`. It automatically appears under `#area-paper-notes-title`, in site search, and in the archive; no manual directory edit is needed. Use `math: true` for MathJax and an explicit permalink under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
 
+For paper-note titles, prefix the title with `(publication year journal/conference)` using the source's verified publication year and venue, for example `(2026 Nature Medicine) COMPASS: ...`. Concept notes without a specific source paper need no venue prefix.
+
 Optional metadata enriches the directory and connects the paper to foundational study notes:
 
 ```yaml

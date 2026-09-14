@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "COMPASS: A Concept Bottleneck Transformer for Immunotherapy Response"
+title: "(2026 Nature Medicine) COMPASS: A Concept Bottleneck Transformer for Immunotherapy Response"
 description: "An architecture-focused reading of COMPASS: expression tokenization, Performer attention, hierarchical biological projection, contrastive pretraining, parameter-efficient adaptation, prototype inference, and interpretation of immune concepts."
 permalink: /healthcare-ai/compass-concept-bottleneck/
 date: 2026-09-13 21:00:00 -0400
