@@ -1,6 +1,5 @@
 {% assign causal_notes = site.causal_inference | sort: 'order' %}
 {% assign readings = site.posts | where: 'research_area', 'real-world-evidence' %}
-{% assign reading_topics = readings | map: 'rwe_topics' | join: '|' | split: '|' | uniq | sort %}
 <nav class="rwe-jump-links" aria-label="On this page">
   <a href="#area-learning-title">Foundations <span>{{ causal_notes.size }}</span></a>
   <a href="#area-paper-notes-title">Paper readings <span>{{ readings.size }}</span></a>
@@ -31,32 +30,9 @@
     <h2 id="area-paper-notes-title">Paper readings</h2>
     <p class="rwe-section-intro">Methods in practice: detailed readings of study design, estimation, assumptions, and limitations. Each reading links back to useful foundations.</p>
     {% if readings.size > 0 %}
-    <form class="rwe-filters" data-rwe-filters hidden aria-label="Find paper readings">
-      <div class="rwe-search-field">
-        <label for="rwe-paper-search">Search paper notes</label>
-        <input id="rwe-paper-search" type="search" placeholder="Title, method, or keyword" autocomplete="off" aria-controls="rwe-paper-list">
-      </div>
-      <div class="rwe-topic-field">
-        <label for="rwe-paper-topic">Method or topic</label>
-        <select id="rwe-paper-topic" aria-controls="rwe-paper-list">
-          <option value="">All topics</option>
-          {% for topic in reading_topics %}{% unless topic == '' %}<option value="{{ topic | escape }}">{{ topic | escape }}</option>{% endunless %}{% endfor %}
-        </select>
-      </div>
-      <div class="rwe-sort-field">
-        <label for="rwe-paper-sort">Sort by</label>
-        <select id="rwe-paper-sort" aria-controls="rwe-paper-list">
-          <option value="added">Recently added</option>
-          <option value="published">Newest paper year</option>
-        </select>
-      </div>
-      <button type="button" data-rwe-reset>Reset</button>
-    </form>
-    <p class="rwe-result-count" data-rwe-results role="status" aria-live="polite">{{ readings.size }} paper {% if readings.size == 1 %}note{% else %}notes{% endif %}</p>
-    <p data-rwe-empty hidden>No matching paper notes. Try another keyword or reset the filters.</p>
-    <ul id="rwe-paper-list" class="rwe-paper-list" data-rwe-paper-list role="list">
+    <ul id="rwe-paper-list" class="rwe-paper-list" role="list">
       {% for post in readings %}
-      <li data-rwe-paper data-reading-topics="{{ post.rwe_topics | jsonify | escape }}" data-paper-year="{{ post.paper_year | escape }}" data-reading-date="{{ post.date | date_to_xmlschema }}">
+      <li>
         {% if post.paper_year or post.paper_venue %}<p class="rwe-paper-source">{% if post.paper_year %}{{ post.paper_year }}{% endif %}{% if post.paper_year and post.paper_venue %} · {% endif %}{% if post.paper_venue %}<cite>{{ post.paper_venue | escape }}</cite>{% endif %}</p>{% endif %}
         <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
         {% assign focus = post.reading_focus | default: post.description %}{% if focus %}<p class="rwe-reading-focus">{{ focus | escape }}</p>{% endif %}
@@ -69,4 +45,3 @@
     {% else %}<p>Paper readings will be added here.</p>{% endif %}
   </section>
 </div>
-<script src="{{ '/js/rwe-library.js' | relative_url }}" defer></script>

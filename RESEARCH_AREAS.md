@@ -19,7 +19,7 @@ The RWE hub puts foundations and paper readings side by side on wide screens and
 
 ### Adding an RWE paper reading
 
-Add a dated Markdown file in `_posts/` with `layout: post`, `title`, `description`, and `research_area: real-world-evidence`. It automatically appears under `#area-paper-notes-title`, in site search, and in the archive; no manual directory or JavaScript edit is needed. Use `math: true` for MathJax and an explicit permalink under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
+Add a dated Markdown file in `_posts/` with `layout: post`, `title`, `description`, and `research_area: real-world-evidence`. It automatically appears under `#area-paper-notes-title`, in site search, and in the archive; no manual directory edit is needed. Use `math: true` for MathJax and an explicit permalink under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
 
 Optional metadata enriches the directory and connects the paper to foundational study notes:
 
@@ -33,13 +33,13 @@ foundation_notes: [inverse-probability-weighting, weighted-survival-analysis]
 
 - `paper_year` is the original paper's publication year; `date` is when the reading note was added. Keep them separate.
 - `reading_focus` falls back to `description`. Aim for one useful sentence rather than repeating the full paper title.
-- Reuse existing `rwe_topics` when appropriate. Topic options are generated from all readings; do not include the `|` separator in a topic name. These focused labels are separate from site-wide `tags`.
+- Reuse existing `rwe_topics` when appropriate. These topics appear as descriptive labels in the directory and are separate from site-wide `tags`.
 - `foundation_notes` contains collection filename slugs without `.md`. Links appear in the directory and at the top of the reading. Choose the two or three foundations most useful for understanding the paper.
-- A post without optional metadata still appears. Missing publication years sort after known years. Newest added notes are the default order; JavaScript adds keyword search, exact-topic filtering, paper-year sorting, and reset controls. With JavaScript unavailable, the full list remains readable.
-- Search and filters only affect paper readings; foundations always remain visible. Printed pages include all readings even if the browser has an active filter.
+- A post without optional metadata still appears. Paper readings are ordered automatically by note-added `date`, newest first; `paper_year` is displayed as source metadata and does not control ordering.
+- All foundation notes and paper readings remain visible on screen and in print. The RWE directory has no local search, filter, sort, or reset controls and requires no directory JavaScript. The global site Search remains available.
 - Article Previous/Next links remain within the current research area.
 
-The directory is rendered by `_includes/rwe-learning.html`, with optional foundation links shared through `_includes/rwe-foundation-links.html`; progressive enhancement is in `js/rwe-library.js`. There is no fixed count or hardcoded paper reading sequence to maintain.
+The static directory is rendered by `_includes/rwe-learning.html`, with optional foundation links shared through `_includes/rwe-foundation-links.html`. Inclusion, counts, and note-date ordering update automatically; there is no fixed count or hardcoded paper reading sequence to maintain.
 
 Existing blog posts are Healthcare AI learning notes. They retain their URLs, search entries and the legacy paginated archive. The post default is `research_area: healthcare-ai`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
 

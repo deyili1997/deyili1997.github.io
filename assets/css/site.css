@@ -92,13 +92,6 @@ body.rwe-hub { max-width: 75rem; }
 .rwe-step { color: #555; font-variant-numeric: tabular-nums; }
 .rwe-companion { display: block; margin-top: .15rem; color: #555; font-size: .85em; }
 .rwe-readings { border-left: 1px solid #ddd; padding-left: 2rem; }
-.rwe-filters { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: .7rem .75rem; margin: 1.3rem 0 .65rem; font-size: .9em; }
-.rwe-filters label { display: block; margin-bottom: .2rem; }
-.rwe-search-field { grid-column: 1 / -1; }
-.rwe-filters input, .rwe-filters select { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; min-height: 2.5rem; padding: .35rem .4rem; border: 1px solid #888; border-radius: 0; background: #fff; color: #111; font: inherit; }
-.rwe-filters select:focus-visible { outline: 2px solid #0645ad; outline-offset: 3px; }
-.rwe-filters button { align-self: end; min-height: 2.5rem; border: 1px solid #888; border-radius: 0; background: #f7f7f7; color: #111; }
-.rwe-result-count { color: #555; font-size: .85em; margin: .5rem 0; }
 .rwe-paper-list { list-style: none; padding: 0; margin: 0; }
 .rwe-paper-list > li { margin: 0; padding: 1.3rem 0 1.5rem; border-top: 1px solid #ccc; }
 .rwe-paper-list h3 { font-size: 1.15em; margin: .25rem 0 .6rem; }
@@ -122,8 +115,6 @@ body.rwe-hub { max-width: 75rem; }
   body { margin: 1.25rem auto; padding: 0 1rem; font-size: 18px; }
   h1 { font-size: 1.8em; }
   .site-header ul { gap: .25rem 1rem; }
-  .rwe-filters { grid-template-columns: minmax(0, 1fr) auto; }
-  .rwe-topic-field { grid-column: 1 / -1; }
 }
 @media print {
   body { max-width: none; margin: 0; padding: 0; color: #000; font-size: 11pt; }
@@ -136,6 +127,5 @@ body.rwe-hub { max-width: 75rem; }
   .rwe-library { display: block; }
   .rwe-foundations { font-size: inherit; }
   .rwe-readings { padding-left: 0; border-left: 0; }
-  .rwe-jump-links, .rwe-filters, .rwe-result-count, [data-rwe-empty] { display: none !important; }
-  [data-rwe-paper][hidden] { display: list-item !important; }
+  .rwe-jump-links { display: none !important; }
 }
