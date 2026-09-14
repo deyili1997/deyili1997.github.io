@@ -5,7 +5,7 @@ layout: default
   <header>
     <nav aria-label="Breadcrumb">
       <a href="{{ '/real-world-evidence/' | relative_url }}">Real-World Evidence</a> /
-      {% if page.order == 0 %}<span aria-current="page">Causal Inference</span>{% else %}<a href="{{ '/causal-inference/' | relative_url }}">Causal Inference</a>{% endif %}
+      {% if page.order == 0 %}<span aria-current="page">Causal Inference</span>{% else %}<a href="{{ '/real-world-evidence/' | relative_url }}#area-learning-title">Causal Inference</a>{% endif %}
     </nav>
     <h1>{{ page.title }}</h1>
     <p class="article-meta">{{ site.data.settings.author.name }} · Updated <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: '%B %-d, %Y' }}</time>{% if page.group %} · {{ page.group }}{% endif %}{% if page.reading_label %} · {{ page.reading_label }}{% elsif page.order > 0 %} · Reading step {{ page.order }}{% endif %}</p>

@@ -6,18 +6,11 @@ layout: default
 <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a> / <span aria-current="page">{{ area.title }}</span></nav>
 <h1>{{ area.title }}</h1>
 <p>{{ area.description }}</p>
+{% if area.id == 'real-world-evidence' %}
+{% include rwe-learning.html %}
+{% else %}
 <section aria-labelledby="area-learning-title">
-  {% if area.id == 'real-world-evidence' %}
-  <h2 id="area-learning-title">Causal Inference</h2>
-  <p>{{ area.study_description }} The collection contains {{ site.causal_inference.size }} study notes on potential outcomes, trial design, estimation, bias, and related methods.</p>
-  <p><a href="{{ area.study_url | relative_url }}">Causal Inference study guide</a></p>
-  {% assign causal_notes = site.causal_inference | sort: 'order' %}
-  <ol class="reading-list">
-    {% for note in causal_notes %}
-    <li><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
-    {% endfor %}
-  </ol>
-  {% elsif area.id == 'healthcare-ai' or area.id == 'investment' %}
+  {% if area.id == 'healthcare-ai' or area.id == 'investment' %}
   <h2 id="area-learning-title">{% if area.id == 'investment' %}Investment journal{% else %}Learning notes{% endif %}</h2>
   {% if area.study_description %}<p>{{ area.study_description }}</p>{% endif %}
   {% assign readings = site.posts | where: 'research_area', area.id %}
@@ -39,24 +32,6 @@ layout: default
   <p>TBD.</p>
   {% endif %}
 </section>
-{% if area.id == 'real-world-evidence' %}
-{% assign readings = site.posts | where: 'research_area', area.id %}
-{% if readings.size > 0 %}
-<section aria-labelledby="area-paper-notes-title">
-  <h2 id="area-paper-notes-title">Paper notes</h2>
-  <p>Detailed methodological readings on deriving evidence from observational data, including cohort construction, treatment-effect estimation, distributed analysis, and clinical trial design.</p>
-  <ul class="reading-list">
-    {% for post in readings %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-      <time datetime="{{ post.date | date_to_xmlschema }}">({{ post.date | date: '%Y-%m-%d' }})</time>
-      {% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  <p>A useful reading sequence is <a href="{{ '/rwe/high-throughput-ad-target-trial-emulation/' | relative_url }}">high-throughput drug screening</a>, <a href="{{ '/rwe/federated-target-trial-emulation/' | relative_url }}">federated estimation</a>, and <a href="{{ '/rwe/emulatrx-agentic-trial-design/' | relative_url }}">agent-assisted trial design</a>. The first scales the number of drug comparisons, the second coordinates estimation across institutions, and the third organizes the design and analysis workflow. Each still depends on a clearly specified causal question and credible identification assumptions.</p>
-</section>
-{% endif %}
 {% endif %}
 {% unless area.show_publications == false %}
 <section aria-labelledby="area-papers-title">

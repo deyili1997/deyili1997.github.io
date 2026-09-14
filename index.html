@@ -29,8 +29,7 @@ description: Deyi Li — research in real-world evidence, healthcare AI, and cli
   {% assign healthcare_notes = site.posts | where: 'research_area', 'healthcare-ai' %}
   {% assign rwe_notes = site.posts | where: 'research_area', 'real-world-evidence' %}
   <ul>
-    <li><a href="{{ '/real-world-evidence/' | relative_url }}#area-learning-title">Causal Inference</a>: {{ site.causal_inference.size }} study notes on causal inference and target trial emulation.</li>
-    <li><a href="{{ '/real-world-evidence/' | relative_url }}#area-paper-notes-title">Real-World Evidence</a>: {{ rwe_notes.size }} detailed paper notes on target trial emulation, federated estimation, and clinical trial design.</li>
+    <li>Real-World Evidence: <a href="{{ '/real-world-evidence/' | relative_url }}#area-learning-title">{{ site.causal_inference.size }} Causal Inference foundations</a> and <a href="{{ '/real-world-evidence/' | relative_url }}#area-paper-notes-title">{{ rwe_notes.size }} detailed paper readings</a>, connecting causal methods with their use in observational studies.</li>
     <li><a href="{{ '/healthcare-ai/' | relative_url }}#area-learning-title">Healthcare AI</a>: {{ healthcare_notes.size }} learning notes on graph learning, patient representation, clinical prediction, and therapeutic reasoning.</li>
   </ul>
 </section>

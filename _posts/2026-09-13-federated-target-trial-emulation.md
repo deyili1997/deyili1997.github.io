@@ -5,6 +5,11 @@ description: "A detailed methodology reading of FL-TTE: cohort alignment, federa
 permalink: /rwe/federated-target-trial-emulation/
 date: 2026-09-13 12:00:00 -0400
 research_area: real-world-evidence
+paper_year: 2025
+paper_venue: npj Digital Medicine
+reading_focus: "How shared trial protocols, federated propensity scores, and weighted Cox models work across hospitals, with close attention to local risk sets and pooled-data equivalence."
+rwe_topics: [Federated analysis, Propensity scores, Survival analysis]
+foundation_notes: [cox-proportional-hazards, inverse-probability-weighting, weighted-survival-analysis]
 math: true
 tags: [Method, Real-World Evidence, Target Trial Emulation, Federated Learning, IPTW, Survival Analysis]
 ---

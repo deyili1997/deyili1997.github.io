@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 {% include head.html %}
-<body>
+<body{% if page.body_class %} class="{{ page.body_class | escape }}"{% endif %}>
   <a class="skip-link" href="#main-content">Skip to content</a>
   {% include header.html %}
   <main id="main-content" tabindex="-1">

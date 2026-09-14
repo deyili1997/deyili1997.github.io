@@ -5,6 +5,11 @@ description: "A detailed methodological reading of EmulatRx: trial knowledge gra
 permalink: /rwe/emulatrx-agentic-trial-design/
 date: 2026-09-13 13:00:00 -0400
 research_area: real-world-evidence
+paper_year: 2026
+paper_venue: Nature Communications
+reading_focus: "How agents turn clinical questions into computable protocols, patient cohorts, and analyses—and where causal design still needs human judgment."
+rwe_topics: [Agentic trial design, Computable phenotyping, Protocol refinement]
+foundation_notes: [target-trial-emulation, clone-censor-weight, clinical-data-adjustment]
 math: true
 tags: [Method, Real-World Evidence, Target Trial Emulation, Causal Inference, AI Agents, Clinical Trial Design]
 ---

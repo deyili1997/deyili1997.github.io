@@ -5,6 +5,11 @@ description: "A detailed methodology guide to Zang et al.: trial protocols, comp
 permalink: /rwe/high-throughput-ad-target-trial-emulation/
 date: 2026-09-13 11:00:00 -0400
 research_area: real-world-evidence
+paper_year: 2023
+paper_venue: Nature Communications
+reading_focus: "How repeated drug-initiation comparisons use balance-selected propensity scores, stabilized weights, and survival models to screen drug-repurposing hypotheses."
+rwe_topics: [Drug repurposing, Propensity scores, Survival analysis]
+foundation_notes: [target-trial-emulation, inverse-probability-weighting, weighted-survival-analysis]
 math: true
 tags: [Method, Real-World Evidence, Target Trial Emulation, Drug Repurposing, Propensity Scores, Causal Inference]
 ---

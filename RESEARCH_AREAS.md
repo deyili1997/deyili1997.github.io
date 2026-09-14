@@ -13,9 +13,33 @@ Real-World Evidence uses `real-world-evidence` as its internal topic ID and `/re
 
 Healthcare AI uses `healthcare-ai` as its internal topic ID and `/healthcare-ai/` as its canonical hub. The former `/predictive-modeling/` hub redirects to it, and `/publication/#predictive-modeling` remains an anchor alias for `/publication/#healthcare-ai`. Original paper titles and post URLs are retained. The source publication folder remains `Publications/PM/` and maps to Healthcare AI.
 
-Causal Inference is a study collection within Real-World Evidence. All collection notes are listed directly on the RWE hub under `#area-learning-title`, sorted numerically by `order`, in one flat list. The homepage's Causal Inference link opens this list. The guide remains at `/causal-inference/` as an additional reading aid and all existing note URLs are retained. The causal-note layout shows the Real-World Evidence breadcrumb; collection defaults also set `research_area: real-world-evidence`.
+Causal Inference is a study collection within Real-World Evidence. The RWE hub shows every foundation note directly under `#area-learning-title`, without pagination or collapsed groups. `_data/rwe_learning.json` defines five consecutive learning stages; `start` is inclusive and `end` is exclusive, with the last stage open-ended. Keep boundaries contiguous when extending the route. Notes are sorted numerically by `order`; displayed labels preserve companion steps such as 14.1 and 14.2. The guide remains at `/causal-inference/` as an additional reading aid and all existing note URLs are retained. Note breadcrumbs return to the RWE directory.
 
-Real-World Evidence also has standalone paper notes in `_posts/` with `research_area: real-world-evidence`. The RWE hub lists them under `#area-paper-notes-title`, independently of the foundational Causal Inference collection. The homepage exposes both collections and counts the RWE paper notes separately. Use `math: true` for notes requiring MathJax, and preserve explicit paper-note permalinks under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
+The RWE hub puts foundations and paper readings side by side on wide screens and stacks them on smaller screens. On-page links provide direct access to either section. Individual articles retain the site's narrower reading width. Homepage links and counts are generated from the two collections.
+
+### Adding an RWE paper reading
+
+Add a dated Markdown file in `_posts/` with `layout: post`, `title`, `description`, and `research_area: real-world-evidence`. It automatically appears under `#area-paper-notes-title`, in site search, and in the archive; no manual directory or JavaScript edit is needed. Use `math: true` for MathJax and an explicit permalink under `/rwe/`. Source figures belong in `assets/rwe/` with attribution and links to the original article.
+
+Optional metadata enriches the directory and connects the paper to foundational study notes:
+
+```yaml
+paper_year: 2026
+paper_venue: Nature Communications
+reading_focus: "A short explanation of the methodological question this reading answers."
+rwe_topics: [Propensity scores, Survival analysis]
+foundation_notes: [inverse-probability-weighting, weighted-survival-analysis]
+```
+
+- `paper_year` is the original paper's publication year; `date` is when the reading note was added. Keep them separate.
+- `reading_focus` falls back to `description`. Aim for one useful sentence rather than repeating the full paper title.
+- Reuse existing `rwe_topics` when appropriate. Topic options are generated from all readings; do not include the `|` separator in a topic name. These focused labels are separate from site-wide `tags`.
+- `foundation_notes` contains collection filename slugs without `.md`. Links appear in the directory and at the top of the reading. Choose the two or three foundations most useful for understanding the paper.
+- A post without optional metadata still appears. Missing publication years sort after known years. Newest added notes are the default order; JavaScript adds keyword search, exact-topic filtering, paper-year sorting, and reset controls. With JavaScript unavailable, the full list remains readable.
+- Search and filters only affect paper readings; foundations always remain visible. Printed pages include all readings even if the browser has an active filter.
+- RWE article Previous/Next links remain within RWE paper readings.
+
+The directory is rendered by `_includes/rwe-learning.html`, with optional foundation links shared through `_includes/rwe-foundation-links.html`; progressive enhancement is in `js/rwe-library.js`. There is no fixed count or hardcoded paper reading sequence to maintain.
 
 Existing blog posts are Healthcare AI learning notes. They retain their URLs, search entries and the legacy paginated archive. The post default is `research_area: healthcare-ai`; explicitly override that field when a future post belongs to another topic. Learning notes are separate from authored publications.
 

@@ -1,0 +1,9 @@
+{
+  "foundation_groups": [
+    {"id": "causal-question", "title": "Define the causal question", "start": 1, "end": 7},
+    {"id": "trial-design", "title": "Design the trial and align time zero", "start": 7, "end": 12},
+    {"id": "effect-estimation", "title": "Estimate treatment effects", "start": 12, "end": 15},
+    {"id": "emulation-design", "title": "Choose an emulation design", "start": 15, "end": 19},
+    {"id": "bias-and-extensions", "title": "Assess bias and extend the analysis", "start": 19}
+  ]
+}

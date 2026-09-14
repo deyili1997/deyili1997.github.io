@@ -1,0 +1,11 @@
+{% if include.note.foundation_notes.size > 0 %}
+<div class="rwe-foundation-links">
+  <p>Related foundations</p>
+  <ul>
+    {% for slug in include.note.foundation_notes %}
+    {% assign foundation = site.causal_inference | where: 'slug', slug | first %}
+    {% if foundation %}<li><a href="{{ foundation.url | relative_url }}">{{ foundation.title | split: ':' | first | escape }}</a></li>{% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
