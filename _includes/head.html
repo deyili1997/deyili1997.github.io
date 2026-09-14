@@ -13,7 +13,7 @@
   <meta property="og:url" content="{{ page.url | replace: 'index.html', '' | absolute_url }}">
   <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
-  {% if page.causal_notes %}
+  {% if page.causal_notes or page.math %}
   <script>
     window.MathJax = {
       tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: true },

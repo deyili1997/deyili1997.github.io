@@ -21,7 +21,7 @@
     "publication_description": "Learning from electronic health records to model patient trajectories and predict clinical outcomes.",
     "url": "/healthcare-ai/",
     "study_label": "Learning notes",
-    "study_description": "Paper readings and concepts in graph learning, patient representation, and clinical AI.",
+    "study_description": "Paper readings and concepts in graph learning, patient representation, clinical AI, and therapeutic reasoning with AI agents.",
     "legacy_id": "predictive-modeling"
   },
   {
