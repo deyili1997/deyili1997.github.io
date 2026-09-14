@@ -13,14 +13,14 @@ layout: default
   {% if page.tags.size > 0 %}
   <p class="article-meta">Topics: {% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}?tag={{ tag | downcase | url_encode }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
   {% endif %}
-  {% if page.research_area == 'real-world-evidence' %}
+  {% if research_area %}
   {% assign area_readings = site.posts | where: 'research_area', page.research_area | sort: 'date' %}
-  <nav class="reading-navigation" aria-label="Adjacent RWE paper readings">
+  <nav class="reading-navigation" aria-label="Adjacent {{ research_area.title | escape }} notes">
     {% for reading in area_readings %}{% if reading.url == page.url %}
     {% unless forloop.first %}{% assign previous_index = forloop.index0 | minus: 1 %}{% assign previous_reading = area_readings[previous_index] %}<p>Previous: <a href="{{ previous_reading.url | relative_url }}">{{ previous_reading.title | escape }}</a></p>{% endunless %}
     {% unless forloop.last %}{% assign next_index = forloop.index0 | plus: 1 %}{% assign next_reading = area_readings[next_index] %}<p>Next: <a href="{{ next_reading.url | relative_url }}">{{ next_reading.title | escape }}</a></p>{% endunless %}
     {% endif %}{% endfor %}
-    <p><a href="{{ '/real-world-evidence/' | relative_url }}#area-paper-notes-title">All RWE paper readings</a></p>
+    <p><a href="{{ research_area.url | relative_url }}#{% if page.research_area == 'real-world-evidence' %}area-paper-notes-title{% else %}area-learning-title{% endif %}">All {{ research_area.title | escape }} {% if page.research_area == 'real-world-evidence' %}paper readings{% else %}learning notes{% endif %}</a></p>
   </nav>
   {% else %}
   <nav class="reading-navigation" aria-label="Adjacent learning notes">

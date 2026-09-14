@@ -37,7 +37,7 @@ foundation_notes: [inverse-probability-weighting, weighted-survival-analysis]
 - `foundation_notes` contains collection filename slugs without `.md`. Links appear in the directory and at the top of the reading. Choose the two or three foundations most useful for understanding the paper.
 - A post without optional metadata still appears. Missing publication years sort after known years. Newest added notes are the default order; JavaScript adds keyword search, exact-topic filtering, paper-year sorting, and reset controls. With JavaScript unavailable, the full list remains readable.
 - Search and filters only affect paper readings; foundations always remain visible. Printed pages include all readings even if the browser has an active filter.
-- RWE article Previous/Next links remain within RWE paper readings.
+- Article Previous/Next links remain within the current research area.
 
 The directory is rendered by `_includes/rwe-learning.html`, with optional foundation links shared through `_includes/rwe-foundation-links.html`; progressive enhancement is in `js/rwe-library.js`. There is no fixed count or hardcoded paper reading sequence to maintain.
 
