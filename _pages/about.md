@@ -8,7 +8,7 @@ permalink: /about/
 **E-mail:** [lideyi@ufl.edu](mailto:lideyi@ufl.edu)   
 **Google Scholar:** [Profile](https://scholar.google.com/citations?user=RUSjHSoAAAAJ&hl=en)  
 **GitHub:** [Profile](https://github.com/deyili1997)  
-**LinkedIn:** [Profile](https://www.linkedin.com/in/deyi-li-9209612b7/)  
+**LinkedIn:** [Profile](https://www.linkedin.com/in/deyi-li-065014385/)
 
 ## Research & Learning
 
