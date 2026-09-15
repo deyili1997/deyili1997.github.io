@@ -55,4 +55,4 @@ Topic hubs use `_layouts/research-area.html`. The homepage overview and topic hu
 
 This file is excluded from the generated website.
 
-The homepage includes a simple three-direction diagram: Medical Informatics → Clinical Pharmacology, Medical Informatics → Pharmacoepidemiology, and Clinical Pharmacology → Pharmacoepidemiology. Its inline SVG is in `_includes/research-relationships.html`.
+The homepage includes a simple diagram of three research directions: Medical Informatics → Clinical Pharmacology, Medical Informatics → Pharmacoepidemiology, and Clinical Pharmacology ↔ Pharmacoepidemiology. Its inline SVG is in `_includes/research-relationships.html`.
