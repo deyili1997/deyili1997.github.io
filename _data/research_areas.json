@@ -1,10 +1,10 @@
 [
   {
     "id": "real-world-evidence",
-    "title": "Real-World Evidence",
+    "title": "Pharmacoepidemiology",
     "folder": "RWE",
     "number": "01",
-    "description": "Observational study design, causal inference, and evidence from routine clinical data.",
+    "description": "Observational study design, causal inference, and the use and effects of medicines in populations.",
     "publication_description": "Real-world clinical data, patient heterogeneity, and outcomes.",
     "url": "/real-world-evidence/",
     "study_label": "Causal Inference",
@@ -14,10 +14,10 @@
   },
   {
     "id": "healthcare-ai",
-    "title": "Healthcare AI",
+    "title": "Medical Informatics",
     "folder": "PM",
     "number": "02",
-    "description": "Patient representation learning, clinical risk prediction, and the evaluation of healthcare AI.",
+    "description": "Patient representation learning, clinical prediction, and computational methods for health data.",
     "publication_description": "Learning from electronic health records to model patient trajectories and predict clinical outcomes.",
     "url": "/healthcare-ai/",
     "study_label": "Learning notes",

@@ -1,22 +1,23 @@
 ---
 layout: default
 title: Deyi Li
-description: Deyi Li — research in real-world evidence, healthcare AI, and clinical pharmacology; publications and study notes.
+description: Deyi Li — research in pharmacoepidemiology, medical informatics, and clinical pharmacology; publications and study notes.
 ---
 {% if paginator.page > 1 %}
 <h1>Learning notes</h1>
-<p>Page {{ paginator.page }} of {{ paginator.total_pages }}. <a href="{{ '/healthcare-ai/' | relative_url }}">Browse all Healthcare AI notes</a>.</p>
+<p>Page {{ paginator.page }} of {{ paginator.total_pages }}. <a href="{{ '/healthcare-ai/' | relative_url }}">Browse all Medical Informatics notes</a>.</p>
 <ul class="reading-list">
   {% for post in paginator.posts %}<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><br><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %-d, %Y' }}</time></li>{% endfor %}
 </ul>
 {% include pagination.html %}
 {% else %}
 <h1>Deyi Li</h1>
-<p>My research interests include real-world evidence, healthcare AI, and clinical pharmacology.</p>
+<p>My research interests include pharmacoepidemiology, medical informatics, and clinical pharmacology.</p>
 <p><a href="mailto:{{ site.data.settings.contact.email }}">{{ site.data.settings.contact.email }}</a>{% for profile in site.data.settings.social %} · <a href="{{ profile.link | escape }}">{{ profile.name }}</a>{% endfor %}</p>
 
 <section aria-labelledby="research">
   <h2 id="research">Research</h2>
+  {% include research-relationships.html %}
   <ul class="research-list">
     {% for area in site.data.research_areas %}{% unless area.show_publications == false %}
     <li><a href="{{ area.url | relative_url }}">{{ area.title }}</a>: {{ area.description | replace_first: 'Observational', 'observational' | replace_first: 'Patient', 'patient' | replace_first: 'Pharmacometrics', 'pharmacometrics' }}</li>
@@ -29,8 +30,8 @@ description: Deyi Li — research in real-world evidence, healthcare AI, and cli
   {% assign healthcare_notes = site.posts | where: 'research_area', 'healthcare-ai' %}
   {% assign rwe_notes = site.posts | where: 'research_area', 'real-world-evidence' %}
   <ul>
-    <li>Real-World Evidence: <a href="{{ '/real-world-evidence/' | relative_url }}#area-learning-title">{{ site.causal_inference.size }} Causal Inference foundations</a> and <a href="{{ '/real-world-evidence/' | relative_url }}#area-paper-notes-title">{{ rwe_notes.size }} detailed paper readings</a>, connecting causal methods with their use in observational studies.</li>
-    <li><a href="{{ '/healthcare-ai/' | relative_url }}#area-learning-title">Healthcare AI</a>: {{ healthcare_notes.size }} learning notes on graph learning, patient representation, clinical prediction, biomedical foundation models, and therapeutic reasoning.</li>
+    <li>Pharmacoepidemiology: <a href="{{ '/real-world-evidence/' | relative_url }}#area-learning-title">{{ site.causal_inference.size }} Causal Inference foundations</a> and <a href="{{ '/real-world-evidence/' | relative_url }}#area-paper-notes-title">{{ rwe_notes.size }} detailed paper readings</a>, connecting causal methods with their use in observational studies.</li>
+    <li><a href="{{ '/healthcare-ai/' | relative_url }}#area-learning-title">Medical Informatics</a>: {{ healthcare_notes.size }} learning notes on graph learning, patient representation, clinical prediction, biomedical foundation models, and therapeutic reasoning.</li>
   </ul>
 </section>
 

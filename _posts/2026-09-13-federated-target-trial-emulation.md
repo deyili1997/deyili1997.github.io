@@ -11,7 +11,7 @@ reading_focus: "How shared trial protocols, federated propensity scores, and wei
 rwe_topics: [Federated analysis, Propensity scores, Survival analysis]
 foundation_notes: [cox-proportional-hazards, inverse-probability-weighting, weighted-survival-analysis]
 math: true
-tags: [Method, Real-World Evidence, Target Trial Emulation, Federated Learning, IPTW, Survival Analysis]
+tags: [Method, Pharmacoepidemiology, Target Trial Emulation, Federated Learning, IPTW, Survival Analysis]
 ---
 
 **Paper:** Haoyang Li, Chengxi Zang, Zhenxing Xu, Weishen Pan, Suraj Rajendran, Yong Chen, and Fei Wang. *Federated target trial emulation using distributed observational data for treatment effect estimation*. **npj Digital Medicine 8, 387 (2025)**, published July 1, 2025. [Journal article](https://doi.org/10.1038/s41746-025-01803-y).

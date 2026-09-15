@@ -11,7 +11,7 @@ reading_focus: "How repeated drug-initiation comparisons use balance-selected pr
 rwe_topics: [Drug repurposing, Propensity scores, Survival analysis]
 foundation_notes: [target-trial-emulation, inverse-probability-weighting, weighted-survival-analysis]
 math: true
-tags: [Method, Real-World Evidence, Target Trial Emulation, Drug Repurposing, Propensity Scores, Causal Inference]
+tags: [Method, Pharmacoepidemiology, Target Trial Emulation, Drug Repurposing, Propensity Scores, Causal Inference]
 ---
 
 **Paper:** Chengxi Zang et al., *High-throughput target trial emulation for Alzheimer's disease drug repurposing with real-world data*, **Nature Communications 14, 8180**, published December 11, 2023. [Journal article](https://www.nature.com/articles/s41467-023-43929-1) · [DOI](https://doi.org/10.1038/s41467-023-43929-1) · [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-43929-1/MediaObjects/41467_2023_43929_MOESM1_ESM.pdf) · [Authors' code](https://github.com/calvin-zcx/RWD4Drug).

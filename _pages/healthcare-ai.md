@@ -1,7 +1,7 @@
 ---
 layout: "research-area"
-title: "Healthcare AI"
-description: "Patient representation learning, clinical risk prediction, and the evaluation of healthcare AI."
+title: "Medical Informatics"
+description: "Patient representation learning, clinical prediction, and computational methods for health data."
 permalink: "/healthcare-ai/"
 research_area: "healthcare-ai"
 ---

@@ -6,7 +6,7 @@ permalink: /txagent-therapeutic-reasoning/
 date: 2026-09-13 12:00:00 -0400
 research_area: healthcare-ai
 math: true
-tags: [Method, Healthcare AI, LLM, AI Agents, Therapeutic Reasoning, Tool Use]
+tags: [Method, Medical Informatics, LLM, AI Agents, Therapeutic Reasoning, Tool Use]
 ---
 
 **Paper:** Shanghua Gao et al., *TxAgent: An AI Agent for Therapeutic Reasoning Across a Universe of Tools*, [arXiv:2503.10970v1](https://arxiv.org/abs/2503.10970v1), March 14, 2025. These notes explain the **v1 paper**, including its Online Methods and extended figures. Page references refer to that 74-page PDF. The main goal is to explain how the system is constructed, trained, and evaluated; explanatory equations and pseudocode added here are identified as such.

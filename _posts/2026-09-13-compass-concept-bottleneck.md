@@ -6,7 +6,7 @@ permalink: /healthcare-ai/compass-concept-bottleneck/
 date: 2026-09-13 21:00:00 -0400
 research_area: healthcare-ai
 math: true
-tags: [Method, Healthcare AI, Transformer, Concept Bottleneck, Contrastive Learning, Immunotherapy, Transcriptomics]
+tags: [Method, Medical Informatics, Transformer, Concept Bottleneck, Contrastive Learning, Immunotherapy, Transcriptomics]
 ---
 
 **Paper:** Wanxiang Shen, Intae Moon, Thinh H. Nguyen, Michelle M. Li, Yepeng Huang, Nitya Nair, Daniel Marbach, and Marinka Zitnik. *Generalizable AI predicts immunotherapy outcomes across cancers and treatments*. **Nature Medicine 32, 3010–3022 (2026)**, published July 3, 2026. [Journal article](https://www.nature.com/articles/s41591-026-04502-7) · [Main PDF](https://www.nature.com/articles/s41591-026-04502-7.pdf) · [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41591-026-04502-7/MediaObjects/41591_2026_4502_MOESM1_ESM.pdf) · [Official code](https://github.com/mims-harvard/COMPASS).

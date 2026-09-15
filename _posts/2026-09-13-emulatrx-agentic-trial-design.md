@@ -11,7 +11,7 @@ reading_focus: "How agents turn clinical questions into computable protocols, pa
 rwe_topics: [Agentic trial design, Computable phenotyping, Protocol refinement]
 foundation_notes: [target-trial-emulation, clone-censor-weight, clinical-data-adjustment]
 math: true
-tags: [Method, Real-World Evidence, Target Trial Emulation, Causal Inference, AI Agents, Clinical Trial Design]
+tags: [Method, Pharmacoepidemiology, Target Trial Emulation, Causal Inference, AI Agents, Clinical Trial Design]
 ---
 
 **Paper:** Haoyang Li, Weishen Pan, Suraj Rajendran, Chengxi Zang, and Fei Wang. *Empowering clinical trial design with agentic intelligence and real-world data*. **Nature Communications 17, 5501 (2026)**, published July 7, 2026. [Journal article](https://doi.org/10.1038/s41467-026-74501-2).

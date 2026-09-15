@@ -6,13 +6,13 @@ The research portfolio lives at `/publication/` and uses the existing Jekyll / G
 
 | Source folder | Website section | Current PDFs |
 | --- | --- | --- |
-| `RWE/` | Real-World Evidence | 1 |
-| `PM/` | Healthcare AI | 7 |
+| `RWE/` | Pharmacoepidemiology | 1 |
+| `PM/` | Medical Informatics | 7 |
 | `CPP/` | Clinical Pharmacology | 2 |
 
-The `RWE/` source folder maps to Real-World Evidence (`research_area: real-world-evidence`).
+The `RWE/` source folder maps to Pharmacoepidemiology (`research_area: real-world-evidence`).
 
-The `PM/` source folder maps to Healthcare AI (`research_area: healthcare-ai`). Preserve formal paper titles, even when they contain the phrase “predictive modeling.”
+The `PM/` source folder maps to Medical Informatics (`research_area: healthcare-ai`). Preserve formal paper titles, even when they contain the phrase “predictive modeling.”
 
 `_data/research_areas.json` defines the topic names, route URLs, folder mapping and descriptions. Only topics without `show_publications: false` appear as publication sections; Investment is excluded. `_data/publications.json` stores the publication records. Every record requires `research_area`, a folder-relative `source_file` such as `PM/2608.21712v2.pdf`, and a `source_sha256` matching the supplied PDF. Category membership must follow the user-assigned folder, without inferring a different category from the article title.
 

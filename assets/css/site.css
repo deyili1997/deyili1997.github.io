@@ -37,6 +37,8 @@ dd { margin-left: 1.5rem; }
 .article-meta, figcaption { font-size: .9em; color: #444; }
 .article-meta { margin-bottom: 1.5rem; }
 .research-list li, .publication-list > li, .reading-list > li { margin-bottom: .85rem; }
+.research-relationships { max-width: 35rem; margin: 1rem auto; }
+.research-relationships svg { display: block; width: 100%; }
 .reading-navigation { border-top: 1px solid #ccc; margin-top: 2rem; padding-top: .5rem; }
 .reading-navigation p { margin: .5rem 0; }
 summary { cursor: pointer; }

@@ -1,6 +1,6 @@
 ---
 layout: redirect
-title: Real-World Evidence
+title: Pharmacoepidemiology
 permalink: /rwe-generation/
 redirect_to: /real-world-evidence/
 sitemap: false

@@ -12,7 +12,7 @@ permalink: /about/
 
 ## Research & Learning
 
-- [Real-World Evidence](/real-world-evidence/): observational study design, causal inference, and real-world evidence.
-- [Healthcare AI](/healthcare-ai/): patient representation learning, clinical prediction, and healthcare AI.
+- [Pharmacoepidemiology](/real-world-evidence/): observational study design, causal inference, and the use and effects of medicines in populations.
+- [Medical Informatics](/healthcare-ai/): patient representation learning, clinical prediction, and computational methods for health data.
 - [Clinical Pharmacology](/clinical-pharmacology/): pharmacometrics and individualized therapy. Learning content: TBD.
 - [Investment](/investment/): a personal learning journal on U.S. equity investing.
